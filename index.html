@@ -1,0 +1,1532 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cell Organelle-Based Human Biology Laboratory | Jiyoon Kim Lab, The Catholic University of Korea</title>
+<meta name="description" content="Golgi apparatus morphodynamics in gastric cancer and Alzheimer's disease. Department of Pharmacology, The Catholic University of Korea College of Medicine. PI: Jiyoon Kim, M.D., Ph.D.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Cell Organelle-Based Human Biology Laboratory">
+<meta property="og:description" content="We study how Golgi morphology drives disease — condensation in gastric cancer, fragmentation in Alzheimer's disease.">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+KR:wght@300;400;500;600;700&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Serif:ital,wght@0,300;0,400;0,600;1,300&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#0F1519;
+  --ink-2:#33414B;
+  --muted:#6B7A85;
+  --line:#D9DEDA;
+  --line-soft:#E9ECE8;
+  --ground:#F5F6F3;
+  --surface:#FFFFFF;
+  --deep:#08262B;
+  --cyan:#0E8F9C;
+  --magenta:#BB2C68;
+  --amber:#B87413;
+  --state:var(--cyan);
+  --maxw:1180px;
+  --serif:"IBM Plex Serif", Georgia, serif;
+  --sans:"IBM Plex Sans","IBM Plex Sans KR",system-ui,-apple-system,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;background:var(--ground);color:var(--ink);
+  font-family:var(--sans);font-weight:400;font-size:16px;line-height:1.75;
+  -webkit-font-smoothing:antialiased;
+}
+/* Korean and English words never split across lines */
+body,h1,h2,h3,h4,h5,p,li,dd,dt,span,small,div,a,figcaption,button,strong,b{
+  word-break:keep-all;overflow-wrap:break-word;line-break:strict;
+}
+a{color:inherit}
+img{max-width:100%;display:block}
+:focus-visible{outline:2px solid var(--state);outline-offset:3px;border-radius:2px}
+
+/* ---------- utility type ---------- */
+.eyebrow{
+  font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--muted);font-weight:500;
+}
+.rule{height:1px;background:var(--line);border:0;margin:0}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px}
+.lead{font-size:19px;line-height:1.7;color:var(--ink-2);font-weight:300}
+h1,h2,h3,h4{margin:0;font-weight:400;letter-spacing:-.01em}
+p{margin:0 0 1.05em}
+p:last-child{margin-bottom:0}
+
+/* ---------- header ---------- */
+header{
+  position:sticky;top:0;z-index:50;background:rgba(245,246,243,.88);
+  backdrop-filter:saturate(140%) blur(10px);border-bottom:1px solid var(--line);
+}
+.topbar{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:13px 0 12px}
+.brand{display:flex;flex-direction:column;gap:2px;text-decoration:none;min-width:0}
+.brand .inst{font-family:var(--mono);font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--muted)}
+.brand .name{font-family:var(--serif);font-size:20px;line-height:1.15;letter-spacing:-.015em}
+.brand .name em{font-style:italic;color:var(--state);transition:color .5s ease}
+.toolbar{display:flex;align-items:center;gap:14px;flex-shrink:0}
+.langtoggle{display:flex;border:1px solid var(--line);border-radius:999px;overflow:hidden;background:var(--surface)}
+.langtoggle button{
+  font-family:var(--mono);font-size:11px;letter-spacing:.08em;padding:5px 11px;border:0;background:transparent;
+  color:var(--muted);cursor:pointer
+}
+.langtoggle button[aria-pressed="true"]{background:var(--ink);color:#fff}
+nav.main{border-top:1px solid var(--line-soft)}
+nav.main ul{display:flex;gap:0;list-style:none;margin:0;padding:0;flex-wrap:wrap}
+nav.main a{
+  display:block;padding:11px 0;margin-right:30px;text-decoration:none;font-size:13.5px;color:var(--ink-2);
+  border-bottom:2px solid transparent;letter-spacing:.01em;white-space:nowrap
+}
+nav.main a:hover{color:var(--ink)}
+nav.main a.active{border-bottom-color:var(--state);color:var(--ink);font-weight:500}
+.menubtn{display:none;border:1px solid var(--line);background:var(--surface);border-radius:6px;padding:7px 12px;font-family:var(--mono);font-size:11px;cursor:pointer}
+
+/* ---------- page system ---------- */
+.page{display:none;animation:fade .45s ease both}
+.page.on{display:block}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+section{padding:64px 0}
+.section-head{display:grid;grid-template-columns:150px 1fr;gap:28px;align-items:baseline;margin-bottom:34px}
+.section-head h2{font-family:var(--serif);font-size:31px;line-height:1.22;letter-spacing:-.02em}
+.section-head p{margin-top:8px;color:var(--muted);font-size:15px}
+
+/* ---------- hero ---------- */
+.hero{padding:0;border-bottom:1px solid var(--line)}
+.hero-grid{display:grid;grid-template-columns:1.02fr .98fr;gap:56px;align-items:center;padding:66px 0 58px}
+.hero h1{font-family:var(--serif);font-size:clamp(34px,4.4vw,55px);line-height:1.1;letter-spacing:-.03em;font-weight:400}
+.hero h1 em{font-style:italic;color:var(--state);transition:color .5s ease}
+.hero .sub{margin-top:22px;max-width:34em}
+.hero .meta{margin-top:30px;display:flex;flex-wrap:wrap;gap:9px}
+.chip{
+  font-family:var(--mono);font-size:11px;letter-spacing:.06em;padding:6px 11px;border:1px solid var(--line);
+  border-radius:999px;background:var(--surface);color:var(--ink-2)
+}
+.cta-row{margin-top:32px;display:flex;gap:12px;flex-wrap:wrap}
+.btn{
+  display:inline-block;text-decoration:none;font-size:14px;padding:11px 20px;border-radius:4px;
+  border:1px solid var(--ink);background:var(--ink);color:#fff;transition:.2s
+}
+.btn:hover{background:transparent;color:var(--ink)}
+.btn.ghost{background:transparent;color:var(--ink);border-color:var(--line)}
+.btn.ghost:hover{border-color:var(--ink)}
+
+/* ---------- signature: golgi morphology switch ---------- */
+.golgi-panel{background:var(--surface);border:1px solid var(--line);border-radius:3px;overflow:hidden}
+.golgi-stage{background:linear-gradient(180deg,#fbfcfb,#f2f4f1);position:relative}
+.golgi-stage svg{display:block;width:100%;height:auto}
+.cis{transition:transform 1.05s cubic-bezier(.62,0,.18,1)}
+.cutters rect{transform-box:fill-box;transform-origin:center;
+  transition:transform 1.05s cubic-bezier(.62,0,.18,1)}
+.vesicle{opacity:0;transform:translate(var(--vx),var(--vy)) scale(.2);
+  transition:opacity .9s ease,transform 1.05s cubic-bezier(.5,1.4,.4,1)}
+.nucleus{fill:none;stroke:var(--line);stroke-width:1.3;stroke-dasharray:2 7}
+.golgi-stage svg{overflow:visible}
+
+.golgi[data-state="stacked"]{--state:var(--cyan)}
+.golgi[data-state="condensed"]{--state:var(--magenta)}
+.golgi[data-state="fragmented"]{--state:var(--amber)}
+
+.golgi[data-state="stacked"] .cis{transform:translateY(calc(var(--i) * 21px)) scaleX(1)}
+.golgi[data-state="condensed"] .cis{transform:translateY(calc(var(--i) * 8px)) scaleX(.54)}
+.golgi[data-state="fragmented"] .cis{transform:translateY(calc(var(--i) * 24px)) scaleX(1.04) rotate(var(--rr))}
+
+.golgi .cutters rect{transform:scaleX(0) rotate(var(--rr))}
+.golgi[data-state="fragmented"] .cutters rect{transform:scaleX(1) rotate(var(--rr))}
+.golgi[data-state="fragmented"] .vesicle{opacity:.9;transform:translate(var(--vx),var(--vy)) scale(1)}
+
+.golgi-switch{display:flex;border-top:1px solid var(--line)}
+.golgi-switch button{
+  flex:1;background:var(--surface);border:0;border-right:1px solid var(--line);padding:13px 10px 12px;
+  cursor:pointer;text-align:left;font-family:var(--sans);color:var(--muted);transition:.25s
+}
+.golgi-switch button:last-child{border-right:0}
+.golgi-switch button span{display:block;font-family:var(--mono);font-size:10px;letter-spacing:.13em;text-transform:uppercase}
+.golgi-switch button strong{display:block;font-size:13.5px;font-weight:500;margin-top:3px;color:var(--ink-2)}
+.golgi-switch button[aria-pressed="true"]{background:var(--ink);color:#fff}
+.golgi-switch button[aria-pressed="true"] strong{color:#fff}
+.golgi-caption{padding:16px 18px;border-top:1px solid var(--line);background:var(--surface);min-height:96px}
+.golgi-caption p{font-size:14px;color:var(--ink-2);line-height:1.65}
+.golgi-caption .src{font-family:var(--mono);font-size:11px;color:var(--muted);margin-top:8px}
+
+/* ---------- cards / pillars ---------- */
+.pillars{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.pillar{
+  background:var(--surface);border:1px solid var(--line);padding:30px 28px 28px;border-radius:3px;
+  text-decoration:none;display:block;transition:.25s;position:relative;overflow:hidden
+}
+.pillar:hover{border-color:var(--ink);transform:translateY(-2px)}
+.pillar .tag{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase}
+.pillar.cancer .tag{color:var(--magenta)}
+.pillar.ad .tag{color:var(--amber)}
+.pillar h3{font-family:var(--serif);font-size:24px;margin:10px 0 4px;letter-spacing:-.02em}
+.pillar .ko{font-size:14px;color:var(--muted);margin-bottom:14px}
+.pillar p{font-size:14.5px;color:var(--ink-2)}
+.pillar .more{margin-top:16px;font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase}
+
+.stats{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.stat{padding:26px 20px;border-right:1px solid var(--line-soft)}
+.stat:last-child{border-right:0}
+.stat b{display:block;font-family:var(--serif);font-size:34px;font-weight:400;line-height:1;letter-spacing:-.02em}
+.stat span{display:block;margin-top:8px;font-size:13px;color:var(--muted)}
+
+/* ---------- prose ---------- */
+.prose{max-width:70ch;font-size:15.5px;color:var(--ink-2)}
+.prose h3{font-family:var(--serif);font-size:21px;color:var(--ink);margin:38px 0 12px;letter-spacing:-.015em}
+.prose h3:first-child{margin-top:0}
+.prose .cis{font-family:var(--mono);font-size:10.5px;letter-spacing:.15em;text-transform:uppercase;color:var(--state);display:block;margin-bottom:5px}
+.prose a{color:var(--ink);text-decoration:underline;text-decoration-color:var(--line);text-underline-offset:3px}
+.prose a:hover{text-decoration-color:var(--state)}
+.callout{
+  border-left:2px solid var(--state);padding:4px 0 4px 20px;margin:26px 0;
+  font-family:var(--serif);font-size:19px;line-height:1.55;color:var(--ink);font-style:italic
+}
+
+/* ---------- research page with figures ---------- */
+.research-layout{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,.6fr);gap:46px;align-items:start}
+.figs{position:sticky;top:120px;display:flex;flex-direction:column;gap:26px}
+.figs figure{margin:0;background:var(--surface);border:1px solid var(--line);border-radius:3px;overflow:hidden}
+.figs figure img{width:100%;height:auto;display:block}
+.figs figcaption{padding:11px 14px 13px;font-size:12.5px;line-height:1.6;color:var(--muted);border-top:1px solid var(--line-soft)}
+.figs figcaption b{display:block;font-family:var(--mono);font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:var(--state);margin-bottom:4px;font-weight:500}
+
+/* ---------- PI portrait hover ---------- */
+.pi-portrait img{filter:grayscale(1) contrast(1.03);transition:filter .5s ease}
+.pi-portrait:hover img{filter:grayscale(0)}
+
+/* ---------- member record list ---------- */
+.record{margin-top:14px;border-top:1px solid var(--line-soft);padding-top:12px}
+.record .rlabel{font-family:var(--mono);font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:var(--muted);margin:12px 0 5px}
+.record .rlabel:first-child{margin-top:0}
+.record ol{margin:0;padding-left:17px;font-size:12.5px;line-height:1.75;color:var(--ink-2)}
+.record ol li{margin-bottom:2px}
+
+/* ---------- verse ---------- */
+.verse{font-family:var(--serif);font-style:italic;font-size:20px;line-height:1.5;color:var(--ink);max-width:30em}
+.verse cite{display:block;font-family:var(--mono);font-style:normal;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-top:10px}
+
+/* ---------- news ---------- */
+.newsyear{font-family:var(--serif);font-size:26px;margin:44px 0 10px;letter-spacing:-.02em}
+.newsyear:first-child{margin-top:0}
+.news-row{display:grid;grid-template-columns:112px 1fr;gap:22px;padding:14px 0;border-bottom:1px solid var(--line-soft)}
+.news-row .nd{font-family:var(--mono);font-size:11.5px;color:var(--muted);padding-top:3px}
+.news-row .nt{font-size:14.5px;line-height:1.65}
+.news-row .nt small{display:block;color:var(--muted);font-size:13px;margin-top:5px}
+.news-row .nt a{color:var(--ink);text-decoration:underline;text-decoration-color:var(--line);text-underline-offset:3px}
+.news-row .nt a:hover{text-decoration-color:var(--state)}
+.news-row.kind-award{--state:var(--magenta)}
+.news-row.kind-grant{--state:var(--cyan)}
+.badge{display:inline-block;font-family:var(--mono);font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;
+  border:1px solid var(--line);border-radius:999px;padding:2px 8px;margin-right:8px;color:var(--muted);vertical-align:2px}
+.summary-card{background:var(--deep);color:#CFE0DE;border-radius:3px;padding:26px 28px;margin:26px 0 8px}
+.summary-card h4{font-family:var(--serif);color:#fff;font-size:19px;margin-bottom:12px}
+.summary-card ul{margin:0;padding-left:17px;font-size:14px;line-height:1.9;color:#A8BFBC}
+
+/* ---------- gallery ---------- */
+.gal-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.gal{background:var(--surface);border:1px solid var(--line);border-radius:3px;overflow:hidden;cursor:zoom-in}
+.gal .ph{aspect-ratio:4/3;background:#E7EAE6;overflow:hidden}
+.gal .ph img{width:100%;height:100%;object-fit:cover;transition:transform .6s cubic-bezier(.2,0,.2,1)}
+.gal:hover .ph img{transform:scale(1.04)}
+.gal .cap{padding:10px 13px 12px;font-size:12.5px;line-height:1.55;color:var(--ink-2)}
+.gal .cap span{display:block;font-family:var(--mono);font-size:10.5px;color:var(--muted);margin-bottom:3px}
+.lightbox{position:fixed;inset:0;background:rgba(9,14,17,.93);display:none;align-items:center;justify-content:center;z-index:200;padding:32px}
+.lightbox.on{display:flex}
+.lightbox img{max-width:92vw;max-height:82vh;object-fit:contain;border-radius:2px}
+.lightbox .lb-cap{position:absolute;bottom:26px;left:0;right:0;text-align:center;color:#C9D3D8;font-size:13px;padding:0 24px}
+.lightbox .lb-close{position:absolute;top:20px;right:24px;background:none;border:1px solid #47545C;color:#C9D3D8;
+  border-radius:999px;width:38px;height:38px;font-size:16px;cursor:pointer}
+
+/* ---------- timeline ---------- */
+.tl{border-top:1px solid var(--line)}
+.tl-row{display:grid;grid-template-columns:130px 1fr;gap:24px;padding:16px 0;border-bottom:1px solid var(--line-soft)}
+.tl-row .when{font-family:var(--mono);font-size:12px;color:var(--muted);padding-top:3px}
+.tl-row .what{font-size:15px}
+.tl-row .what small{display:block;color:var(--muted);font-size:13.5px;margin-top:11px;line-height:1.7}
+.tl-row .what small + small{margin-top:5px}
+
+/* ---------- people ---------- */
+.people{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.person{background:var(--surface);border:1px solid var(--line);border-radius:3px;overflow:hidden;display:flex;flex-direction:column}
+.portrait{aspect-ratio:4/5;background:#E7EAE6;position:relative;overflow:hidden}
+.portrait img{width:100%;height:100%;object-fit:cover;filter:grayscale(1) contrast(1.03);transition:filter .5s ease}
+.person:hover .portrait img{filter:grayscale(0)}
+.portrait .initials{
+  position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+  font-family:var(--serif);font-size:44px;color:#B4BCB6
+}
+.person .body{padding:18px 18px 20px;flex:1;display:flex;flex-direction:column}
+.person .role{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--state)}
+.person h4{font-family:var(--serif);font-size:19px;margin:7px 0 2px}
+.person .rom{font-size:12.5px;color:var(--muted);font-family:var(--mono)}
+.person ul{margin:12px 0 0;padding-left:16px;font-size:13.5px;color:var(--ink-2);line-height:1.6}
+.person .links{margin-top:12px;display:flex;flex-wrap:wrap;gap:8px}
+.tag-sm{font-family:var(--mono);font-size:10px;letter-spacing:.06em;border:1px solid var(--line);padding:3px 8px;border-radius:999px;text-decoration:none;color:var(--muted)}
+.tag-sm:hover{border-color:var(--ink);color:var(--ink)}
+
+.alumni{display:grid;grid-template-columns:repeat(2,1fr);gap:0 40px}
+.alum{padding:15px 0;border-bottom:1px solid var(--line-soft)}
+.alum b{font-weight:500;font-size:15px}
+.alum span{display:block;font-size:13.5px;color:var(--muted)}
+
+/* ---------- publications ---------- */
+.filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:26px}
+.filters button{
+  font-family:var(--mono);font-size:11.5px;letter-spacing:.06em;padding:6px 13px;border:1px solid var(--line);
+  background:var(--surface);border-radius:999px;cursor:pointer;color:var(--muted)
+}
+.filters button[aria-pressed="true"]{background:var(--ink);color:#fff;border-color:var(--ink)}
+.pub{display:grid;grid-template-columns:52px 1fr;gap:20px;padding:20px 0;border-bottom:1px solid var(--line-soft)}
+.pub .n{font-family:var(--mono);font-size:12px;color:var(--muted);padding-top:4px}
+.pub .t{font-size:15.5px;line-height:1.55;margin-bottom:6px}
+.pub .t a{text-decoration:none;border-bottom:1px solid var(--line)}
+.pub .t a:hover{border-bottom-color:var(--ink)}
+.pub .a{font-size:13.5px;color:var(--muted);line-height:1.6}
+.pub .a b{color:var(--ink);font-weight:500}
+.pub .j{margin-top:7px;font-family:var(--mono);font-size:11.5px;color:var(--ink-2)}
+.pub .j .if{color:var(--muted)}
+.pub .press{margin-top:7px;font-size:12.5px;color:var(--muted)}
+
+/* ---------- news / patents ---------- */
+.linklist{border-top:1px solid var(--line)}
+.linkrow{display:grid;grid-template-columns:96px 1fr auto;gap:20px;padding:15px 0;border-bottom:1px solid var(--line-soft);align-items:baseline;text-decoration:none}
+.linkrow .d{font-family:var(--mono);font-size:11.5px;color:var(--muted)}
+.linkrow .h{font-size:15px}
+.linkrow .arw{font-family:var(--mono);font-size:12px;color:var(--muted)}
+.linkrow:hover .h{color:var(--state)}
+
+/* ---------- contact ---------- */
+.contact-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:48px}
+.dl{border-top:1px solid var(--line)}
+.dl div{display:grid;grid-template-columns:110px 1fr;gap:18px;padding:14px 0;border-bottom:1px solid var(--line-soft)}
+.dl dt{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin:0}
+.dl dd{margin:0;font-size:15px}
+.join{background:var(--deep);color:#DCE7E5;padding:38px 34px;border-radius:3px}
+.join h3{font-family:var(--serif);font-size:24px;color:#fff;margin-bottom:12px;letter-spacing:-.02em}
+.join p{font-size:14.5px;color:#A8BFBC}
+.join a.mail{display:inline-block;margin-top:16px;font-family:var(--mono);font-size:14px;color:#fff;border-bottom:1px solid rgba(255,255,255,.4);text-decoration:none;padding-bottom:2px}
+
+/* ---------- footer ---------- */
+footer{background:var(--ink);color:#8F9BA3;padding:44px 0 34px;margin-top:20px}
+.foot{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:36px}
+.foot h5{font-family:var(--serif);color:#fff;font-size:17px;font-weight:400;margin:0 0 10px}
+.foot p{font-size:13px;line-height:1.7}
+.foot ul{list-style:none;margin:0;padding:0;font-size:13px;line-height:2}
+.foot a{color:#B9C3C9;text-decoration:none}
+.foot a:hover{color:#fff}
+.foot .lbl{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#5D6A73;margin-bottom:8px}
+.copy{margin-top:34px;padding-top:18px;border-top:1px solid #232C33;font-family:var(--mono);font-size:10.5px;letter-spacing:.04em;color:#5D6A73}
+
+/* ---------- lang ---------- */
+[data-lang]{display:none}
+html[lang="ko"] [data-lang="ko"]{display:initial}
+html[lang="en"] [data-lang="en"]{display:initial}
+html[lang="ko"] li[data-lang="ko"],html[lang="en"] li[data-lang="en"]{display:list-item}
+html[lang="ko"] div[data-lang="ko"],html[lang="en"] div[data-lang="en"]{display:block}
+html[lang="ko"] p[data-lang="ko"],html[lang="en"] p[data-lang="en"]{display:block}
+/* block-level bilingual elements must stay block, or the Korean line glues onto the English one */
+html[lang="ko"] small[data-lang="ko"],html[lang="en"] small[data-lang="en"],
+html[lang="ko"] h1[data-lang="ko"],html[lang="en"] h1[data-lang="en"],
+html[lang="ko"] h2[data-lang="ko"],html[lang="en"] h2[data-lang="en"],
+html[lang="ko"] h3[data-lang="ko"],html[lang="en"] h3[data-lang="en"],
+html[lang="ko"] h4[data-lang="ko"],html[lang="en"] h4[data-lang="en"],
+html[lang="ko"] blockquote[data-lang="ko"],html[lang="en"] blockquote[data-lang="en"]{display:block}
+
+@media (max-width:900px){
+  .hero-grid,.pillars,.contact-grid,.foot,.alumni,.research-layout{grid-template-columns:1fr;gap:34px}
+  .figs{position:static;flex-direction:row;flex-wrap:wrap}
+  .figs figure{flex:1 1 240px}
+  .gal-grid{grid-template-columns:1fr 1fr}
+  .news-row{grid-template-columns:1fr;gap:3px}
+  .people{grid-template-columns:1fr 1fr}
+  .stats{grid-template-columns:1fr 1fr}
+  .stat:nth-child(2){border-right:0}
+  .section-head{grid-template-columns:1fr;gap:6px}
+  nav.main ul.collapsed{display:none}
+  .menubtn{display:block}
+  .tl-row,.pub,.linkrow{grid-template-columns:1fr;gap:4px}
+  .dl div{grid-template-columns:1fr;gap:2px}
+}
+@media (max-width:560px){ .people{grid-template-columns:1fr} .wrap{padding:0 18px} section{padding:44px 0} }
+@media (prefers-reduced-motion:reduce){
+  *{animation-duration:.01ms!important;transition-duration:.01ms!important}
+  html{scroll-behavior:auto}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="topbar">
+      <a class="brand" href="#/home">
+        <span class="inst">The Catholic University of Korea &middot; College of Medicine &middot; Pharmacology</span>
+        <span class="name"><em>Cell Organelle</em>-Based Human Biology Laboratory</span>
+      </a>
+      <div class="toolbar">
+        <div class="langtoggle" role="group" aria-label="Language">
+          <button id="btn-ko" aria-pressed="true">KO</button>
+          <button id="btn-en" aria-pressed="false">EN</button>
+        </div>
+        <button class="menubtn" id="menubtn" aria-expanded="false">MENU</button>
+      </div>
+    </div>
+  </div>
+  <nav class="main">
+    <div class="wrap">
+      <ul id="navlist" class="collapsed">
+        <li><a href="#/home" data-nav="home"><span data-lang="ko">홈</span><span data-lang="en">Home</span></a></li>
+        <li><a href="#/research" data-nav="research"><span data-lang="ko">연구</span><span data-lang="en">Research</span></a></li>
+        <li><a href="#/gastric" data-nav="gastric"><span data-lang="ko">위암</span><span data-lang="en">Gastric Cancer</span></a></li>
+        <li><a href="#/alzheimer" data-nav="alzheimer"><span data-lang="ko">알츠하이머</span><span data-lang="en">Alzheimer's Disease</span></a></li>
+        <li><a href="#/pi" data-nav="pi"><span data-lang="ko">연구책임자</span><span data-lang="en">Principal Investigator</span></a></li>
+        <li><a href="#/members" data-nav="members"><span data-lang="ko">구성원</span><span data-lang="en">Members</span></a></li>
+        <li><a href="#/publications" data-nav="publications"><span data-lang="ko">연구 성과</span><span data-lang="en">Research Output</span></a></li>
+        <li><a href="#/news" data-nav="news"><span data-lang="ko">소식</span><span data-lang="en">News</span></a></li>
+        <li><a href="#/gallery" data-nav="gallery"><span data-lang="ko">갤러리</span><span data-lang="en">Gallery</span></a></li>
+        <li><a href="#/contact" data-nav="contact"><span data-lang="ko">오시는 길</span><span data-lang="en">Contact</span></a></li>
+      </ul>
+    </div>
+  </nav>
+</header>
+
+<main>
+
+<!-- ============ HOME ============ -->
+<div class="page on" id="p-home">
+  <div class="hero">
+    <div class="wrap">
+      <div class="hero-grid">
+        <div>
+          <span class="eyebrow" data-lang="ko">세포소기관 기반 병리기전 및 질병치료 연구실</span>
+          <span class="eyebrow" data-lang="en">Golgi morphodynamics in human disease</span>
+          <h1 style="margin-top:18px">
+            <span data-lang="ko">골지체는 질병의 <em>결과</em>가 아니라<br>질병의 <em>원인</em>입니다.</span>
+            <span data-lang="en">The Golgi is not a <em>consequence</em><br>of disease. It is a <em>cause</em>.</span>
+          </h1>
+          <p class="lead sub" data-lang="ko">우리는 골지체의 형태 변화 — 위암에서의 응축(condensation)과 알츠하이머 치매에서의 파편화(fragmentation) — 가 세포 내 신호전달을 직접 재편하여 질병을 일으킨다는 가설을 검증합니다. 세포주, 오가노이드, 유전자 조작 마우스, 인체 조직을 아우르는 실험으로 새로운 치료 표적을 발굴합니다.</p>
+          <p class="lead sub" data-lang="en">We test a single idea across two diseases: that a change in Golgi architecture — condensation in gastric cancer, fragmentation in Alzheimer's disease — rewires intracellular signaling and drives pathogenesis. Our work spans cell lines, organoids, knockout mice and human tissue, and ends in druggable targets.</p>
+          <div class="meta">
+            <span class="chip">Golgi Oncology</span>
+            <span class="chip">GRASP55 / GORASP2</span>
+            <span class="chip">YAP1</span>
+            <span class="chip">Unconventional secretion</span>
+            <span class="chip">Autophagy</span>
+          </div>
+          <div class="cta-row">
+            <a class="btn" href="#/research"><span data-lang="ko">연구 주제 보기</span><span data-lang="en">Explore the research</span></a>
+            <a class="btn ghost" href="#/contact"><span data-lang="ko">연구실 지원하기</span><span data-lang="en">Join the lab</span></a>
+          </div>
+        </div>
+
+        <!-- signature element -->
+        <div class="golgi-panel">
+          <div class="golgi golgi-stage" id="golgi" data-state="stacked">
+            <svg viewBox="0 0 560 430" role="img" aria-label="Three-dimensional rendering of the Golgi apparatus in three states: stacked, condensed and fragmented">
+              <defs>
+                <radialGradient id="cyto" cx="50%" cy="42%" r="62%">
+                  <stop offset="0%" style="stop-color:#ffffff"/>
+                  <stop offset="100%" style="stop-color:#E8ECE8"/>
+                </radialGradient>
+                <linearGradient id="cisg" x1="0" y1="0" x2="0.15" y2="1">
+                  <stop offset="0%"   style="stop-color:var(--state);stop-opacity:.30"/>
+                  <stop offset="22%"  style="stop-color:var(--state);stop-opacity:.92"/>
+                  <stop offset="62%"  style="stop-color:var(--state);stop-opacity:.70"/>
+                  <stop offset="100%" style="stop-color:var(--state);stop-opacity:.34"/>
+                </linearGradient>
+                <linearGradient id="rim" x1="0" y1="0" x2="1" y2="0">
+                  <stop offset="0%"   style="stop-color:var(--state);stop-opacity:.15"/>
+                  <stop offset="50%"  style="stop-color:var(--state);stop-opacity:.75"/>
+                  <stop offset="100%" style="stop-color:var(--state);stop-opacity:.15"/>
+                </linearGradient>
+                <filter id="soft" x="-35%" y="-35%" width="170%" height="170%">
+                  <feDropShadow dx="0" dy="8" stdDeviation="10" flood-color="#0A2026" flood-opacity="0.20"/>
+                </filter>
+                <mask id="fragmask">
+                  <rect x="0" y="0" width="560" height="430" fill="#fff"/>
+                  <g class="cutters" fill="#000">
+                    <rect x="176" y="40" width="15" height="350" style="--rr:7deg"/>
+                    <rect x="228" y="40" width="19" height="350" style="--rr:-5deg"/>
+                    <rect x="288" y="40" width="14" height="350" style="--rr:4deg"/>
+                    <rect x="340" y="40" width="20" height="350" style="--rr:-8deg"/>
+                    <rect x="396" y="40" width="15" height="350" style="--rr:6deg"/>
+                  </g>
+                </mask>
+              </defs>
+
+              <ellipse cx="280" cy="215" rx="234" ry="184" fill="url(#cyto)"/>
+              <ellipse class="nucleus" cx="280" cy="215" rx="234" ry="184"/>
+
+              <g mask="url(#fragmask)" filter="url(#soft)">
+                <g class="stack" transform="translate(280,215)">
+                  <g class="cis" style="--i:-3;--rr:-5deg"><path d="M -128 0 Q 0 -30 128 0 Q 0 -16 -128 0 Z" fill="url(#cisg)"/><path d="M -128 0 Q 0 -30 128 0" fill="none" stroke="url(#rim)" stroke-width="1.6"/></g>
+                  <g class="cis" style="--i:-2;--rr:4deg"><path d="M -144 0 Q 0 -33 144 0 Q 0 -17 -144 0 Z" fill="url(#cisg)"/><path d="M -144 0 Q 0 -33 144 0" fill="none" stroke="url(#rim)" stroke-width="1.6"/></g>
+                  <g class="cis" style="--i:-1;--rr:-3deg"><path d="M -156 0 Q 0 -36 156 0 Q 0 -19 -156 0 Z" fill="url(#cisg)"/><path d="M -156 0 Q 0 -36 156 0" fill="none" stroke="url(#rim)" stroke-width="1.6"/></g>
+                  <g class="cis" style="--i:0;--rr:6deg"><path d="M -162 0 Q 0 -37 162 0 Q 0 -20 -162 0 Z" fill="url(#cisg)"/><path d="M -162 0 Q 0 -37 162 0" fill="none" stroke="url(#rim)" stroke-width="1.6"/></g>
+                  <g class="cis" style="--i:1;--rr:-6deg"><path d="M -154 0 Q 0 -35 154 0 Q 0 -19 -154 0 Z" fill="url(#cisg)"/><path d="M -154 0 Q 0 -35 154 0" fill="none" stroke="url(#rim)" stroke-width="1.6"/></g>
+                  <g class="cis" style="--i:2;--rr:3deg"><path d="M -140 0 Q 0 -32 140 0 Q 0 -17 -140 0 Z" fill="url(#cisg)"/><path d="M -140 0 Q 0 -32 140 0" fill="none" stroke="url(#rim)" stroke-width="1.6"/></g>
+                  <g class="cis" style="--i:3;--rr:-4deg"><path d="M -122 0 Q 0 -28 122 0 Q 0 -15 -122 0 Z" fill="url(#cisg)"/><path d="M -122 0 Q 0 -28 122 0" fill="none" stroke="url(#rim)" stroke-width="1.6"/></g>
+                </g>
+              </g>
+
+              <g class="vesicles" transform="translate(280,215)">
+                <ellipse class="vesicle" style="--vx:-196px;--vy:-58px" rx="9" ry="7" fill="url(#cisg)"/>
+                <ellipse class="vesicle" style="--vx:198px;--vy:-24px" rx="7" ry="5.5" fill="url(#cisg)"/>
+                <ellipse class="vesicle" style="--vx:-168px;--vy:104px" rx="8" ry="6" fill="url(#cisg)"/>
+                <ellipse class="vesicle" style="--vx:182px;--vy:118px" rx="10" ry="7.5" fill="url(#cisg)"/>
+                <ellipse class="vesicle" style="--vx:-24px;--vy:150px" rx="7" ry="5.5" fill="url(#cisg)"/>
+                <ellipse class="vesicle" style="--vx:88px;--vy:-136px" rx="8.5" ry="6.5" fill="url(#cisg)"/>
+                <ellipse class="vesicle" style="--vx:-104px;--vy:-142px" rx="6.5" ry="5" fill="url(#cisg)"/>
+              </g>
+            </svg>
+          </div>
+          <div class="golgi-switch" role="group" aria-label="Golgi morphology state">
+            <button data-state="stacked" aria-pressed="true"><span>Physiologic</span><strong data-lang="ko">적층</strong><strong data-lang="en">Stacked</strong></button>
+            <button data-state="condensed" aria-pressed="false"><span>Gastric cancer</span><strong data-lang="ko">응축</strong><strong data-lang="en">Condensed</strong></button>
+            <button data-state="fragmented" aria-pressed="false"><span>Alzheimer's</span><strong data-lang="ko">파편화</strong><strong data-lang="en">Fragmented</strong></button>
+          </div>
+          <div class="golgi-caption" id="golgi-caption" aria-live="polite"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section>
+    <div class="wrap">
+      <div class="stats">
+        <div class="stat"><b>33</b><span data-lang="ko">주요 논문 (2016–2026)</span><span data-lang="en">peer-reviewed papers</span></div>
+        <div class="stat"><b>4</b><span data-lang="ko">골지체 표적 특허 출원</span><span data-lang="en">Golgi-targeting patents</span></div>
+        <div class="stat"><b>2</b><span data-lang="ko">질환 축: 위암 · 치매</span><span data-lang="en">disease axes</span></div>
+        <div class="stat"><b>2003</b><span data-lang="ko">골지 종양학 개척 목표</span><span data-lang="en">est. Golgi Oncology</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding-top:20px">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Research axes</span>
+        <div>
+          <h2 data-lang="ko">하나의 소기관, 두 개의 질환</h2>
+          <h2 data-lang="en">One organelle, two diseases</h2>
+          <p data-lang="ko">같은 골지체가 한쪽에서는 뭉치고 다른 쪽에서는 흩어집니다. 이 형태의 방향성이 질환의 방향성을 결정한다고 봅니다.</p>
+          <p data-lang="en">The same organelle collapses inward in cancer and breaks apart in neurodegeneration. We treat that directionality as the mechanism, not the readout.</p>
+        </div>
+      </div>
+      <div class="pillars">
+        <a class="pillar cancer" href="#/gastric">
+          <span class="tag">Axis 01 &middot; Condensation</span>
+          <h3>Gastric Cancer</h3>
+          <div class="ko">위암 — 골지체 응축과 YAP1 활성화</div>
+          <p data-lang="ko">1,600여 개 골지 유전체의 TCGA 분석과 오가노이드·마우스 모델을 통해, 골지체의 응축이 YAP1을 활성화하여 위암 진행을 촉진함을 규명했습니다 (Cancer Research, 2025).</p>
+          <p data-lang="en">Large-scale TCGA analysis of ~1,600 Golgi genes plus organoid and mouse work showed that Golgi condensation activates YAP1 to drive gastric cancer progression (Cancer Research, 2025).</p>
+          <span class="more">Read the axis &rarr;</span>
+        </a>
+        <a class="pillar ad" href="#/alzheimer">
+          <span class="tag">Axis 02 &middot; Fragmentation</span>
+          <h3>Alzheimer's Disease</h3>
+          <div class="ko">알츠하이머 치매 — 골지체 파편화와 독성 단백</div>
+          <p data-lang="ko">아밀로이드 가설 기반 치료제의 연이은 실패 이후, 우리는 골지체 변성 자체를 발병 기전으로 제시합니다. 기억력 감퇴 표현형을 보이는 골지 관련 KO 마우스를 세계 최초로 확보하고 있습니다.</p>
+          <p data-lang="en">After a decade of amyloid-targeting failures, we propose Golgi degeneration itself as a pathogenic mechanism. We hold the first Golgi-related knockout mouse showing a memory-loss phenotype.</p>
+          <span class="more">Read the axis &rarr;</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding-top:0">
+    <div class="wrap">
+      <hr class="rule">
+      <div class="section-head" style="margin-top:44px">
+        <span class="eyebrow">Selected work</span>
+        <div>
+          <h2 data-lang="ko">최근 대표 성과</h2>
+          <h2 data-lang="en">Recent highlights</h2>
+        </div>
+      </div>
+      <div class="linklist" id="home-highlights"></div>
+      <p style="margin-top:22px"><a class="btn ghost" href="#/publications"><span data-lang="ko">전체 논문 목록</span><span data-lang="en">All publications</span></a></p>
+    </div>
+  </section>
+</div>
+
+<!-- ============ RESEARCH ============ -->
+<div class="page" id="p-research">
+  <section>
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Research</span>
+        <div>
+          <h2 data-lang="ko">세포소기관 이상으로 인한 질병의 발병기전 규명 및 임상적 표적 발굴</h2>
+          <h2 data-lang="en">Organelle dysfunction as a mechanism of human disease — and as a drug target</h2>
+        </div>
+      </div>
+      <div class="prose" style="margin-bottom:40px">
+        <p data-lang="ko">인간 유전자의 3분의 1 이상이 골지체를 경유하는 단백을 암호화합니다. 그럼에도 골지체는 오랫동안 '물질을 옮기는 통로'로만 다뤄져 왔습니다. 우리 연구실은 골지체의 <strong>형태(morphology)</strong> 자체가 세포 내 신호를 결정하는 독립 변수라고 봅니다. 형태가 바뀌면 신호가 바뀌고, 신호가 바뀌면 질병이 시작됩니다.</p>
+        <p data-lang="en">More than a third of the human genome encodes proteins that pass through the Golgi, yet the organelle is still treated mostly as a conduit. We treat Golgi <strong>morphology</strong> as an independent variable that sets intracellular signaling: change the shape, change the signal, and disease follows.</p>
+        <div class="callout" data-lang="ko">"세포의 형태에 길을 묻는 과학자"</div>
+        <div class="callout" data-lang="en">"A scientist who asks the cell's shape for directions."</div>
+      </div>
+      <div class="pillars">
+        <a class="pillar cancer" href="#/gastric">
+          <span class="tag">Axis 01</span><h3>Gastric Cancer</h3>
+          <div class="ko">골지체 응축 → YAP1 → 위암 악성화</div>
+          <span class="more">Open &rarr;</span>
+        </a>
+        <a class="pillar ad" href="#/alzheimer">
+          <span class="tag">Axis 02</span><h3>Alzheimer's Disease</h3>
+          <div class="ko">골지체 파편화 → 독성 단백 축적 → 신경 퇴행</div>
+          <span class="more">Open &rarr;</span>
+        </a>
+      </div>
+      <div class="section-head" style="margin-top:56px">
+        <span class="eyebrow">Also ongoing</span>
+        <div><h2 data-lang="ko">확장 중인 주제</h2><h2 data-lang="en">Adjacent programmes</h2></div>
+      </div>
+      <div class="tl">
+        <div class="tl-row"><div class="when">GRASP55</div><div class="what">Unconventional role of GRASP55 in Alzheimer's disease<small data-lang="ko">비전형적 골지 단백 GRASP55의 치매 발병 기여 기전 (K-Medi 융합인재 양성 지원사업)</small><small data-lang="en">Mechanism by which an unconventional Golgi protein contributes to AD pathogenesis.</small></div></div>
+        <div class="tl-row"><div class="when">Autophagy</div><div class="what">Overcoming anticancer drug resistance<small data-lang="ko">자가포식 억제를 통한 항암제 내성 극복 (유한양행 용역과제, 성빈센트병원 종양내과 협업)</small><small data-lang="en">Autophagy inhibition to resensitize resistant tumours; industry and clinical oncology collaboration.</small></div></div>
+        <div class="tl-row"><div class="when">Systems bio</div><div class="what">Systems biology modelling of cancer and stroke<small data-lang="ko">시스템생물학 모델링 기반 신규 항암 전략 (연세의대 약리학교실 협업)</small><small data-lang="en">Model-driven strategy design, with the Department of Pharmacology, Yonsei University College of Medicine.</small></div></div>
+        <div class="tl-row"><div class="when">Skin</div><div class="what">Zinc, Golgi stress and cellular senescence in skin<small data-lang="ko">아연 결핍–골지 스트레스 상호작용과 피부 노화 (Developmental Cell, 2025)</small><small data-lang="en">Age-associated zinc deficiency and Golgi stress in epigenetic regulation (Developmental Cell, 2025).</small></div></div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ============ GASTRIC ============ -->
+<div class="page" id="p-gastric">
+  <section>
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow" style="color:var(--magenta)">Axis 01 &middot; Condensation</span>
+        <div>
+          <h2 data-lang="ko">위암 발생 기전 및 치료에 대한 새로운 표적 발굴</h2>
+          <h2 data-lang="en">New mechanisms and new targets in gastric cancer</h2>
+        </div>
+      </div>
+      <div class="research-layout" style="--state:var(--magenta)">
+      <div class="prose">
+        <h3><span class="cis">Cis &middot; 문제 설정</span><span data-lang="ko">유전체 중심 접근의 한계</span><span data-lang="en">Where cancer genomics stops</span></h3>
+        <p data-lang="ko">지난 20년간 암 생물학은 종양유전자와 종양억제유전자의 돌연변이 탐색을 중심으로 발전했습니다. NGS의 비약적 발전으로 수많은 돌연변이가 규명되었지만, 암 정복은 여전히 인류 보건의 최대 난제로 남아 있습니다. 이는 특정 유전자의 돌연변이 연구만으로는 암의 발생·진행·전이를 설명하는 데 한계가 있음을 뜻하며, 그 결과 암 단백유전체학, 암 대사체학, 암 면역학이 새롭게 주목받고 있습니다.</p>
+        <p data-lang="en">Two decades of cancer biology have been organised around mutations in oncogenes and tumour suppressors. Next-generation sequencing delivered those mutations at scale — and yet cancer remains unsolved. That gap is the argument for looking beyond genomics, and it is why proteogenomics, metabolomics and immunology have moved to the centre.</p>
+
+        <h3><span class="cis">Medial &middot; 가설</span><span data-lang="ko">세포 소기관을 항암 표적으로</span><span data-lang="en">The organelle as a third level of drug targeting</span></h3>
+        <p data-lang="ko">골지체는 단백과 지질의 성숙·수송을 담당하는 소기관으로 알려져 왔지만, 최근 연구는 골지체가 종양의 발생과 진행에 직접 관여함을 보여줍니다. 대표적 종양 단백인 RAS는 일부 신호전달을 골지체에서 수행하며(<a href="https://www.nature.com/articles/ncb783" target="_blank" rel="noopener">Nat Cell Biol, 2002</a>), GOLM1·GOLPH2·GOLPH3 등 골지 구성 단백은 전립선암·췌관 선암종·간세포암종을 촉진합니다. 그럼에도 암 생물학에서 소기관 연구는 여전히 극히 부족합니다.</p>
+        <p data-lang="en">The Golgi has long been filed under trafficking. But RAS runs part of its oncogenic signalling from the Golgi (<a href="https://www.nature.com/articles/ncb783" target="_blank" rel="noopener">Nat Cell Biol, 2002</a>), and Golgi resident proteins such as GOLM1, GOLPH2 and GOLPH3 promote prostate, pancreatic and hepatocellular cancers. Organelle-level cancer biology remains strikingly underexplored.</p>
+
+        <h3><span class="cis">Trans &middot; 결과</span><span data-lang="ko">응축된 골지체가 YAP1을 켠다</span><span data-lang="en">A condensed Golgi switches YAP1 on</span></h3>
+        <p data-lang="ko">우리는 1,600여 개 골지 유전체에 대한 대규모 TCGA 분석, 세포주·마우스·오가노이드 모델 실험을 통해 골지체의 응축이 YAP1을 활성화하여 위암 진행을 촉진함을 밝혔습니다 (<a href="https://aacrjournals.org/cancerres/article-abstract/85/22/4398/767090/Condensation-of-the-Golgi-Apparatus-Activates-YAP1" target="_blank" rel="noopener">Cancer Research, 2025</a>). 현재 위암 표적치료제 중 Trastuzumab을 제외한 대부분의 후보 약물이 무진행 생존기간을 유의미하게 개선하지 못한 상황에서, 골지체 조절은 기존 수용체·kinase 억제 전략과 병렬적인 새로운 치료 경로를 제안합니다.</p>
+        <p data-lang="en">Combining TCGA analysis of ~1,600 Golgi genes with cell line, mouse and organoid models, we showed that condensation of the Golgi activates YAP1 and promotes gastric cancer progression (<a href="https://aacrjournals.org/cancerres/article-abstract/85/22/4398/767090/Condensation-of-the-Golgi-Apparatus-Activates-YAP1" target="_blank" rel="noopener">Cancer Research, 2025</a>). Against a therapeutic landscape where almost every targeted agent except trastuzumab has failed to move progression-free survival, Golgi modulation offers a route that runs parallel to receptor and kinase inhibition rather than competing with it.</p>
+
+        <div class="callout" data-lang="ko">우리의 목표는 논문이 아니라 분야입니다. 골지체를 암의 진단·치료·예후 인자로 사용하는 <strong>'골지 종양학(Golgi Oncology)'</strong>을 세우는 것.</div>
+        <div class="callout" data-lang="en">The goal is not a paper but a field: <strong>Golgi Oncology</strong> — the organelle as a diagnostic, therapeutic and prognostic axis.</div>
+
+        <h3><span class="cis">Assets</span><span data-lang="ko">연구실의 강점</span><span data-lang="en">What we bring</span></h3>
+        <p data-lang="ko">연구책임자는 GRASP55를 포함한 골지 단백의 분자·생리 기능을 다년간 연구해 왔으며, 그 성과로 <a href="https://www.nature.com/articles/s41467-020-14912-x" target="_blank" rel="noopener">Nature Communications (2020)</a>에 Grasp55 KO 마우스의 지방 흡수 장애 및 고지방식 유도 비만 저항성을 보고했습니다. 한국과학기술연구원, 병리학교실, 생물정보학교실과의 협업을 통해 주제를 확장하고 있습니다.</p>
+        <p data-lang="en">The PI has worked on GRASP55 and related Golgi proteins for over a decade, including the <a href="https://www.nature.com/articles/s41467-020-14912-x" target="_blank" rel="noopener">Nature Communications (2020)</a> report that Grasp55-deficient mice show impaired fat absorption and resistance to diet-induced obesity. The programme runs with pathology, bioinformatics and KIST collaborators.</p>
+      </div>
+
+      <aside class="figs">
+        <figure>
+          <img loading="lazy" alt="위암 발생 모식도" src="images/img_139.jpg">
+          <figcaption><b>Figure 01</b>위 점막에서 시작되는 종양 발생. 골지체 응축은 이 과정의 초기 신호 재편에 관여합니다.</figcaption>
+        </figure>
+        <figure>
+          <img loading="lazy" alt="암 유전체 분석 이미지" src="images/img_034.jpg">
+          <figcaption><b>Figure 02</b>1,600여 개 골지 유전체에 대한 대규모 TCGA 분석이 표적 발굴의 출발점이었습니다.</figcaption>
+        </figure>
+      </aside>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ============ ALZHEIMER ============ -->
+<div class="page" id="p-alzheimer">
+  <section>
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow" style="color:var(--amber)">Axis 02 &middot; Fragmentation</span>
+        <div>
+          <h2 data-lang="ko">알츠하이머 치매의 새로운 발병기전 규명 및 임상적 표적 발굴</h2>
+          <h2 data-lang="en">Rewriting the pathogenesis of Alzheimer's disease</h2>
+        </div>
+      </div>
+      <div class="research-layout" style="--state:var(--amber)">
+      <div class="prose">
+        <h3><span class="cis">Cis &middot; 규모</span><span data-lang="ko">치매의 부담</span><span data-lang="en">The scale of the problem</span></h3>
+        <p data-lang="ko">전 세계 치매 환자는 2030년 약 7,600만 명, 2050년 약 1억 3,500만 명에 이를 것으로 전망됩니다. 국내 치매환자는 2039년 200만 명, 2050년 300만 명을 넘어설 것으로 추정되며, 국가치매관리비용은 2050년 100조 원을 상회할 것으로 예상됩니다. 한국은 OECD 국가 중 고령화 속도가 가장 빠릅니다.</p>
+        <p data-lang="en">Global dementia prevalence is projected to reach roughly 76 million by 2030 and 135 million by 2050. Korea, which is ageing faster than any other OECD country, expects more than 3 million patients and over KRW 100 trillion in annual care costs by 2050.</p>
+
+        <h3><span class="cis">Medial &middot; 한계</span><span data-lang="ko">아밀로이드 가설 이후</span><span data-lang="en">After the amyloid cascade</span></h3>
+        <p data-lang="ko">수정된 아밀로이드 가설에 근거한 β-분비효소 억제제(베루베세스타트, 라나베세스타트, 아타베세스타트), γ-분비효소 억제제(아바가세스타트, 세마가세스타트), 아밀로이드 표적 면역치료제(바피뉴쥬맙, 솔라네주맙, 크레네주맙, 간테네루맙)가 임상에서 연이어 실패했습니다. 이는 발병 기전에 대한 이해가 아직 충분하지 않음을 뜻합니다.</p>
+        <p data-lang="en">β-secretase inhibitors, γ-secretase inhibitors and amyloid-directed immunotherapies have failed in sequence despite enormous investment. The most parsimonious reading is that we do not yet understand the mechanism.</p>
+
+        <h3><span class="cis">Trans &middot; 제안</span><span data-lang="ko">골지체 이상을 발병기전으로</span><span data-lang="en">Golgi degeneration as pathogenesis</span></h3>
+        <p data-lang="ko">알츠하이머, 파킨슨, 헌팅턴, 근위축성 측삭경화증에서 골지체의 형태 이상은 30년 가까이 반복 관찰되어 왔습니다. 신경세포는 축삭과 수상돌기 말단까지 장거리 수송을 수행해야 하며, 이를 위해 '골지전초(Golgi outpost)'라는 별도의 구조까지 갖추고 있습니다. 물질 수송이 가장 정교해야 하는 세포에서 수송의 중심 기관이 무너진다면, 그것이 결과가 아니라 원인일 가능성을 검증해야 합니다.</p>
+        <p data-lang="en">Golgi morphological abnormality has been reported in Alzheimer's, Parkinson's, Huntington's and ALS for nearly thirty years — and consistently filed as a downstream marker. Neurons depend on the longest and most precise trafficking in the body, and even maintain dedicated Golgi outposts in dendrites. If the trafficking hub collapses in the cell type most dependent on trafficking, causality deserves a test.</p>
+        <p data-lang="ko">우리는 세 가지 구체적 가설로 &lt;골지체 기반 치매 기전 연구&gt;를 수행합니다: ① 골지체 변성에 의한 독성 단백의 생성, ② 골지체 의존적 단백 분해 경로의 이상, ③ 골지전초 변성에 의한 세포골격 조절 이상.</p>
+        <p data-lang="en">Three testable hypotheses drive the programme: (i) generation of toxic proteins downstream of Golgi degeneration; (ii) failure of Golgi-dependent protein degradation; (iii) cytoskeletal dysregulation caused by Golgi outpost degeneration.</p>
+
+        <h3><span class="cis">Assets</span><span data-lang="ko">차별성</span><span data-lang="en">Why this lab</span></h3>
+        <p data-lang="ko">우리는 유전자 조작에 의해 기억력 감퇴 표현형을 보이는 골지체 관련 KO 마우스를 세계 최초로 발굴·보유하고 있으며, 이를 활용한 기전 연구를 수행 중입니다. 낭포성 섬유증, 선천성 난청, 위장관기질종양, 비만·대사질환에서 골지체 조절인자를 발굴한 이력이 이 연구의 기술적 기반입니다.</p>
+        <p data-lang="en">We hold the first Golgi-related knockout mouse with a genetically driven memory-loss phenotype, and are running mechanism studies on it. The technical base comes from a decade of identifying Golgi regulators in cystic fibrosis, congenital hearing loss, GIST, obesity and metabolic disease.</p>
+      </div>
+
+      <aside class="figs">
+        <figure>
+          <img loading="lazy" alt="알츠하이머 치매 개념 이미지" src="images/img_062.jpg">
+          <figcaption><b>Figure 01</b>기억이 지워지는 질환. 아밀로이드 표적 치료제의 연속 실패는 기전 자체를 다시 묻게 만듭니다.</figcaption>
+        </figure>
+        <figure>
+          <img loading="lazy" alt="퇴행성 뇌질환에서 관찰되는 골지체 형태 변화" src="images/img_137.png">
+          <figcaption><b>Figure 02</b>퇴행성 뇌질환에서 반복 관찰되어 온 골지체 형태 이상. 우리는 이것을 결과가 아닌 원인으로 봅니다.</figcaption>
+        </figure>
+      </aside>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ============ PI ============ -->
+<div class="page" id="p-pi">
+  <section>
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Principal Investigator</span>
+        <div>
+          <h2>Jiyoon Kim, M.D., Ph.D. <span style="color:var(--muted)">&middot; 김지윤</span></h2>
+          <p data-lang="ko">부교수, 가톨릭대학교 의과대학 약리학교실</p>
+          <p data-lang="en">Associate Professor, Department of Pharmacology, The Catholic University of Korea College of Medicine</p>
+        </div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:300px 1fr;gap:44px;align-items:start" class="pi-grid">
+        <div>
+          <div class="portrait pi-portrait" style="border:1px solid var(--line);aspect-ratio:4/5">
+            <img src="images/img_103.jpg" alt="Portrait of Professor Jiyoon Kim" onerror="this.style.display='none'">
+          </div>
+          <div class="links" style="margin-top:14px;display:flex;flex-wrap:wrap;gap:8px">
+            <a class="tag-sm" target="_blank" rel="noopener" href="https://scholar.google.com/citations?hl=en&user=hwGcMSQAAAAJ">Google Scholar</a>
+            <a class="tag-sm" target="_blank" rel="noopener" href="https://www.researchgate.net/profile/Jiyoon-Kim-3">ResearchGate</a>
+            <a class="tag-sm" target="_blank" rel="noopener" href="https://phdkim.net/professor/9174/info/">김박사넷</a>
+            <a class="tag-sm" href="mailto:jykim@catholic.ac.kr">jykim@catholic.ac.kr</a>
+          </div>
+        </div>
+
+        <div>
+          <blockquote class="verse" style="margin:0 0 38px">
+            "Discovery consists of seeing what everybody has seen and thinking what nobody has thought."
+            <cite>Albert Szent-Györgyi, Nobel Laureate in Physiology or Medicine, 1937</cite>
+          </blockquote>
+
+          <h3 class="eyebrow" style="display:block;margin-bottom:12px">Research interests</h3>
+          <div class="tl" style="margin-bottom:38px">
+            <div class="tl-row"><div class="when">01</div><div class="what">Golgi apparatus in Alzheimer's disease<small data-lang="ko">치매의 원인을 골지체의 노화로 설명하는 새로운 패러다임 (보건복지부 치매극복연구개발사업 · 의사과학자 박사후 연구성장지원 사업)</small><small data-lang="en">Ageing of the Golgi as a paradigm for dementia pathogenesis (MOHW dementia programme).</small></div></div>
+            <div class="tl-row"><div class="when">02</div><div class="what">Unconventional role of GRASP55 in AD<small data-lang="ko">비전형적 골지 단백 GRASP55의 역할과 분자 기전 (K-Medi 융합인재 양성 지원사업)</small><small data-lang="en">Molecular mechanism of an unconventional Golgi protein in AD.</small></div></div>
+            <div class="tl-row"><div class="when">03</div><div class="what">Golgi apparatus in cancer<small data-lang="ko">난치성 위암 전이를 조절하는 골지 인자 발굴 (과학기술부 우수신진사업)</small><small data-lang="en">Golgi factors controlling metastasis in refractory gastric cancer.</small></div></div>
+            <div class="tl-row"><div class="when">04</div><div class="what">Autophagy in cancer<small data-lang="ko">자가포식 억제를 통한 항암제 내성 극복 (유한양행 용역, 성빈센트병원 종양내과 협업)</small><small data-lang="en">Autophagy inhibition to overcome anticancer drug resistance.</small></div></div>
+            <div class="tl-row"><div class="when">05</div><div class="what">Systems biology in cancer<small data-lang="ko">시스템생물학 모델링 기반 항암 전략 (연세의대 약리학교실 협업)</small><small data-lang="en">Model-driven design of anticancer strategy.</small></div></div>
+          </div>
+
+          <h3 class="eyebrow" style="display:block;margin-bottom:12px">Appointments</h3>
+          <div class="tl" style="margin-bottom:38px">
+            <div class="tl-row"><div class="when">2023 –</div><div class="what">Associate Professor<small>Department of Pharmacology, The Catholic University of Korea College of Medicine</small></div></div>
+            <div class="tl-row"><div class="when">2020 – 2023</div><div class="what">Assistant Professor<small>Department of Pharmacology, The Catholic University of Korea College of Medicine</small></div></div>
+            <div class="tl-row"><div class="when">2019 – 2020</div><div class="what">Research Assistant Professor<small>The Catholic University of Korea College of Medicine</small></div></div>
+            <div class="tl-row"><div class="when">2018 – 2019</div><div class="what">Postdoctoral Researcher, BK21 Plus Medical Science<small>Yonsei University College of Medicine</small></div></div>
+            <div class="tl-row"><div class="when">2018</div><div class="what">Research Fellow, Dept. of Pharmacology<small>Yonsei University College of Medicine</small></div></div>
+          </div>
+
+          <h3 class="eyebrow" style="display:block;margin-bottom:12px">Education</h3>
+          <div class="tl" style="margin-bottom:38px">
+            <div class="tl-row"><div class="when">2018</div><div class="what">Ph.D. in Medical Science<small>Yonsei University College of Medicine, Seoul</small></div></div>
+            <div class="tl-row"><div class="when">2013</div><div class="what">M.D. in Medicine<small>Yonsei University College of Medicine, Seoul</small></div></div>
+            <div class="tl-row"><div class="when">2008</div><div class="what">B.S. in Biochemistry <small>Yonsei University College of Science — summa cum laude, early graduation</small></div></div>
+          </div>
+
+          <h3 class="eyebrow" style="display:block;margin-bottom:12px">Honors and awards</h3>
+          <div class="tl" style="margin-bottom:38px">
+            <div class="tl-row"><div class="when">2025.10</div><div class="what">Pharmacology Academic Award<small>The Korean Society of Pharmacology · 약리학 학술상</small></div></div>
+            <div class="tl-row"><div class="when">2025.02</div><div class="what">Top 75 Outstanding Researchers<small>The Catholic University of Korea · 우수연구자 75인</small></div></div>
+            <div class="tl-row"><div class="when">2022.12</div><div class="what">Early Promotion<small>가톨릭대학교 의과대학 특별승진</small></div></div>
+            <div class="tl-row"><div class="when">2016 – 2018</div><div class="what">Rising Researcher<small>The Korean Academy of Science and Technology · 최우수 젊은 과학자</small></div></div>
+            <div class="tl-row"><div class="when">2018.05</div><div class="what">Academic Award for Young Basic Medical Scientist<small>Korean Medical Association · 기초의학신진학술상</small></div></div>
+            <div class="tl-row"><div class="when">2018.04</div><div class="what">Academic Award for Excellence<small>Yonsei University · 우수학술상</small></div></div>
+            <div class="tl-row"><div class="when">2016.11</div><div class="what">Young Pharmacologist of the Year<small>The Korean Society of Pharmacology · 젊은 약리학자상</small></div></div>
+            <div class="tl-row"><div class="when">2008.08</div><div class="what">Graduated summa cum laude<small>Yonsei University · 최우등 졸업</small></div></div>
+          </div>
+
+          <h3 class="eyebrow" style="display:block;margin-bottom:12px">Professional activities</h3>
+          <div class="tl">
+            <div class="tl-row"><div class="when">2024 –</div><div class="what">Vice-Chair, Scientific Committee<small>The Korean Society of Pharmacology (KSP)</small></div></div>
+            <div class="tl-row"><div class="when">2023 –</div><div class="what">Member, Scientific Committee<small>The Korean Society of Pharmacology (KSP)</small></div></div>
+            <div class="tl-row"><div class="when">2022 – 2023</div><div class="what">Public Relations Committee<small>The Korean Society for Molecular and Cellular Biology (KSMCB)</small></div></div>
+            <div class="tl-row"><div class="when">2013 –</div><div class="what">Regular member<small>KSP · KSMCB · KSBMB · Korean Medical Association</small></div></div>
+            <div class="tl-row"><div class="when">2013</div><div class="what">Korean medical license<small>No. 113374</small></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ============ MEMBERS ============ -->
+<div class="page" id="p-members">
+  <section>
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">People</span>
+        <div>
+          <h2 data-lang="ko">구성원</h2><h2 data-lang="en">Members</h2>
+          <blockquote class="verse" style="margin:16px 0 0">
+            "Two are better than one; because they have a good reward for their labour."
+            <cite>Ecclesiastes 4:9</cite>
+          </blockquote>
+        </div>
+      </div>
+
+      <h3 class="eyebrow" style="display:block;margin:0 0 16px">Research &amp; Postdoctoral Fellows</h3>
+      <div class="people" id="fellows"></div>
+
+      <h3 class="eyebrow" style="display:block;margin:52px 0 16px">Graduate Students</h3>
+      <div class="people" id="students"></div>
+
+      <h3 class="eyebrow" style="display:block;margin:52px 0 16px">Research Assistant</h3>
+      <div class="people" id="staff"></div>
+
+      <h3 class="eyebrow" style="display:block;margin:52px 0 10px">Alumni</h3>
+      <div class="alumni" id="alumni"></div>
+    </div>
+  </section>
+</div>
+
+<!-- ============ PUBLICATIONS ============ -->
+<div class="page" id="p-publications">
+  <section>
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Publications</span>
+        <div>
+          <h2 data-lang="ko">연구 성과</h2><h2 data-lang="en">Research output</h2>
+          <blockquote class="verse" style="margin:16px 0 0">
+            "They that sow in tears shall reap in joy."
+            <cite>Psalm 126:5</cite>
+          </blockquote>
+        </div>
+      </div>
+      <p style="font-family:var(--mono);font-size:11.5px;letter-spacing:.04em;color:var(--muted);margin-bottom:18px">
+        * first author &nbsp;·&nbsp; # corresponding author &nbsp;·&nbsp;
+        <a href="https://scholar.google.com/citations?hl=en&user=hwGcMSQAAAAJ" target="_blank" rel="noopener" style="color:var(--ink)">Google Scholar</a>
+      </p>
+      <div class="filters" id="pubfilters"></div>
+      <div id="publist"></div>
+
+      <div id="patentblock">
+        <div class="section-head" style="margin-top:64px">
+          <span class="eyebrow">Patents</span>
+          <div><h2 data-lang="ko">특허</h2><h2 data-lang="en">Patents</h2>
+          <p data-lang="ko">골지체 형태를 약물로 조절한다는 아이디어를 실제 화합물로 옮긴 결과입니다.</p>
+          <p data-lang="en">Where the morphology hypothesis becomes chemistry.</p></div>
+        </div>
+        <div class="tl" id="patentlist"></div>
+      </div>
+
+      <div id="manualblock">
+        <div class="section-head" style="margin-top:64px">
+          <span class="eyebrow">Books &amp; manuals</span>
+          <div><h2 data-lang="ko">실험기법 매뉴얼</h2><h2 data-lang="en">Method manuals</h2></div>
+        </div>
+        <div class="tl" id="manuallist"></div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ============ NEWS ============ -->
+<div class="page" id="p-news">
+  <section>
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">News</span>
+        <div>
+          <h2 data-lang="ko">연구실 소식</h2><h2 data-lang="en">Lab news</h2>
+          <blockquote class="verse" style="margin:16px 0 0">
+            "You can't connect the dots looking forward; you can only connect them looking backwards."
+            <cite>Steve Jobs, Stanford Commencement Address, 2005</cite>
+          </blockquote>
+        </div>
+      </div>
+      <div class="filters" id="newsfilters"></div>
+      <div id="newslist"></div>
+    </div>
+  </section>
+</div>
+
+<!-- ============ GALLERY ============ -->
+<div class="page" id="p-gallery">
+  <section>
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Gallery</span>
+        <div>
+          <h2 data-lang="ko">갤러리</h2><h2 data-lang="en">Gallery</h2>
+          <p data-lang="ko">사진을 누르면 크게 볼 수 있습니다.</p>
+          <p data-lang="en">Tap any photo to enlarge.</p>
+        </div>
+      </div>
+      <div class="filters" id="galleryfilters"></div>
+      <div id="gallerylist"></div>
+    </div>
+  </section>
+</div>
+
+<div class="lightbox" id="lightbox">
+  <button class="lb-close" id="lbclose" aria-label="Close">&times;</button>
+  <img id="lbimg" src="" alt="">
+  <div class="lb-cap" id="lbcap"></div>
+</div>
+
+<!-- ============ CONTACT ============ -->
+<div class="page" id="p-contact">
+  <section>
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Contact</span>
+        <div><h2 data-lang="ko">오시는 길 &amp; 지원</h2><h2 data-lang="en">Visit &amp; apply</h2></div>
+      </div>
+      <div class="contact-grid">
+        <div>
+          <dl class="dl">
+            <div><dt>Address</dt><dd>서울특별시 서초구 반포대로 222<br>옴니버스파크 6130호<br><span style="color:var(--muted);font-size:13.5px">Omnibus Park #6130, 222 Banpo-daero, Seocho-gu, Seoul, Korea</span></dd></div>
+            <div><dt>Transit</dt><dd>지하철 3·7·9호선 고속터미널역 도보 10분<br>지하철 2호선 서초역 셔틀버스 5분</dd></div>
+            <div><dt>Office</dt><dd>+82-2-3147-8358</dd></div>
+            <div><dt>Lab</dt><dd>+82-2-3147-8535</dd></div>
+            <div><dt>Fax</dt><dd>+82-2-536-2485</dd></div>
+            <div><dt>Email</dt><dd><a href="mailto:jykim@catholic.ac.kr">jykim@catholic.ac.kr</a></dd></div>
+          </dl>
+        </div>
+        <div class="join">
+          <h3 data-lang="ko">함께할 사람을 찾습니다</h3>
+          <h3 data-lang="en">We're hiring</h3>
+          <p data-lang="ko">창의적인 의과학 연구를 함께 할 학생과 연구자를 기다립니다. 학부 인턴, 석·박사 통합과정, 박사후연구원 지원을 상시 받습니다. 문의사항과 이력서는 이메일로 보내주세요. 친절하게 답변드리겠습니다.</p>
+          <p data-lang="en">We take undergraduate interns, integrated MS–PhD students and postdoctoral fellows on a rolling basis. International applicants are welcome — the lab already works in English day to day. Send a CV and a short note about what you want to work on.</p>
+          <a class="mail" href="mailto:jykim@catholic.ac.kr">jykim@catholic.ac.kr &rarr;</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot">
+      <div>
+        <h5>Cell Organelle-Based Human Biology Laboratory</h5>
+        <p>세포소기관 기반 병리기전 및 질병치료 연구실<br>The Catholic University of Korea College of Medicine<br>Department of Pharmacology</p>
+      </div>
+      <div>
+        <div class="lbl">Pages</div>
+        <ul>
+          <li><a href="#/research">Research</a></li>
+          <li><a href="#/pi">Principal Investigator</a></li>
+          <li><a href="#/members">Members</a></li>
+          <li><a href="#/publications">Research output</a></li>
+          <li><a href="#/news">News</a></li>
+          <li><a href="#/gallery">Gallery</a></li>
+          <li><a href="#/contact">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="lbl">Elsewhere</div>
+        <ul>
+          <li><a href="https://scholar.google.com/citations?hl=en&user=hwGcMSQAAAAJ" target="_blank" rel="noopener">Google Scholar</a></li>
+          <li><a href="https://www.researchgate.net/profile/Jiyoon-Kim-3" target="_blank" rel="noopener">ResearchGate</a></li>
+          <li><a href="https://www.ibric.org/s.do?HWFhSLILed" target="_blank" rel="noopener">BRIC 한빛사</a></li>
+          <li><a href="mailto:jykim@catholic.ac.kr">jykim@catholic.ac.kr</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="copy">© 2026 Cell Organelle-Based Human Biology Laboratory, The Catholic University of Korea College of Medicine. All rights reserved.</div>
+  </div>
+</footer>
+
+<script>
+/* ---------------- language ---------------- */
+const btnKo=document.getElementById('btn-ko'), btnEn=document.getElementById('btn-en');
+function setLang(l){
+  document.documentElement.lang=l;
+  btnKo.setAttribute('aria-pressed',l==='ko'); btnEn.setAttribute('aria-pressed',l==='en');
+  renderGolgiCaption();
+}
+btnKo.onclick=()=>setLang('ko'); btnEn.onclick=()=>setLang('en');
+
+/* ---------------- routing ---------------- */
+const pages=['home','research','gastric','alzheimer','pi','members','publications','news','gallery','contact'];
+function route(){
+  let id=(location.hash||'#/home').replace('#/','');
+  if(!pages.includes(id)) id='home';
+  pages.forEach(p=>document.getElementById('p-'+p).classList.toggle('on',p===id));
+  document.querySelectorAll('[data-nav]').forEach(a=>a.classList.toggle('active',a.dataset.nav===id));
+  window.scrollTo({top:0,behavior:'auto'});
+  document.getElementById('navlist').classList.add('collapsed');
+}
+window.addEventListener('hashchange',route);
+
+/* ---------------- mobile menu ---------------- */
+document.getElementById('menubtn').onclick=function(){
+  const l=document.getElementById('navlist');
+  const open=l.classList.toggle('collapsed');
+  this.setAttribute('aria-expanded',String(!open));
+};
+
+/* ---------------- golgi signature ---------------- */
+const golgi=document.getElementById('golgi');
+const capEl=document.getElementById('golgi-caption');
+const CAP={
+  stacked:{
+    ko:{t:'정상 상태에서 골지체는 시스터나(cisternae)가 규칙적으로 적층된 리본 구조를 이룹니다. 이 형태가 유지될 때에만 단백과 지질의 성숙·수송이 정확한 순서로 일어납니다.',s:'cis → medial → trans · 인간 유전자의 1/3 이상이 이 경로를 경유합니다'},
+    en:{t:'In health the Golgi is a ribbon of regularly stacked cisternae. Only while that geometry holds do proteins and lipids mature and move in the correct order.',s:'cis → medial → trans · over one third of human genes route cargo through here'}
+  },
+  condensed:{
+    ko:{t:'위암 세포에서 골지체는 안쪽으로 응축됩니다. 우리는 이 응축이 YAP1을 활성화하여 위암의 진행을 촉진함을 규명했습니다. 형태 변화가 신호 변화를 만든 것입니다.',s:'Cancer Research, 2025 · 85(22):4398–4414'},
+    en:{t:'In gastric cancer the Golgi collapses inward. We showed this condensation activates YAP1 and drives tumour progression — the shape change produces the signalling change.',s:'Cancer Research, 2025 · 85(22):4398–4414'}
+  },
+  fragmented:{
+    ko:{t:'알츠하이머 치매를 비롯한 퇴행성 뇌질환에서는 반대로 골지체가 흩어집니다. 30년간 결과로만 기록되어 온 이 현상을, 우리는 원인으로 놓고 검증합니다.',s:'"AD is a Golgipathy" · GRASP55 / GORASP2 KO mouse model'},
+    en:{t:'In Alzheimer\'s and other neurodegenerative diseases the Golgi breaks apart instead. Reported as a downstream marker for thirty years — we are testing it as the cause.',s:'"AD is a Golgipathy" · GRASP55 / GORASP2 KO mouse model'}
+  }
+};
+function renderGolgiCaption(){
+  const s=golgi.dataset.state, l=document.documentElement.lang;
+  const c=CAP[s][l]||CAP[s].en;
+  capEl.innerHTML='<p>'+c.t+'</p><div class="src">'+c.s+'</div>';
+}
+document.querySelectorAll('.golgi-switch button').forEach(b=>{
+  b.onclick=()=>{
+    golgi.dataset.state=b.dataset.state;
+    document.querySelectorAll('.golgi-switch button').forEach(x=>x.setAttribute('aria-pressed',String(x===b)));
+    renderGolgiCaption();
+  };
+});
+
+/* auto-cycle once on load, then stop (respects reduced motion) */
+if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+  const order=['condensed','fragmented','stacked']; let i=0;
+  const timer=setInterval(()=>{
+    if(i>=order.length){clearInterval(timer);return;}
+    const target=document.querySelector('.golgi-switch button[data-state="'+order[i]+'"]');
+    if(document.getElementById('p-home').classList.contains('on')) target.click();
+    i++;
+  },2600);
+}
+
+/* ---------------- people data ---------------- */
+const PAT4=[
+ '골지체 파편화 유도제를 유효성분으로 포함하는 위암 예방 또는 치료용 약학적 조성물 (2026, 공동발명자)',
+ '골지체 파편화 억제제로서의 플루다라빈을 유효성분으로 포함하는 퇴행성 뇌질환 예방 또는 치료용 약학적 조성물 (2026, 공동발명자)',
+ '골지체 파편화 억제제로서의 반데타닙을 유효성분으로 포함하는 퇴행성 뇌질환 예방 또는 치료용 약학적 조성물 (2026, 공동발명자)',
+ '심장배당체 유도체를 유효성분으로 포함하는 골지체 응축유도용 시약 조성물 (2025, 공동발명자)'
+];
+const fellows=[
+ {role:'Research Professor',ko:'김 진영',en:'Jinyoung Kim, Ph.D.',img:'images/img_052.jpg',
+  edu:'M.S. &amp; Ph.D. in Medical Science, SAIHST, Sungkyunkwan University · Post-doc and Research Professor, Yonsei University College of Medicine · BK21 신진연구인력 (2022.06.–)',
+  res:['Pathological role of the Golgi apparatus in Alzheimer\'s disease','Golgi stress-mediated cellular senescence','Cancerous Golgi apparatus in gastric cancer','Autophagy and metabolism'],
+  papers:['Biomedicine and Pharmacotherapy (2025, 공동 제1저자)','Experimental and Molecular Medicine (2025, 제1저자)','Cancer Research (2025, 공동 제1저자)','iScience (2025, 공동 제1저자)','Developmental Cell (2025, 공동 제1저자)','BMB Reports (2025, 공동 제1저자)','Frontiers in Oncology (2022, 공동 제1저자)','Nature Metabolism (2021, 공동 제1저자)','Nature Communications (2021, 제1저자)'],
+  patents:PAT4,
+  books:['교감신경 발달 및 기능 연구에 관한 실험기법 매뉴얼 (2025, ISBN 979-11-994152-1-8)','자가포식 연구에 관한 실험기법 매뉴얼 (2022, ISBN 979-11-980943-4-6)'],
+  links:[['BRIC 한빛사','https://www.ibric.org/myboard/read.php?Board=tr_interview&id=233451&qinterview=Y'],['암젠한림생명공학상 2022','https://biz.chosun.com/science-chosun/science/2022/11/21/O6WBXWSFZRAQRIYJ64FOKSRSQY/']]},
+ {role:'Postdoctoral Fellow',ko:'스레스터 짠더니',en:'Chandani Shrestha, Ph.D.',img:'images/img_146.jpg',
+  edu:'B.S. in Life Science, Mokpo National University · M.S. &amp; Ph.D. in Medical Science, The Catholic University of Korea · 인턴 (2020.02.–) / 석사과정 (2020.09.–) / 석박사 통합과정 (2022.03.–) / 졸업 (2026.02.) / 박사후연구원 (2026.03.–)',
+  res:['Cancerous Golgi apparatus in gastric cancer'],
+  papers:['Cancer Cell International (2026, 공동 제1저자)','Biomedicine and Pharmacotherapy (2025, 공동 제1저자)','Cancer Research (2025, 공동 제1저자)','BMB Reports (2025, 공동 제1저자)','BMB Reports (2025, 공저자)','Developmental Cell (2025, 공저자)','Biology-Basel (2022, 공저자)'],
+  patents:PAT4,books:[],
+  links:[['BRIC 한빛사','https://www.ibric.org/bric/hanbitsa/han-interview.do?mode=view&id=98523&authorId=49940'],['문숙 기초의학 차세대리더상 우수상 2026','http://www.moonsook.co.kr/s02/s03.php'],['대학원학술상 최우수상 2026','#/news'],['신선호 젊은연구자상 2025','https://www.news1.kr/it-science/general-it/6005565'],['BK21 우수대학원생 2025','#/news']]},
+ {role:'Postdoctoral Fellow',ko:'브리토 소피아',en:'Sofia Brito, Ph.D.',img:'images/img_085.jpg',
+  edu:'B.S. in Biology and M.S. in Biological Aquatic Resources, University of Porto, Portugal · Ph.D. in Cosmetic Science, Ajou University · Post-doc, Sungkyunkwan University · 박사후연구원 (2026.03.–)',
+  res:['Molecular mechanisms of skin aging','Golgi stress-mediated cellular senescence','Skin regeneration'],
+  papers:['JID Innovations (in press, 공동 제1저자)','Experimental and Molecular Medicine (2026, 제1저자)','Cancer Cell International (2026, 공동 제1저자)','Cell Reports Physical Science (2026, 공동 제1저자)','Pharmaceutics (2025, 공동 교신저자)','Journal of Investigative Dermatology (2025, 공동 제1저자)','Materials Today Bio (2025, 공동 제1저자)','Developmental Cell (2025, 공동 제1저자)','Pharmaceutics (2024, 공동 제1저자)','Journal of Investigative Dermatology (2024, 공동 제1저자)','International Journal of Molecular Sciences (2022, 공동 제1저자)','Scientific Reports (2022, 공동 제1저자)','Journal of Ginseng Research (2022, 공동 제1저자)','Journal of Dermatological Science (2022, 공동 제1저자)','대한화장품학회지 (2022, 공동 제1저자)','International Journal of Molecular Sciences (2021, 공동 제1저자)'],
+  patents:[],books:[],
+  links:[['BRIC 한빛사','https://www.ibric.org/bric/hanbitsa/han-interview.do?mode=view&id=95737&authorId=47561']]}
+];
+const students=[
+ {role:'Ph.D. Candidate',ko:'황 민',en:'Min Hwang',img:'images/img_147.jpg',
+  edu:'B.S. in Biomedical Science, CHA University · M.S. in Biomedicine &amp; Health Sciences, The Catholic University of Korea · 박사과정 (2025.03.–)',
+  res:[],
+  papers:['Biomedicine and Pharmacotherapy (2025, 공저자)','BMB Reports (2025, 공저자)','BMB Reports (2025, 공저자)','Biology-Basel (2022, 제1저자)','BMB Reports (2022, 공저자)'],
+  patents:[],books:[],links:[]},
+ {role:'Integrated M.S.–Ph.D.',ko:'조 준영',en:'Junyoung Cho',img:'images/img_054.jpg',
+  edu:'B.S. (summa cum laude) in Chemical Engineering &amp; Biotechnology, Tech University of Korea · 인턴 (2022.11.–) / 석사과정 (2023.03.–) / 석박사 통합과정 (2025.03.–)',
+  res:[],
+  papers:['Cancer Cell International (2026, 공저자)','Cancer Research (2025, 공저자)','iScience (2025, 공동 제1저자)'],
+  patents:PAT4,books:[],
+  links:[['BK21 우수대학원생 2025','#/news'],['대학원 학술제 최우수 포스터상 2023','#/news']]},
+ {role:'Integrated M.S.–Ph.D.',ko:'강 승연',en:'Seungyeon Kang',img:'images/img_082.jpg',
+  edu:'B.S. in Biomaterials, Jeju National University · 인턴 (2023.03.–) / 석사과정 (2023.09.–) / 석박사 통합과정 (2025.03.–)',
+  res:[],papers:[],
+  patents:['골지체 파편화 억제제로서의 플루다라빈을 유효성분으로 포함하는 퇴행성 뇌질환 예방 또는 치료용 약학적 조성물 (2026, 공동발명자)','골지체 파편화 억제제로서의 반데타닙을 유효성분으로 포함하는 퇴행성 뇌질환 예방 또는 치료용 약학적 조성물 (2026, 공동발명자)'],
+  books:[],links:[]},
+ {role:'Integrated M.S.–Ph.D.',ko:'정 다솜',en:'Da Som Jung',img:'images/img_145.jpg',
+  edu:'B.S. in Biomedical Laboratory Science, Soonchunhyang University · 인턴 (2023.05.–) / 석박사 통합과정 (2023.09.–)',
+  res:[],
+  papers:['Cancer Cell International (2026, 공저자)','Biomedicine and Pharmacotherapy (2025, 공저자)','Cancer Research (2025, 공저자)'],
+  patents:[],books:[],links:[]}
+];
+const staff=[
+ {role:'Research Assistant / Lab Manager',ko:'조 애니',en:'Annie Zhao, M.S.',img:'images/img_013.jpg',
+  edu:'M.S. in Medical Science, SAIHST, Sungkyunkwan University · 연구조교 / 랩 매니저 (2022.09.–)',
+  res:[],
+  papers:['Experimental and Molecular Medicine (2025, 공저자)','Cancer Research (2025, 공저자)'],
+  patents:PAT4,books:[],links:[]}
+];
+function recordBlock(p){
+  let h='';
+  if(p.papers.length) h+='<div class="rlabel">논문 / Papers</div><ol>'+p.papers.map(x=>'<li>'+x+'</li>').join('')+'</ol>';
+  if(p.patents.length) h+='<div class="rlabel">특허 / Patents</div><ol>'+p.patents.map(x=>'<li>'+x+'</li>').join('')+'</ol>';
+  if(p.books.length) h+='<div class="rlabel">저서 / Books</div><ol>'+p.books.map(x=>'<li>'+x+'</li>').join('')+'</ol>';
+  return h?'<div class="record"><div class="eyebrow" style="margin-bottom:10px">최근 5년간 연구 실적</div>'+h+'</div>':'';
+}
+function personHTML(p){
+  const init=(p.en||'?').trim()[0];
+  return `<article class="person">
+    <div class="portrait"><div class="initials">${init}</div>
+      <img src="${p.img}" alt="Portrait of ${p.en}" loading="lazy" onerror="this.remove()"></div>
+    <div class="body">
+      <span class="role">${p.role}</span>
+      <h4>${p.en}</h4>
+      <div class="rom">${p.ko}</div>
+      <p style="font-size:13px;color:var(--muted);margin-top:10px">${p.edu}</p>
+      ${p.res.length?'<ul>'+p.res.map(r=>'<li>'+r+'</li>').join('')+'</ul>':''}
+      ${p.links.length?'<div class="links">'+p.links.map(l=>`<a class="tag-sm" ${l[1].startsWith('#')?'':'target="_blank" rel="noopener"'} href="${l[1]}">${l[0]}</a>`).join('')+'</div>':''}
+      ${recordBlock(p)}
+    </div></article>`;
+}
+document.getElementById('fellows').innerHTML=fellows.map(personHTML).join('');
+document.getElementById('students').innerHTML=students.map(personHTML).join('');
+document.getElementById('staff').innerHTML=staff.map(personHTML).join('');
+
+const alumni=[
+ ['강 신원 / Shinwon Kang, M.S.','연구조교 2020–2021 · 현 Ph.D. candidate, Physiology, University of Toronto'],
+ ['김 태우 / Taewoo Kim, Ph.D.','박사후연구원 2021–2022 · 현 Assistant Professor, Dongguk University'],
+ ['이 상빈 / Sang-Bin Lee, Ph.D.','박사후연구원 2022–2023 · 현 Post-doc, Albert Einstein College of Medicine, NY'],
+ ['유 은희 / Eun Hee Yoo, M.D., M.S.','융합형 의사과학자 양성 프로그램 석사 2023–2025'],
+ ['데사러 바르사 / Barsha Deshar, M.S.','석사 2022–2025 · 현 충남대학교 수의과대학 전임연구원'],
+ ['이 광빈 / Gwangbin Lee, M.S.','석사 2023–2026']
+];
+document.getElementById('alumni').innerHTML=alumni.map(a=>`<div class="alum"><b>${a[0]}</b><span>${a[1]}</span></div>`).join('');
+
+/* ---------------- publications ---------------- */
+const pubs=[
+ {n:33,y:2026,t:"Nitrogen-oxygen plasma induces selective cancer cell death via apoptosis with lipid-peroxidation-associated mechanisms across multiple cancer cell models",u:"https://doi.org/10.1038/s41598-026-59131-4",a:"Bum-Ho Bin*, Sofia Brito*, Sun Ju Park, Ki Bok Yoon, Hyojin Heo, Hantae Jo, Sehyun Chae, Byung Mook Weon, Sung Kweon Cho, <b>Jiyoon Kim#</b>",j:"Scientific Reports",i:"IF 4.9 · JCR 14.6%"},
+ {n:32,y:2026,t:"TIA-1 promotes FUNDC1-mediated mitophagy to protect against stress-induced cellular senescence",u:"https://doi.org/10.1038/s12276-026-01752-w",a:"Seongho Cha*, Myeongwoo Jung, Hyosun Tak, Seungyeon Ryu, Sukyoung Han, Dongwoo Chae, <b>Jiyoon Kim</b>, Seung Min Jeong, Wook Kim, Eun Kyung Lee#",j:"Experimental and Molecular Medicine",i:"IF 17.5 · JCR 1.8%"},
+ {n:31,y:2026,t:"Zinc flux in skin: Identity and function of Metallothionein 1+ cells in skin homeostasis",u:"https://doi.org/10.1016/j.xjidi.2026.100483",a:"Sofia Brito*, Jeong-Yun Kim*, Sung Kweon Cho*, Gwangbin Lee, Ji-Hwan Park, <b>Jiyoon Kim#</b>, Bum-Ho Bin#",j:"JID Innovations",i:"IF 3"},
+ {n:30,y:2026,t:"Zinc as a master regulator of intracellular organelle homeostasis",u:"https://doi.org/10.1038/s12276-026-01706-2",a:"Sofia Brito*, <b>Jiyoon Kim#</b>, Bum-Ho Bin#",j:"Experimental and Molecular Medicine · invited review",i:"IF 17.5 · JCR 1.8%",p:"BRIC 한빛사 하이라이트"},
+ {n:29,y:2026,t:"MicroRNA-regulated signaling and tumor microenvironment modulation in lung cancer",u:"https://doi.org/10.1186/s12935-026-04280-9",a:"Chandani Shrestha*, Sofia Brito*, Barsha Deshar, Junyoung Cho, Gwangbin Lee, Dasom Jung, Junghyun Park, Kyung Seo Min, Yoo Kyung Chae, <b>Jiyoon Kim#</b>",j:"Cancer Cell International",i:"IF 7 · JCR 16.1%"},
+ {n:28,y:2026,t:"Tunable plasma coating modulates surface charge and protein corona of cell-derived nanovesicles for improved systemic drug delivery",u:"https://doi.org/10.1016/j.xcrp.2025.103084",a:"Sofia Brito*, Gwangbin Lee*, Seong-Bo Kim, Sun Ju Park, Marta Gonçalves, Hyojin Heo, Gang Hyoung Lee, Byung Mook Weon#, Sung Tae Kim#, <b>Jiyoon Kim#</b>, Bum-Ho Bin#",j:"Cell Reports Physical Science",i:"IF 6.9 · JCR 9.4%"},
+ {n:27,y:2025,t:"Autophagy inhibition enhances sensitivity of alpelisib in PI3K-mutated non-small cell lung cancer",u:"https://www.sciencedirect.com/science/article/pii/S0753332225008145",a:"Jinyoung Kim*, Chandani Shrestha*, Tae Woo Kim, Sang-Bin Lee, Gwangbin Lee, Dasom Jung, Min Hwang, Shinwon Kang, Hyung Soon Park, Hyunho Kim, Ho-Jung An, Dongwoo Chae#, Byoung Yong Shim#, <b>Jiyoon Kim#</b>",j:"Biomedicine and Pharmacotherapy",i:"IF 7.5 · JCR 5.3%",p:"Medical Observer, Doctors News 외 다수 보도"},
+ {n:26,y:2025,t:"GDF15 regulates development and growth of sympathetic neurons to enhance energy expenditure and thermogenesis",u:"https://www.nature.com/articles/s12276-025-01543-9",a:"Jinyoung Kim*, Annie Zhao, Seo Hyun Park, Jaeseok Han, Deok-Hyeon Cheon, Sang-Hyeon Ju, Yoonhyuk Jang, Kon Chu, Hyung Jin Choi, <b>Jiyoon Kim#</b>, Myung-Shik Lee#",j:"Experimental and Molecular Medicine",i:"IF 17.5 · JCR 1.8%",p:"BRIC 한빛사 · ZDNet, Herald Business 외 다수 보도"},
+ {n:25,y:2025,t:"Elucidation of the dual role of Beclin-1 in ischemic stroke through systems biology modeling",u:"https://www.cell.com/iscience/fulltext/S2589-0042(25)01531-7",a:"Jun Seok Cha*, Jinyoung Kim*, Junyoung Cho*, Jungho Lee#, <b>Jiyoon Kim#</b>, Dongwoo Chae#",j:"iScience",i:"IF 4.5 · JCR 16.8%"},
+ {n:24,y:2025,t:"Condensation of the Golgi apparatus activates YAP1 to promote gastric cancer progression",u:"https://aacrjournals.org/cancerres/article-abstract/85/22/4398/767090/Condensation-of-the-Golgi-Apparatus-Activates-YAP1",a:"Jinyoung Kim*, Chandani Shrestha*, Gwangbin Lee, Dasom Jung, Annie Zhao, Junyoung Cho, Ji Hae Nahm, Shinwon Kang, Jung Hwan Yoon, Bum-Ho Bin, Dongwoo Chae, Seung Min Jeong, Eun Kyung Lee, <b>Jiyoon Kim#</b>",j:"Cancer Research",i:"IF 22.6 · JCR 4.7%",p:"BRIC 한빛사 · 연합뉴스, 헬스조선 외 다수 보도"},
+ {n:23,y:2025,t:"Zinc transporter ZIP13 G289R variant from SCD-EDS is associated with abnormal hair quality",u:"https://www.jidonline.org/article/S0022-202X(25)00294-5/fulltext",a:"Sofia Brito*, Gunwoo Park*, Gang Hyoung Lee, Valeria Capra, Gianmaria Viglizzo, Federico Zara, Jeong-Yun Kim, Ji-Hwan Park, Sung Kweon Cho, Beat Steinmann, Byung Mook Weon, <b>Jiyoon Kim</b>, Marcello Scala#, Bum-Ho Bin#",j:"Journal of Investigative Dermatology",i:"IF 7 · JCR 6.6%"},
+ {n:22,y:2025,t:"Cannabidiol as a therapeutic agent for rosacea through simultaneous inhibition of multiple inflammatory pathways",u:"https://www.bmbreports.org/journal/view.html?doi=10.5483/BMBRep.2024-0115",a:"Chandani Shrestha*, Eun Hee Yoo*, Barsha Deshar, Min Hwang, Shinwon Kang, Bum-Ho Bin, Ji Hyun Lee#, <b>Jiyoon Kim#</b>",j:"BMB Reports",i:"IF 4.1"},
+ {n:21,y:2025,t:"Quantum molecular resonance ameliorates atopic dermatitis through suppression of IL36G and SPRR2B",u:"https://www.bmbreports.org/journal/view.html?doi=10.5483/BMBRep.2024-0105",a:"Jinyoung Kim*, Barsha Deshar*, Min Hwang, Chandani Shrestha, Eunhye Ju, Bum-Ho Bin, <b>Jiyoon Kim#</b>",j:"BMB Reports",i:"IF 4.1"},
+ {n:20,y:2025,t:"Age-associated interplay between zinc deficiency and Golgi stress hinders microtubule-dependent cellular signaling and epigenetic regulation",u:"https://www.cell.com/developmental-cell/fulltext/S1534-5807(24)00763-9",a:"Sofia Brito*, Hyojin Heo*, Jinyoung Kim*, Byungsun Cha, Youngdo Jeong, Wooseon Choi, Chandani Shrestha, Gang Hyoung Lee, Sun Ju Park, Ki Bok Yoon, Kentaro Oh-hashi, Sung Tae Kim, Sehyun Chae, Sung Kweon Cho, Byung Mook Weon#, <b>Jiyoon Kim#</b>, Bum-Ho Bin#",j:"Developmental Cell",i:"IF 9.2 · JCR 3.8%",p:"BRIC 한빛사 하이라이트"},
+ {n:19,y:2024,t:"Endoplasmic reticulum stress activates hepatic macrophages through PERK-hnRNPA1 signaling",u:"https://www.biomolther.org/journal/view.html?doi=10.4062/biomolther.2023.174",a:"Ari Kwon*, Yun Seok Kim, <b>Jiyoon Kim#</b>, Ja Hyun Koo#",j:"Biomolecules and Therapeutics",i:"IF 4.9"},
+ {n:18,y:2024,t:"Forsythia velutina extract: a potential therapeutic alternative for atopic dermatitis through multiple cell type modulation",u:"https://onlinelibrary.wiley.com/doi/full/10.1111/all.15967",a:"Yujin Kwon*, Yoon Jin Kang*, Jaeyoung Kwon*, Su-Yeon Cho, <b>Jiyoon Kim</b>, Tam Thi Le, Hoseong Hwang, Barsha Deshar, Myungjun Kim, Ju Yeong Kim, Jae Hung Jung, Hyung-Sik Kim, Sang Hoon Jung#, Hak Cheol Kwon#, Won Kyu Kim#",j:"Allergy",i:"IF 11.3 · JCR 6.2%"},
+ {n:17,y:2023,t:"Identification of novel pathogenic roles of BLZF1/ATF6 in tumorigenesis of gastrointestinal stromal tumor showing Golgi-localized mutant KIT",u:"https://www.nature.com/articles/s41418-023-01220-2",a:"Yujin Kwon*, <b>Jiyoon Kim*</b>, Su-Yeon Cho, Yoon Jin Kang, Jongsoo Lee, Jaeyoung Kwon, Hyungjin Rhee, Sebastian Bauer, Hyung-Sik Kim, Esak Lee, Han Sang Kim, Jae Hung Jung, Hoguen Kim#",j:"Cell Death and Differentiation",i:"IF 13.6 · JCR 5.6%",p:"BRIC 한빛사 하이라이트"},
+ {n:16,y:2023,t:"Golgi stress response — new insights into the pathogenesis and therapeutic targets of human diseases",u:"https://www.sciencedirect.com/science/article/pii/S1016847823000250",a:"Won Kyu Kim*, Wooseon Choi, Barsha Deshar, <b>Jiyoon Kim#</b>",j:"Molecules and Cells · invited review",i:"IF 8.2 · JCR 11.7%"},
+ {n:15,y:2023,t:"Identification of small GTPases that phosphorylate IRF3 through TBK1 activation using an active mutant library screen",u:"https://www.biomolther.org/journal/view.html?volume=31&number=1&spage=48&year=2023",a:"Jae-Hyun Yu*, Eun-Yi Moon, <b>Jiyoon Kim#</b>, Ja Hyun Koo#",j:"Biomolecules and Therapeutics",i:"IF 4.9"},
+ {n:14,y:2022,t:"MEKK-3 acts cooperatively with NSY-1 in SKN-1 dependent manner against oxidative stress in Caenorhabditis elegans",u:"https://www.mdpi.com/2079-7737/11/10/1526",a:"Min Hwang*, Chandani Shrestha, Shinwon Kang, <b>Jiyoon Kim#</b>",j:"Biology-Basel",i:"IF 4.3 · JCR 17.5%"},
+ {n:13,y:2022,t:"New insights into the role of the Golgi apparatus in the pathogenesis and therapeutics of human diseases",u:"https://link.springer.com/article/10.1007/s12272-022-01408-z",a:"Wooseon Choi*, Shinwon Kang, <b>Jiyoon Kim#</b>",j:"Archives of Pharmacal Research · invited review",i:"IF 8.2 · JCR 5.5%"},
+ {n:12,y:2022,t:"Anti-atopic dermatitis effects of Parasenecio auriculatus via simultaneous inhibition of multiple inflammatory pathways",u:"https://www.bmbreports.org/journal/view.html?volume=55&number=6&spage=275",a:"Yujin Kwon*, Su-Yeon Cho*, Jaeyoung Kwon*, Min Hwang, Hoseong Hwang, Yoon Jin Kang, Hyeon-Seong Lee, <b>Jiyoon Kim#</b>, Won Kyu Kim#",j:"BMB Reports",i:"IF 4.1"},
+ {n:11,y:2020,t:"Grasp55−/− mice display impaired fat absorption and resistance to high-fat diet-induced obesity",u:"https://www.nature.com/articles/s41467-020-14912-x",a:"<b>Jiyoon Kim*</b>, Hyeyon Kim, Shin Hye Noh, Shi-Young Park, Dong-Kook Min, Hyunki Kim, Hee-Seok Kweon, Hoguen Kim, Sowon Aum, Sookyung Seo, Cheol Soo Choi, Hail Kim, Jae Woo Kim, Seok Jun Moon, Heon Yung Gee, Min Goo Lee#",j:"Nature Communications",i:"IF 18.1 · JCR 5.4%",p:"BRIC 한빛사 인터뷰 · 매일경제, 헬스조선 외 다수 보도"},
+ {n:10,y:2019,t:"β-catenin activation down-regulates cell–cell junction-related genes and induces EMT in colorectal cancers",u:"https://www.nature.com/articles/s41598-019-54890-9",a:"Won Kyu Kim*, Yujin Kwon*, Mi Jang, Minhee Park, <b>Jiyoon Kim</b>, Suyeon Cho, Dong Geon Jang, Wook-Bin Lee, Sang Hoon Jung, Hye Jin Choi, Byung Soh Min, Tae Il Kim, Sung Pil Hong, Young-Ki Paik, Hoguen Kim#",j:"Scientific Reports",i:"IF 4.9 · JCR 14.6%"},
+ {n:9,y:2019,t:"Anoctamin 1/TMEM16A controls intestinal Cl− secretion induced by carbachol and cholera toxin",u:"https://www.nature.com/articles/s12276-019-0287-2",a:"Byeongjun Lee*, Gyu-Sang Hong, Hyungsup Kim, <b>Jiyoon Kim</b>, Min Goo Lee, Jin-Young Yang, Mi-Na Kweon, Chung–Ming Tse, Donowitz Mark, Eun Mi Hwang, Uhtaek Oh#",j:"Experimental and Molecular Medicine",i:"IF 17.5 · JCR 1.8%"},
+ {n:8,y:2018,t:"Specific autophagy and ESCRT components participate in the unconventional secretion of CFTR",u:"https://www.tandfonline.com/doi/full/10.1080/15548627.2018.1489479",a:"Shin Hye Noh*, Heon Yung Gee, Yeon Jeong Kim, He Piao, <b>Jiyoon Kim</b>, Jung Min Kang, Inhee Mook-Jung, Yang Sin Lee, Jin Won Cho, Min Goo Lee#",j:"Autophagy",i:"IF 18.6 · JCR 6%"},
+ {n:7,y:2018,t:"Unconventional protein secretion — new insights into the pathogenesis and therapeutic targets of human diseases",u:"https://journals.biologists.com/jcs/article/131/12/jcs213686/3196/",a:"<b>Jiyoon Kim*</b>, Heon Yung Gee, Min Goo Lee#",j:"Journal of Cell Science · invited review",i:"IF 3.9"},
+ {n:6,y:2018,t:"Unconventional secretion of transmembrane proteins",u:"https://www.sciencedirect.com/science/article/abs/pii/S1084952117301015",a:"Heon Yung Gee*, <b>Jiyoon Kim</b>, Min Goo Lee#",j:"Seminars in Cell and Developmental Biology · invited review",i:"IF 6.7 · JCR 9%"},
+ {n:5,y:2017,t:"mRNAs containing NMD-competent premature termination codons are stabilized and translated under UPF1 depletion",u:"https://www.nature.com/articles/s41598-017-16177-9",a:"Won Kyu Kim*, SeongJu Yun, Yujin Kwon, Kwon Tae You, Nara Shin, <b>Jiyoon Kim</b>, Hoguen Kim#",j:"Scientific Reports",i:"IF 4.9 · JCR 14.6%"},
+ {n:4,y:2017,t:"Sustained mutant KIT activation in the Golgi complex is mediated by PKC-θ in gastrointestinal stromal tumors",u:"https://clincancerres.aacrjournals.org/content/23/3/845.long",a:"Won Kyu Kim*, SeongJu Yun, Cheol Keun Park, Sebastian Bauer, <b>Jiyoon Kim</b>, Min Goo Lee, Hoguen Kim#",j:"Clinical Cancer Research",i:"IF 10.9 · JCR 9.8%"},
+ {n:3,y:2017,t:"Sec16A is critical for both conventional and unconventional secretion of CFTR",u:"https://www.nature.com/articles/srep39887",a:"He Piao*, <b>Jiyoon Kim</b>, Shin Hye Noh, Hee-Seok Kweon, Joo Young Kim, Min Goo Lee#",j:"Scientific Reports",i:"IF 4.9 · JCR 14.6%"},
+ {n:2,y:2016,t:"Monomerization and ER relocalization of GRASP is a requisite for unconventional secretion of CFTR",u:"https://onlinelibrary.wiley.com/doi/full/10.1111/tra.12403",a:"<b>Jiyoon Kim*</b>, Shin Hye Noh*, He Piao, Dong Hee Kim, Kuglae Kim, Jeong Seok Cha, Woo Young Chung, Hyun-Soo Cho, Joo Young Kim, Min Goo Lee#",j:"Traffic",i:"IF 2.8"},
+ {n:1,y:2016,t:"The HSP70 co-chaperone DNAJC14 targets misfolded pendrin for unconventional protein secretion",u:"https://www.nature.com/articles/ncomms11386",a:"Jinsei Jung*, <b>Jiyoon Kim*</b>, Shin Hye Roh, Ikhyun Jun, Robert D. Sampson, Heon Yung Gee, Jae Young Choi, Min Goo Lee#",j:"Nature Communications",i:"IF 18.1 · JCR 5.4%",p:"기초의학신진학술상 · 젊은 약리학자상 수상 논문 · BRIC 한빛사 인터뷰"}
+];
+const patents=[
+ {y:2026,ko:'골지체 파편화 유도제를 유효성분으로 포함하는 위암 예방 또는 치료용 약학적 조성물',en:'Golgi fragmentation inducers for the prevention or treatment of gastric cancer · 10-2026-0076078'},
+ {y:2026,ko:'골지체 파편화 억제제로서의 플루다라빈을 유효성분으로 포함하는 퇴행성 뇌질환 예방 또는 치료용 약학적 조성물',en:'Fludarabine as a Golgi fragmentation inhibitor for neurodegenerative disease · 10-2026-0044784'},
+ {y:2026,ko:'골지체 파편화 억제제로서의 반데타닙을 유효성분으로 포함하는 퇴행성 뇌질환 예방 또는 치료용 약학적 조성물',en:'Vandetanib as a Golgi fragmentation inhibitor for neurodegenerative disease · 10-2026-0044809'},
+ {y:2026,ko:'골지체 응축 유도용 조성물 및 이의 용도',en:'Composition for inducing Golgi condensation and its use · 10-2026-0112449'},
+ {y:2025,ko:'심장배당체 유도체를 유효성분으로 포함하는 골지체 응축유도용 시약 조성물',en:'Cardiac glycoside derivatives for inducing Golgi condensation · 10-2025-0203790'},
+ {y:2022,ko:'좀담배풀 추출물을 포함하는 항알러지용 조성물 (등록)',en:'Anti-allergy composition · registration no. 1024794820000'},
+ {y:2021,ko:'장수만리화 추출물을 포함하는 아토피 피부염 치료용 또는 피부 장벽 강화용 또는 노화 방지용 조성물',en:'Forsythia velutina extract for atopic dermatitis, skin barrier and anti-ageing'},
+ {y:2020,ko:'장수만리화 · 좀담배풀 · 긴담배풀 추출물을 포함하는 항알러지용 조성물 (3건)',en:'Three anti-allergy compositions from botanical extracts'}
+];
+const manuals=[
+ {y:2025,ko:'교감신경 발달 및 기능 연구에 관한 실험기법 매뉴얼',en:'ISBN 979-11-994152-1-8'},
+ {y:2022,ko:'자가포식 연구에 관한 실험기법 매뉴얼',en:'ISBN 979-11-980943-4-6'}
+];
+const years=[...new Set([...pubs.map(p=>p.y),...patents.map(p=>p.y),...manuals.map(m=>m.y)])].sort((a,b)=>b-a);
+const fbox=document.getElementById('pubfilters');
+fbox.innerHTML='<button data-y="all" aria-pressed="true">ALL</button>'+years.map(y=>`<button data-y="${y}" aria-pressed="false">${y}</button>`).join('');
+function pubHTML(p){
+  return `<div class="pub"><div class="n">${String(p.n).padStart(2,'0')}</div><div>
+    <div class="t"><a href="${p.u}" target="_blank" rel="noopener">${p.t}</a></div>
+    <div class="a">${p.a}</div>
+    <div class="j">${p.j} <span class="if">· ${p.i} · ${p.y}</span></div>
+    ${p.p?'<div class="press">'+p.p+'</div>':''}
+  </div></div>`;
+}
+function rowHTML(x){
+  return `<div class="tl-row"><div class="when">${x.y}</div><div class="what">${x.ko}<small>${x.en}</small></div></div>`;
+}
+function renderPubs(y){
+  const pick=arr=>(y==='all')?arr:arr.filter(x=>String(x.y)===String(y));
+  const pl=pick(pubs), pa=pick(patents), ma=pick(manuals);
+  document.getElementById('publist').innerHTML=pl.length?pl.map(pubHTML).join('')
+    :'<p style="padding:24px 0;color:var(--muted);font-size:14px">해당 연도에 게재된 논문이 없습니다.</p>';
+  document.getElementById('patentlist').innerHTML=pa.map(rowHTML).join('');
+  document.getElementById('manuallist').innerHTML=ma.map(rowHTML).join('');
+  document.getElementById('patentblock').style.display=pa.length?'block':'none';
+  document.getElementById('manualblock').style.display=ma.length?'block':'none';
+}
+fbox.querySelectorAll('button').forEach(b=>{
+  b.onclick=()=>{fbox.querySelectorAll('button').forEach(x=>x.setAttribute('aria-pressed',String(x===b)));renderPubs(b.dataset.y);};
+});
+renderPubs('all');
+
+/* home highlights */
+const hi=[
+ {d:'2025.11',h:'Condensation of the Golgi apparatus activates YAP1 to promote gastric cancer progression — Cancer Research',u:'https://aacrjournals.org/cancerres/article-abstract/85/22/4398/767090/Condensation-of-the-Golgi-Apparatus-Activates-YAP1'},
+ {d:'2025.10',h:'약리학 학술상 수상 (대한약리학회)',u:'#/pi'},
+ {d:'2025.10',h:'GDF15 regulates sympathetic neuron development to enhance thermogenesis — Experimental and Molecular Medicine',u:'https://www.nature.com/articles/s12276-025-01543-9'},
+ {d:'2025.05',h:'Zinc deficiency and Golgi stress in epigenetic regulation — Developmental Cell',u:'https://www.cell.com/developmental-cell/fulltext/S1534-5807(24)00763-9'},
+ {d:'2026.05',h:'Zinc as a master regulator of intracellular organelle homeostasis — invited review, Experimental and Molecular Medicine',u:'https://doi.org/10.1038/s12276-026-01706-2'}
+];
+document.getElementById('home-highlights').innerHTML=hi.map(x=>
+ `<a class="linkrow" href="${x.u}" ${x.u.startsWith('#')?'':'target="_blank" rel="noopener"'}>
+   <span class="d">${x.d}</span><span class="h">${x.h}</span><span class="arw">&rarr;</span></a>`).join('');
+
+/* ---------------- news ---------------- */
+const A='award', G='grant', PP='paper', PT='patent', PE='people';
+const news=[
+ ['2026.07.07',A,'Chandani Shrestha, Ph.D., 제2회 문숙 기초의학 차세대리더상 우수상 수상 (문숙과학지원재단). Congratulations!','http://www.moonsook.co.kr/s02/s03.php'],
+ ['2026.07.06',PP,"'Scientific Reports'에 질소-산소 플라즈마를 이용한 항암 기전에 대한 논문 게재"],
+ ['2026.06.19',PT,'골지체 제어 약물에 대한 특허 출원 (1건) — 골지체 응축 유도용 조성물 및 이의 용도 (10-2026-0112449)'],
+ ['2026.06.16',A,'김지윤, 유선희 데레사 암 연구학술상 수상 (가톨릭대학교 가톨릭중앙의료원). Congratulations!','https://www.medworld.co.kr/news/articleView.html?idxno=260342'],
+ ['2026.06.15',PE,'박주현(동국대 졸업), 인턴연구원 합류. Welcome aboard!'],
+ ['2026.05.08',PP,"'JID Innovations'에 피부에서 Zinc 단백질 Metallothionein-1의 발견에 대한 논문 게재"],
+ ['2026.05.01',PP,"'Experimental and Molecular Medicine'에 Zinc의 세포소기관 항상성 유지 기전에 대한 종설 논문 게재"],
+ ['2026.04.27',PT,'위암 치료 약물에 대한 특허 출원 (1건) — 골지체 파편화 유도제를 유효성분으로 포함하는 위암 예방 또는 치료용 약학적 조성물 (10-2026-0076078)'],
+ ['2026.04.13',G,'Sofia Brito, Ph.D., 과학기술정보통신부 세종과학펠로우십(복귀-유치트랙) 선정 (5년, 총 5억원) — 비대칭적 골지 스트레스 기반 세포 노화 기전 규명 및 노화 조절'],
+ ['2026.03.25',PP,"'Cancer Cell International'에 microRNA의 폐암에서의 역할과 기능에 대한 종설 논문 게재"],
+ ['2026.03.12',PT,'알츠하이머병 치료 효과를 보이는 항암제에 대한 특허 출원 (2건) — 플루다라빈 (10-2026-0044784), 반데타닙 (10-2026-0044809)'],
+ ['2026.03.01',PE,'Chandani Shrestha, Ph.D. / Sofia Brito, Ph.D., 박사후연구원 합류. Welcome aboard!'],
+ ['2026.02.11',A,'Chandani Shrestha, 대학원학술상 최우수상 수상. Congratulations!','https://www.youtube.com/live/DkTjdb_V7sI'],
+ ['2026.02.11',PE,'Chandani Shrestha 박사 졸업 / 이광빈 석사 졸업. Congratulations! Good luck!'],
+ ['2026.02.10',A,'Chandani Shrestha, 조준영, BK21 교육연구단 우수대학원생 선정. Congratulations!'],
+ ['2026.02.03',PP,"'Cell Reports Physical Science'에 플라즈마 코팅을 통한 약물 전달 시스템 개발에 대한 논문 게재"],
+ ['SUMMARY','','2023–2025년 (3년) 결산|주저자 논문 총 11편 (총 IF 84.7)|특허 총 2건 (출원 1, 등록 1)|연구비 수주 총 18.07억원 (정부과제 4건 17.47억 / 산학과제 2건 0.6억)|대학원 졸업 3명 (석사 3)|수상 총 5건'],
+ ['SUMMARY','','2020–2025년 (6년) 결산|주저자 논문 총 15편 (총 IF 114.7)|특허 총 7건 (출원 5, 등록 2)|연구비 수주 총 33.43억원 (정부과제 7건 31.07억 / 산학과제 3건 2.36억)|대학원 졸업 3명 (석사 3)|수상 총 6건'],
+ ['2025.12.18',PT,'골지체 응축 유도 효과를 보이는 심장배당체 유도체에 대한 특허 출원 (1건) — 10-2025-0203790'],
+ ['2025.12.11',A,'Chandani Shrestha, 신선호 젊은연구자상 수상 (한국세포주연구재단). Congratulations!','https://n.news.naver.com/article/421/0008655964'],
+ ['2025.10.16',A,'김지윤, 약리학 학술상 수상 (대한약리학회). Congratulations!','https://www.kosphar.org/rang_board/list.html?num=3939&code=notice'],
+ ['2025.10.02',PP,"'Biomedicine and Pharmacotherapy'에 자가포식 억제를 통한 폐암 치료 기전에 대한 논문 게재"],
+ ['2025.10.01',PP,"'Experimental and Molecular Medicine'에 GDF15에 의한 교감신경 발달 기전에 대한 논문 게재"],
+ ['2025.09.08',PP,"'Cancer Research'에 골지체 응축에 의한 위암 악성화 기전에 대한 논문 게재"],
+ ['2025.08.01',G,'보건복지부 의사과학자 박사후 연구성장지원 사업(심화) 선정 (2년 5개월, 총 7.25억원) — 골지체 매개 뇌세포 역노화를 통한 알츠하이머병 병리 제어 기술 개발 및 신규 표적 발굴'],
+ ['2025.07.30',PP,"'iScience'에 Beclin-1에 의한 뇌졸중 조절 기전에 대한 논문 게재"],
+ ['2025.06.13',PP,"'BMB Reports'에 칸나비디올에 의한 아토피 피부염 완화 기전에 대한 논문 게재"],
+ ['2025.04.30',G,'서울의과학연구소 연구지원사업 선정 (1년, 총 3천만원) — 세포소기관 기반 역노화 기술 개발','https://www.scllab.co.kr/front/viewAritcle.do?bbsId=BBS_0001&nttId=5946'],
+ ['2025.03.01',PE,'황민, 박사과정 입학. Go for it!'],
+ ['2025.03.01',G,'과학기술정보통신부 우수신진사업 선정 (3년, 총 6.8억원) — 위암에서 골지체 매개 악성화 기전 규명'],
+ ['2025.02.13',PE,'Barsha Deshar, 유은희 석사 졸업. Congratulations! Good luck!'],
+ ['2025.02.12',A,'김지윤, 가톨릭대학교 우수연구자 75인 선정 (전임교원 총 977명)','https://m.health.chosun.com/svc/news_view.html?contid=2025021301154'],
+ ['2025.02.10',PE,'채유경(가톨릭의대 본과 3학년), 학생참여 교수연구과제 프로그램 연구원 합류. Welcome aboard!'],
+ ['2025.01.06',PP,"'Developmental Cell'에 골지체 변성에 의한 세포 노화 기전에 대한 논문 게재"],
+ ['2024.12.06',PE,'조준영, 강승연 석박사통합과정 변경. Go for it!'],
+ ['2024.11.29',PP,"'BMB Reports'에 양자분자공명(QMR)에 의한 아토피 피부염 완화 기전에 대한 논문 게재"],
+ ['2024.09.01',G,'교육부 석사과정생 연구장려금 지원사업 선정 (정다솜, 1년, 총 1.2천만원) — GRASP55 매개 세포 노화 및 역노화 기전 규명'],
+ ['2024.08.16',PE,'Barsha Deshar, Farewell. Good luck! / 황민 인턴연구원 합류. Welcome aboard!'],
+ ['2024.08.01',G,'과학기술정보통신부 글로벌 기초연구실(BRL) 선정 (참여연구실, 2년 9개월, 총 3.3억원) — 세포소기관 표적 역노화 연구실'],
+ ['2024.04.09',PP,"'Biomolecules and Therapeutics'에 ER stress 조절 기전에 대한 논문 게재"],
+ ['2023.09.13',PP,"'Cell Death and Differentiation'에 희귀 위암 GIST의 골지체 관련 발병기전에 대한 논문 게재"],
+ ['2023.09.07',A,'조준영, 대학원 학술제 최우수 포스터상 수상. Congratulations!'],
+ ['2023.09.01',PE,'강승연, 이광빈, 허연진 석사과정 입학 / 이슬비, 정다솜 석박사통합과정 입학. Go for it!'],
+ ['2023.05.02',PE,'정다솜(순천향대 졸업), 인턴연구원 합류. Welcome aboard!'],
+ ['2023.04.24',PE,'이슬비(원광대 졸업), 인턴연구원 합류. Welcome aboard!'],
+ ['2023.03.03',PE,'강승연(제주대), 이광빈(충북대), 허연진(건양대) 인턴연구원 합류. Welcome aboard!'],
+ ['2023.03.01',PE,'조준영, 유은희 석사과정 입학. Go for it!'],
+ ['2023.02.28',PE,'황민, 석사 졸업. Congratulations! Good luck!'],
+ ['2023.02.15',A,'최우선, BK21 교육연구단 우수대학원생 선정. Congratulations!'],
+ ['2023.02.01',G,'보건복지부 융합형 의사과학자 양성 사업(전공의 연구지원) 선정 (2년, 총 6천만원)'],
+ ['2023.01.26',G,'한독제석재단 연구비 지원사업 선정 (1년, 총 3천만원) — 세포 소기관 기반 알츠하이머병 치료 약물 평가 플랫폼 개발','https://kams.or.kr/bbs/index.php?code=bo&number=6592&mode=view'],
+ ['2023.01.01',PP,"'Biomolecules and Therapeutics'에 IRF3 조절 기전에 대한 논문 게재"],
+ ['SUMMARY','','2020–2022년 (3년) 결산|주저자 논문 총 4편 (총 IF 30)|특허 총 5건 (출원 4, 등록 1)|기술이전 총 5천만원|연구비 수주 총 15.36억원 (정부과제 3건 13.6억 / 산학과제 1건 1.76억)|수상 총 1건'],
+ ['2022.12.30',A,'김지윤, 부교수 특별승진 (early promotion)'],
+ ['2022.12.28',PP,"'Molecules and Cells'에 골지 스트레스 반응에 대한 종설 논문 게재"],
+ ['2022.12.15',PT,'알러지 치료 효과를 보이는 천연물에 대한 특허 등록 (1건) — 좀담배풀 추출물을 포함하는 항알러지용 조성물 (1024794820000)'],
+ ['2022.11.21',PE,'조준영(한국공학대학교 수석졸업), 인턴연구원 합류. Welcome aboard!'],
+ ['2022.11.17',A,'김진영, Ph.D., 제2회 암젠한림생명공학상 수상','https://biz.chosun.com/science-chosun/science/2022/11/21/O6WBXWSFZRAQRIYJ64FOKSRSQY/'],
+ ['2022.10.18',PP,"'Biology'에 산화 스트레스 및 노화 저항성에 중요한 SKN-1의 조절 기전에 대한 논문 게재"],
+ ['2022.09.30',PP,"'Archives of Pharmacal Research'에 골지체 관련 병리기전에 대한 종설 논문 게재"],
+ ['2022.09.01',PE,'Barsha Deshar 석사과정 입학 / 조애니, M.S. 연구조교 합류. Welcome aboard!'],
+ ['2022.08.17',G,'기술이전 체결 (㈜휴앤바이옴, 5천만원) — 장수만리화 추출물을 포함하는 아토피 피부염 치료용 조성물'],
+ ['2022.08.01',PE,'이상빈, Ph.D., 박사후연구원 합류. Welcome aboard!'],
+ ['2022.07.06',G,'보건복지부 K-Medi 융합인재 양성 지원사업(심화) 선정 (1.5년, 총 3억원) — 알츠하이머 치매 유사 병리표현형 모델의 원인기전 규명 및 신규 표적 발굴'],
+ ['2022.06.30',PP,"'BMB Reports'에 아토피피부염 치료 효과를 가진 천연물 연구에 대한 논문 게재"],
+ ['2022.06.01',PE,'김진영, Ph.D., BK21 신진연구인력 합류. Welcome aboard!'],
+ ['2022.04.05',G,'보건복지부 치매극복연구개발사업 선정 (3년, 총 8억원) — 골지체 변성으로 인한 알츠하이머 치매의 발병기전 규명 및 신규 표적 발굴'],
+ ['2022.04.01',PE,'김동연(가톨릭의대 재학), 인턴연구원 합류. Welcome aboard!'],
+ ['2022.03.07',PE,'공의민(중앙대 재학), 인턴연구원 합류. Welcome aboard!'],
+ ['2022.03.01',PE,'최우선, 박사과정 입학. Go for it!'],
+ ['2021.11.05',PE,'Chandani Shrestha, 석박사통합과정 변경. Go for it!'],
+ ['2021.10.27',PE,'성연경(서울여대 졸업), 인턴연구원 합류. Welcome aboard!'],
+ ['2021.09.13',PE,'Barsha Deshar(목포대 졸업), 인턴연구원 합류. Welcome aboard!'],
+ ['2021.09.01',G,'㈜퀀텍 용역과제 체결 (2년, 총 1.76억원) — 분자공명 주파수가 피부의 재생 및 항노화에 미치는 영향'],
+ ['2021.08.17',PE,'송재훈(가톨릭의대 재학), 인턴연구원 합류. Welcome aboard!'],
+ ['2021.08.01',PE,'최우선, M.S. 연구조교 합류. Welcome aboard!'],
+ ['2021.07.31',PE,'강신원, 연구조교 Farewell (토론토 대학원 박사과정). Good luck!'],
+ ['2021.06.10',PT,'알러지 치료 및 항노화 효과를 보이는 천연물에 대한 특허 출원 (1건) — 장수만리화 추출물'],
+ ['2021.03.01',PE,'황민, 석사과정 입학. Go for it!'],
+ ['2021.02.26',G,'과학기술정보통신부 우수신진사업 선정 (3년, 총 2.6억원) — 난치성 상피중간엽전이 분자아형 위암에서 골지체 관련 유전자의 역할 규명'],
+ ['2020.11.18',PT,'알러지 치료 효과를 보이는 천연물에 대한 특허 출원 (3건)'],
+ ['2020.09.01',PE,'Chandani Shrestha, 석사과정 입학. Go for it!'],
+ ['2020.08.20',PE,'황민(차의과학대 재학), 인턴연구원 합류. Welcome aboard!'],
+ ['2020.08.03',PE,'강신원, M.S. 연구조교 합류. Welcome aboard!'],
+ ['2020.03.17',PP,"'Nature Communications'에 GRASP55 유전자의 새로운 기능에 대한 논문 게재"],
+ ['2020.02.03',PE,'Chandani Shrestha(목포대 재학), 인턴연구원 합류. Welcome aboard!'],
+ ['2019.06.01',G,'한국연구재단 창의도전 연구과제 (2년, 총 1.5억원) 및 가톨릭대학교 교내연구과제 (1년, 0.3억원) 선정'],
+ ['2019.03.01',PE,'가톨릭의대 약리학교실, 세포소기관 기반 병리기전 및 질병치료 연구실 개설']
+];
+const KIND={award:'수상',grant:'연구비',paper:'논문',patent:'특허',people:'구성원'};
+const newsYears=[...new Set(news.filter(n=>n[0]!=='SUMMARY').map(n=>n[0].slice(0,4)))].sort((a,b)=>b-a);
+const nbox=document.getElementById('newsfilters');
+nbox.innerHTML='<button data-y="all" aria-pressed="true">ALL</button>'+
+  newsYears.map(y=>`<button data-y="${y}" aria-pressed="false">${y}</button>`).join('');
+function renderNews(sel){
+  let html='', lastYear=null;
+  news.forEach(n=>{
+    if(n[0]==='SUMMARY'){
+      if(sel!=='all') return;                      // 결산은 여러 해에 걸치므로 ALL에서만 표시
+      const parts=n[2].split('|');
+      html+='<div class="summary-card"><h4>'+parts[0]+'</h4><ul>'+parts.slice(1).map(p=>'<li>'+p+'</li>').join('')+'</ul></div>';
+      return;
+    }
+    const y=n[0].slice(0,4);
+    if(sel!=='all'&&y!==sel) return;
+    if(y!==lastYear){ html+='<h3 class="newsyear">'+y+'</h3>'; lastYear=y; }
+    const body=n[3]?`<a href="${n[3]}" target="_blank" rel="noopener">${n[2]}</a>`:n[2];
+    html+=`<div class="news-row kind-${n[1]}"><div class="nd">${n[0].replace(/\./g,'. ')}</div>
+      <div class="nt"><span class="badge">${KIND[n[1]]||''}</span>${body}</div></div>`;
+  });
+  document.getElementById('newslist').innerHTML=html;
+}
+nbox.querySelectorAll('button').forEach(b=>{
+  b.onclick=()=>{nbox.querySelectorAll('button').forEach(x=>x.setAttribute('aria-pressed',String(x===b)));renderNews(b.dataset.y);};
+});
+renderNews('all');
+
+/* ---------------- gallery ---------------- */
+const gallery={
+ '2026':[
+  ['images/img_030.jpg','2026.07. 제2회 문숙 기초의학 차세대리더상 수상 (Chandani Shrestha, Ph.D.)'],
+  ['images/img_072.jpg','2026.07. 제2회 문숙 기초의학 차세대리더상 상장'],
+  ['images/img_029.jpg','2026.06. 유선희 데레사 암 연구학술상 수상'],
+  ['images/img_093.jpg','2026.06. 유선희 데레사 암 연구학술상 수상'],
+  ['images/img_021.jpg','2026.06. 유선희 데레사 암 연구학술상 수상'],
+  ['images/img_110.jpg','2026.06. 연구 세미나 (김진영 Ph.D.)'],
+  ['images/img_138.jpg','2026.06. 종강 회식'],
+  ['images/img_068.jpg','2026.05. 연구실 회식 (@KSBMB)'],
+  ['images/img_014.png','2026.05. KSBMB 학회 참석'],
+  ['images/img_055.jpg','2026.05. BRL 워크숍 (@KSBMB)'],
+  ['images/img_051.jpg','2026.05. 스승의 날 행사'],
+  ['images/img_143.jpg','2026.05. 스승의 날 행사'],
+  ['images/img_020.jpg','2026.05. 스승의 날 행사'],
+  ['images/img_081.jpg','2026.05. 스승의 날 행사'],
+  ['images/img_048.jpg','2026.03. 연구 세미나 (Chandani Shrestha, Ph.D.)'],
+  ['images/img_077.jpg','2026.03. 연구 세미나 (Sofia Brito, Ph.D.)'],
+  ['images/img_126.jpg','2026.02. 이광빈, Farewell'],
+  ['images/img_127.jpg','2026.02. 대학원 학술상 최우수상 (Chandani Shrestha)'],
+  ['images/img_088.jpg','2026.02. 대학원 학술상 최우수상 (Chandani Shrestha)'],
+  ['images/img_028.jpg','2026.02. BK21 우수대학원생 (Chandani Shrestha)'],
+  ['images/img_115.jpg','2026.02. BK21 우수대학원생 (Chandani Shrestha)'],
+  ['images/img_005.jpg','2026.02. 대학원 학위수여식 (Chandani Shrestha, 이광빈)'],
+  ['images/img_076.jpg','2026.02. 대학원 학위수여식'],
+  ['images/img_015.jpg','2026.02. 대학원 학위수여식'],
+  ['images/img_091.jpg','2026.02. 대학원 학위수여식'],
+  ['images/img_083.jpg','2026.02. 대학원 학위수여식'],
+  ['images/img_057.jpg','2026.02. 대학원 학위수여식'],
+  ['images/img_065.jpg','2026.02. 대학원 학위수여식'],
+  ['images/img_117.jpg','2026.02. 대학원 학위수여식'],
+  ['images/img_108.jpg','2026.02. 대학원 학위수여식'],
+  ['images/img_086.jpg','2026.02. 대학원 학위수여식'],
+  ['images/img_144.jpg','2026.02. 대학원 학위수여식'],
+  ['images/img_064.jpg','2026.01. BRL 신년회식']
+ ],
+ '2025':[
+  ['images/img_071.jpg','2025.12. 신선호 젊은연구자상 시상식 (Chandani Shrestha)'],
+  ['images/img_047.jpg','2025.12. 신선호 젊은연구자상 시상식'],
+  ['images/img_022.jpg','2025.12. 연구실 송년회'],
+  ['images/img_135.jpg','2025.12. 연말 시상식 (김진영, 최우수 연구자상)'],
+  ['images/img_099.jpg','2025.12. 연말 시상식 (김진영, 최우수 연구자상)'],
+  ['images/img_113.jpg','2025.12. 연말 시상식 (Chandani Shrestha, 최우수 연구자상)'],
+  ['images/img_031.jpg','2025.12. 연말 시상식 (Chandani Shrestha)'],
+  ['images/img_090.jpg','2025.12. 연말 시상식 (Chandani Shrestha, 공로상)'],
+  ['images/img_106.jpg','2025.12. 연말 시상식 (공로상)'],
+  ['images/img_141.jpg','2025.12. 연말 시상식 (이광빈, 공로상)'],
+  ['images/img_120.jpg','2025.12. 연말 시상식 (이광빈, 공로상)'],
+  ['images/img_134.jpg','2025.12. 크리스마스 기념 선물 교환'],
+  ['images/img_026.jpg','2025.11. 약리학 학술상 수상'],
+  ['images/img_017.jpg','2025.10. 연구실 소풍'],
+  ['images/img_140.jpg','2025.10. 연구실 소풍'],
+  ['images/img_098.jpg','2025.10. 연구실 소풍'],
+  ['images/img_116.jpg','2025.10. 논문 출판 기념 세레모니 (연구실 단체사진)'],
+  ['images/img_080.jpg','2025.10. Biomedicine and Pharmacotherapy 출판 기념 (주저자 단체사진)'],
+  ['images/img_142.jpg','2025.10. Biomedicine and Pharmacotherapy 출판 기념 (논문 인센티브)'],
+  ['images/img_096.jpg','2025.10. Experimental and Molecular Medicine 출판 기념'],
+  ['images/img_040.jpg','2025.10. Cancer Research 출판 기념 (주저자 단체사진)'],
+  ['images/img_035.jpg','2025.10. Cancer Research 출판 기념 (논문 인센티브)'],
+  ['images/img_131.jpg','2025.09. 개강 회식'],
+  ['images/img_132.jpg','2025.08. 교수님 생신'],
+  ['images/img_107.jpg','2025.06. 연구 세미나 (김진영 Ph.D.)'],
+  ['images/img_006.jpg','2025.05. 연구실 회식 (@KSBMB)'],
+  ['images/img_074.png','2025.05. KSBMB 학회 참석'],
+  ['images/img_148.jpg','2025.05. BRL 워크숍 (@KSBMB)'],
+  ['images/img_100.jpg','2025.05. 스승의 날 행사'],
+  ['images/img_102.jpg','2025.05. 스승의 날 행사'],
+  ['images/img_053.jpg','2025.02. 석사학위 수여식 (석사학위 패 증정)'],
+  ['images/img_104.jpg','2025.02. 석사학위 수여식 (유은희, Barsha Deshar)'],
+  ['images/img_056.jpg','2025.02. 우수연구자 초청의 밤'],
+  ['images/img_004.jpg','2025.02. 우수연구자 초청의 밤'],
+  ['images/img_037.jpg','2025.01. Developmental Cell 출판 기념 접시'],
+  ['images/img_018.jpg','2025.01. Developmental Cell 출판 기념 회식 (아주대 빈범호 교수님)'],
+  ['images/img_008.jpg','2025.01. Developmental Cell 출판 기념 (단체 사진)'],
+  ['images/img_073.jpg','2025.01. Developmental Cell 출판 기념 (논문 인센티브)'],
+  ['images/img_070.jpg','2025.01. Developmental Cell 출판 기념 (Chandani Shrestha)'],
+  ['images/img_060.jpg','2025.01. Developmental Cell 출판 기념 (김진영 Ph.D.)']
+ ],
+ '2024':[
+  ['images/img_012.jpg','2024.12. 크리스마스 기념 선물 교환'],
+  ['images/img_059.jpg','2024.12. 크리스마스 기념 선물 교환'],
+  ['images/img_075.jpg','2024.12. 크리스마스 기념 선물 교환'],
+  ['images/img_123.jpg','2024.12. 종강 회식'],
+  ['images/img_114.jpg','2024.08. BRL Kick-off Meeting'],
+  ['images/img_122.jpg','2024.08. 황민, Welcome'],
+  ['images/img_046.jpg','2024.08. Barsha Deshar, Farewell'],
+  ['images/img_111.jpg','2024.08. 교수님 생신'],
+  ['images/img_129.jpg','2024.08. 연구실 회식'],
+  ['images/img_025.jpg','2024.05. 연구 세미나 (김진영 Ph.D.)'],
+  ['images/img_079.jpg','2024.05. KSBMB 국제 학회'],
+  ['images/img_003.jpg','2024.05. KSBMB 국제 학회'],
+  ['images/img_084.jpg','2024.05. KSBMB 국제 학회'],
+  ['images/img_009.jpg','2024.05. KSBMB 국제 학회'],
+  ['images/img_118.jpg','2024.05. KSBMB 국제 학회'],
+  ['images/img_066.jpg','2024.05. KSBMB 국제 학회'],
+  ['images/img_095.jpg','2024.05. KSBMB 국제 학회'],
+  ['images/img_078.jpg','2024.05. KSBMB 국제 학회'],
+  ['images/img_094.jpg','2024.05. KSBMB 국제 학회'],
+  ['images/img_061.jpg','2024.05. 스승의 날'],
+  ['images/img_043.jpg','2024.03. 개강 랩미팅']
+ ],
+ '2023':[
+  ['images/img_032.jpg','2023.12. 크리스마스 기념 선물 교환'],
+  ['images/img_049.jpg','2023.12. 종강 회식'],
+  ['images/img_041.jpg','2023.12. 의사과학자 컨퍼런스'],
+  ['images/img_069.jpg','2023.09. 대학원 학술제 (최우수 포스터상: 조준영)'],
+  ['images/img_124.jpg','2023.09. 개강 회식, 연구실 OT'],
+  ['images/img_133.jpg','2023.08. 교수님 생신'],
+  ['images/img_023.jpg','2023.06. 연구 세미나 (김진영 Ph.D.)'],
+  ['images/img_024.jpg','2023.05. 스승의 날'],
+  ['images/img_007.jpg','2023.05. 단체사진'],
+  ['images/img_087.jpg','2023.04. 한강 나들이'],
+  ['images/img_101.jpg','2023.03. 단체사진'],
+  ['images/img_038.jpg','2023.02. 학위수여식'],
+  ['images/img_109.jpg','2023.02. 한독제석재단 연구지원금 수여식'],
+  ['images/img_130.jpg','2023.01. 부교수 특별승진 기념 및 연구실 신년 회식']
+ ],
+ '2022':[
+  ['images/img_119.jpg','2022.12. ASCB-EMBO 국제학회 참석 (미국 워싱턴 DC)'],
+  ['images/img_036.jpg','2022.12. 정기 Progress Meeting (발표자: Barsha Deshar)'],
+  ['images/img_121.jpg','2022.12. 김진영 Ph.D. 수상 기념 및 연구실 송년 회식'],
+  ['images/img_019.jpg','2022.11. 정기 Progress Meeting (발표자: 최우선)'],
+  ['images/img_063.jpg','2022.11. 김진영 Ph.D., 암젠한림생명공학상 수상'],
+  ['images/img_105.jpg','2022.10. 정기 Progress Meeting (발표자: Chandani Shrestha)'],
+  ['images/img_002.jpg','2022.10. 의학 교육 워크샵 (가톨릭·연세·울산의대)'],
+  ['images/img_016.jpg','2022.09. 퀀텍 회의'],
+  ['images/img_039.jpg','2022.09. KSMCB 학회 (KIST 천연물연구센터 연구팀)'],
+  ['images/img_042.jpg','2022.09. 정기 Progress Meeting (발표자: 황민)'],
+  ['images/img_011.jpg','2022.08. 교수님 생신'],
+  ['images/img_112.jpg','2022.06. 세포배양실'],
+  ['images/img_010.jpg','2022.06. 세포배양실'],
+  ['images/img_045.jpg','2022.06. 연구실'],
+  ['images/img_097.jpg','2022.06. 연구원 사무공간'],
+  ['images/img_050.jpg','2022.06. 연구실'],
+  ['images/img_089.jpg','2022.06. 연구실'],
+  ['images/img_027.jpg','2022.05. 스승의 날'],
+  ['images/img_058.jpg','2022.05. 옴니버스 파크 완공']
+ ],
+ '2021':[
+  ['images/img_128.jpg','2021.10. 연구실 회식'],
+  ['images/img_067.jpg','2021.10. 연구실 회식'],
+  ['images/img_044.jpg','2021.10. 단체사진'],
+  ['images/img_125.jpg','2021.05. KSBMB 국제 학회 포스터 발표 (Chandani Shrestha)'],
+  ['images/img_092.jpg','2021.05. KSBMB 국제 학회 포스터 발표 (황민)'],
+  ['images/img_136.jpg','2021.05. 스승의 날']
+ ],
+ '2020–2019':[
+  ['images/img_001.jpg','2020.02. 의학 교육 워크샵 (가톨릭·연세·울산의대)'],
+  ['images/img_033.jpg','2019.06. 가톨릭의대 약리학교실 교수진']
+ ]
+};
+// JS는 '2026' 같은 숫자형 키를 Object.keys()에서 오름차순으로 재정렬하므로
+// 순서를 여기서 명시적으로 고정한다. (최신 → 과거)
+const galleryYears=['2026','2025','2024','2023','2022','2021','2020–2019'];
+const gbox=document.getElementById('galleryfilters');
+gbox.innerHTML='<button data-y="all" aria-pressed="true">ALL</button>'+
+  galleryYears.map(y=>`<button data-y="${y}" aria-pressed="false">${y}</button>`).join('');
+function renderGallery(sel){
+  let html='';
+  galleryYears.forEach(y=>{
+    if(sel!=='all'&&y!==sel) return;
+    html+='<h3 class="newsyear">'+y+'</h3><div class="gal-grid">';
+    gallery[y].forEach(g=>{
+      const src=g[0];
+      html+=`<figure class="gal" data-full="${src}" data-cap="${g[1]}">
+        <div class="ph"><img loading="lazy" src="${src}" alt="${g[1]}"></div>
+        <figcaption class="cap"><span>${g[1].slice(0,8)}</span>${g[1].slice(9)}</figcaption></figure>`;
+    });
+    html+='</div>';
+  });
+  document.getElementById('gallerylist').innerHTML=html;
+}
+gbox.querySelectorAll('button').forEach(b=>{
+  b.onclick=()=>{gbox.querySelectorAll('button').forEach(x=>x.setAttribute('aria-pressed',String(x===b)));renderGallery(b.dataset.y);};
+});
+renderGallery('all');
+
+/* lightbox */
+const lb=document.getElementById('lightbox');
+document.getElementById('gallerylist').addEventListener('click',e=>{
+  const fig=e.target.closest('.gal'); if(!fig) return;
+  document.getElementById('lbimg').src=fig.dataset.full;
+  document.getElementById('lbimg').alt=fig.dataset.cap;
+  document.getElementById('lbcap').textContent=fig.dataset.cap;
+  lb.classList.add('on');
+});
+function closeLB(){lb.classList.remove('on');}
+document.getElementById('lbclose').onclick=closeLB;
+lb.addEventListener('click',e=>{if(e.target===lb)closeLB();});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLB();});
+
+/* init */
+setLang('ko');
+route();
+renderGolgiCaption();
+</script>
+</body>
+</html>
