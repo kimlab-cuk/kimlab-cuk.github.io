@@ -874,19 +874,25 @@ html[lang="ko"] blockquote[data-lang="ko"],html[lang="en"] blockquote[data-lang=
         <a href="https://scholar.google.com/citations?hl=en&user=hwGcMSQAAAAJ" target="_blank" rel="noopener" style="color:var(--ink)">Google Scholar</a>
       </p>
       <div class="filters" id="pubfilters"></div>
-      <div id="publist"></div>
+
+      <div id="paperblock">
+        <div class="section-head" style="margin-top:34px">
+          <span class="eyebrow">Publications</span>
+          <div><h2 data-lang="ko">논문</h2><h2 data-lang="en">Publications</h2></div>
+        </div>
+        <div id="publist"></div>
+      </div>
 
       <div id="patentblock">
-        <div class="section-head" style="margin-top:64px">
+        <div class="section-head" style="margin-top:54px">
           <span class="eyebrow">Patents</span>
-          <div><h2 data-lang="ko">특허</h2><h2 data-lang="en">Patents</h2>
-  </div>
+          <div><h2 data-lang="ko">특허</h2><h2 data-lang="en">Patents</h2></div>
         </div>
         <div class="tl" id="patentlist"></div>
       </div>
 
       <div id="manualblock">
-        <div class="section-head" style="margin-top:64px">
+        <div class="section-head" style="margin-top:54px">
           <span class="eyebrow">Books &amp; manuals</span>
           <div><h2 data-lang="ko">실험기법 매뉴얼</h2><h2 data-lang="en">Method manuals</h2></div>
         </div>
@@ -1254,8 +1260,8 @@ function rowHTML(x){
 function renderPubs(y){
   const pick=arr=>(y==='all')?arr:arr.filter(x=>String(x.y)===String(y));
   const pl=pick(pubs), pa=pick(patents), ma=pick(manuals);
-  document.getElementById('publist').innerHTML=pl.length?pl.map(pubHTML).join('')
-    :'<p style="padding:24px 0;color:var(--muted);font-size:14px">해당 연도에 게재된 논문이 없습니다.</p>';
+  document.getElementById('publist').innerHTML=pl.map(pubHTML).join('');
+  document.getElementById('paperblock').style.display=pl.length?'block':'none';
   document.getElementById('patentlist').innerHTML=pa.map(rowHTML).join('');
   document.getElementById('manuallist').innerHTML=ma.map(rowHTML).join('');
   document.getElementById('patentblock').style.display=pa.length?'block':'none';
