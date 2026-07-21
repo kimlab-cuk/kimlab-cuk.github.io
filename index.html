@@ -196,6 +196,13 @@ section{padding:64px 0}
 /* ---------- PI portrait hover ---------- */
 
 /* ---------- member record list ---------- */
+.eduline{margin-top:11px}
+.eduline span{display:block;font-size:13px;color:var(--muted);line-height:1.6;padding-left:11px;position:relative}
+.eduline span::before{content:'';position:absolute;left:0;top:9px;width:4px;height:1px;background:var(--line)}
+.alum .meta{display:block;margin-top:5px}
+.alum .meta span{display:block;font-size:13.5px;color:var(--muted);line-height:1.65;padding-left:11px;position:relative}
+.alum .meta span::before{content:'';position:absolute;left:0;top:11px;width:4px;height:1px;background:var(--line)}
+.alum .meta a{color:var(--ink)}
 .record{margin-top:14px;border-top:1px solid var(--line-soft);padding-top:12px}
 .record .rlabel{font-family:var(--mono);font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:var(--muted);margin:12px 0 5px}
 .record .rlabel:first-child{margin-top:0}
@@ -276,8 +283,6 @@ html[lang="en"] .video figcaption span[data-lang="en"]{display:block}
 /* ---------- 동문 상세 ---------- */
 .alum{padding:18px 0;border-bottom:1px solid var(--line-soft)}
 .alum b{font-weight:500;font-size:15.5px;display:block}
-.alum .meta{display:block;font-size:13.5px;color:var(--muted);margin-top:3px;line-height:1.6}
-.alum .meta a{color:var(--ink)}
 .alum ol{margin:10px 0 0;padding-left:17px;font-size:12.5px;line-height:1.75;color:var(--ink-2)}
 .alum .rlabel{font-family:var(--mono);font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:var(--muted);margin-top:11px}
 
@@ -840,7 +845,7 @@ html[lang="ko"] blockquote[data-lang="ko"],html[lang="en"] blockquote[data-lang=
         </div>
       </div>
 
-      <h3 class="eyebrow" style="display:block;margin:0 0 16px">Research &amp; Postdoctoral Fellows</h3>
+      <h3 class="eyebrow" style="display:block;margin:0 0 16px">Postdoctoral Fellows</h3>
       <div class="people" id="fellows"></div>
 
       <h3 class="eyebrow" style="display:block;margin:52px 0 16px">Graduate Students</h3>
@@ -1090,8 +1095,8 @@ const PAT4=[
  '심장배당체 유도체를 유효성분으로 포함하는 골지체 응축유도용 시약 조성물 (2025, 공동발명자)'
 ];
 const fellows=[
- {role:'Research Professor',ko:'김 진영',en:'Jinyoung Kim, Ph.D.',img:'images/img_052.jpg',
-  edu:'M.S. &amp; Ph.D. in Medical Science, SAIHST, Sungkyunkwan University · Post-doc and Research Professor, Yonsei University College of Medicine · BK21 신진연구인력 (2022.06.–)',
+ {role:'Postdoctoral Fellow',ko:'김 진영',en:'Jinyoung Kim, Ph.D.',img:'images/img_052.jpg',
+  edu:'M.S. &amp; Ph.D. in Medical Science, SAIHST, Sungkyunkwan University · Post-doc and Research Professor, Yonsei University College of Medicine · BK21 신진연구인력 (2022.06.–2026.05.), 가톨릭대학교 의과대학 BK21 사업단 · 박사후연구원 (2026.06.–)',
   res:['Pathological role of the Golgi apparatus in Alzheimer\'s disease','Golgi stress-mediated cellular senescence','Cancerous Golgi apparatus in gastric cancer','Autophagy and metabolism'],
   papers:['Biomedicine and Pharmacotherapy (2025, 공동 제1저자)','Experimental and Molecular Medicine (2025, 제1저자)','Cancer Research (2025, 공동 제1저자)','iScience (2025, 공동 제1저자)','Developmental Cell (2025, 공동 제1저자)','BMB Reports (2025, 공동 제1저자)','Frontiers in Oncology (2022, 공동 제1저자)','Nature Metabolism (2021, 공동 제1저자)','Nature Communications (2021, 제1저자)'],
   patents:PAT4,
@@ -1112,23 +1117,23 @@ const fellows=[
   links:[['BRIC 한빛사','https://www.ibric.org/bric/hanbitsa/han-interview.do?mode=view&id=95737&authorId=47561']]}
 ];
 const students=[
- {role:'Ph.D. Candidate',ko:'황 민',en:'Min Hwang',img:'images/img_147.jpg',
+ {role:'Ph.D. Candidate',ko:'황 민',en:'Min Hwang, M.S.',img:'images/img_147.jpg',
   edu:'B.S. in Biomedical Science, CHA University · M.S. in Biomedicine &amp; Health Sciences, The Catholic University of Korea · 박사과정 (2025.03.–)',
   res:[],
   papers:['Biomedicine and Pharmacotherapy (2025, 공저자)','BMB Reports (2025, 공저자)','BMB Reports (2025, 공저자)','Biology-Basel (2022, 제1저자)','BMB Reports (2022, 공저자)'],
   patents:[],books:[],links:[]},
- {role:'Integrated M.S.–Ph.D.',ko:'조 준영',en:'Junyoung Cho',img:'images/img_054.jpg',
+ {role:'Integrated M.S.–Ph.D.',ko:'조 준영',en:'Junyoung Cho, B.S.',img:'images/img_054.jpg',
   edu:'B.S. (summa cum laude) in Chemical Engineering &amp; Biotechnology, Tech University of Korea · 인턴 (2022.11.–) / 석사과정 (2023.03.–) / 석박사 통합과정 (2025.03.–)',
   res:[],
   papers:['Cancer Cell International (2026, 공저자)','Cancer Research (2025, 공저자)','iScience (2025, 공동 제1저자)'],
   patents:PAT4,books:[],
   links:[['BK21 우수대학원생 2025','#/news'],['대학원 학술제 최우수 포스터상 2023','#/news']]},
- {role:'Integrated M.S.–Ph.D.',ko:'강 승연',en:'Seungyeon Kang',img:'images/img_082.jpg',
+ {role:'Integrated M.S.–Ph.D.',ko:'강 승연',en:'Seungyeon Kang, B.S.',img:'images/img_082.jpg',
   edu:'B.S. in Biomaterials, Jeju National University · 인턴 (2023.03.–) / 석사과정 (2023.09.–) / 석박사 통합과정 (2025.03.–)',
   res:[],papers:[],
   patents:['골지체 파편화 억제제로서의 플루다라빈을 유효성분으로 포함하는 퇴행성 뇌질환 예방 또는 치료용 약학적 조성물 (2026, 공동발명자)','골지체 파편화 억제제로서의 반데타닙을 유효성분으로 포함하는 퇴행성 뇌질환 예방 또는 치료용 약학적 조성물 (2026, 공동발명자)'],
   books:[],links:[]},
- {role:'Integrated M.S.–Ph.D.',ko:'정 다솜',en:'Da Som Jung',img:'images/img_145.jpg',
+ {role:'Integrated M.S.–Ph.D.',ko:'정 다솜',en:'Da Som Jung, B.S.',img:'images/img_145.jpg',
   edu:'B.S. in Biomedical Laboratory Science, Soonchunhyang University · 인턴 (2023.05.–) / 석박사 통합과정 (2023.09.–)',
   res:[],
   papers:['Cancer Cell International (2026, 공저자)','Biomedicine and Pharmacotherapy (2025, 공저자)','Cancer Research (2025, 공저자)'],
@@ -1157,7 +1162,7 @@ function personHTML(p){
       <span class="role">${p.role}</span>
       <h4>${p.en}</h4>
       <div class="rom">${p.ko}</div>
-      <p style="font-size:13px;color:var(--muted);margin-top:10px">${p.edu}</p>
+      <div class="eduline">${p.edu.split(/\s·\s/).map(x=>'<span>'+x.trim()+'</span>').join('')}</div>
       ${p.res.length?'<ul>'+p.res.map(r=>'<li>'+r+'</li>').join('')+'</ul>':''}
       ${p.links.length?'<div class="links">'+p.links.map(l=>`<a class="tag-sm" ${l[1].startsWith('#')?'':'target="_blank" rel="noopener"'} href="${l[1]}">${l[0]}</a>`).join('')+'</div>':''}
       ${recordBlock(p)}
@@ -1175,7 +1180,7 @@ const alumni=[
   meta:'석사 졸업 (2022.08.–2025.02.) · 현) <a href="https://cnu-vm.or.kr/bbs/board.php?bo_table=sub2_1" target="_blank" rel="noopener">충남대학교 수의과대학 전임연구원</a>',
   papers:['Cancer Cell International (2026, 공저자)','BMB Reports (2025, 공동 제1저자)','BMB Reports (2025, 공저자)','Allergy (2024, 공저자)','Molecules and Cells (2023, 공저자)']},
  {name:'유 은희 / Eun Hee Yoo, M.D., M.S.',
-  meta:'융합형 의사과학자 양성 프로그램 · 석사 졸업 (2023.03.–2025.02.)',
+  meta:'융합형 의사과학자 양성 프로그램 석사 졸업 (2023.03.–2025.02.)',
   papers:['BMB Reports (2025, 공동 제1저자)']},
  {name:'이 상빈 / Sang-Bin Lee, Ph.D.',
   meta:'박사후연구원 (2022.–2023.) · 현) Post-Doc, Albert Einstein College of Medicine, NY, USA',
@@ -1188,7 +1193,8 @@ const alumni=[
   papers:['Biomedicine and Pharmacotherapy (2025, 공저자)','Cancer Research (2025, 공저자)','BMB Reports (2025, 공저자)','Biology-Basel (2022, 공저자)','Archives of Pharmacal Research (2022, 공저자)']}
 ];
 document.getElementById('alumni').innerHTML=alumni.map(a=>{
-  let h='<div class="alum"><b>'+a.name+'</b><span class="meta">'+a.meta+'</span>';
+  let h='<div class="alum"><b>'+a.name+'</b><div class="meta">'
+        +a.meta.split(/\s·\s/).map(x=>'<span>'+x.trim()+'</span>').join('')+'</div>';
   if(a.papers.length) h+='<div class="rlabel">연구 성과 / Publications</div><ol>'+a.papers.map(x=>'<li>'+x+'</li>').join('')+'</ol>';
   return h+'</div>';
 }).join('');
