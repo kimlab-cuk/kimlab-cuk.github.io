@@ -850,7 +850,7 @@ html[lang="ko"] blockquote[data-lang="ko"],html[lang="en"] blockquote[data-lang=
         </div>
       </div>
 
-      <h3 class="eyebrow" style="display:block;margin:0 0 16px">Postdoctoral Fellows</h3>
+      <h3 class="eyebrow" style="display:block;margin:0 0 16px">Research Professor / Postdoctoral Fellows</h3>
       <div class="people" id="fellows"></div>
 
       <h3 class="eyebrow" style="display:block;margin:52px 0 16px">Graduate Students</h3>
@@ -1131,18 +1131,6 @@ const fellows=[
   patents:PAT4,patentsEn:PAT4_EN,books:[],
   booksEn:[],
   links:[['BRIC 한빛사','https://www.ibric.org/bric/hanbitsa/han-interview.do?mode=view&id=98523&authorId=49940','BRIC HanbitSa'],['문숙 기초의학 차세대리더상 우수상 2026','http://www.moonsook.co.kr/s02/s03.php','Moonsook Next-Gen Leader Award 2026'],['대학원학술상 최우수상 2026','#/news','Graduate Academic Award 2026'],['신선호 젊은연구자상 2025','https://www.news1.kr/it-science/general-it/6005565','Shin Sun-Ho Young Researcher Award 2025'],['BK21 우수대학원생 2025','#/news','BK21 Outstanding Student 2025']]},
- {role:'Postdoctoral Fellow',ko:'브리토 소피아',en:'Sofia Brito, Ph.D.',img:'images/img_085.jpg',
-  edu:'B.S. in Biology and M.S. in Biological Aquatic Resources, University of Porto, Portugal · Ph.D. in Cosmetic Science, Ajou University · Post-doc, Sungkyunkwan University · 박사후연구원 (2026.03.–)',
-  eduEn:'B.S. in Biology and M.S. in Biological Aquatic Resources, University of Porto, Portugal · Ph.D. in Cosmetic Science, Ajou University · Post-doc, Sungkyunkwan University · Postdoctoral fellow (2026.03.–)',
-  res:['Molecular mechanisms of skin aging','Golgi stress-mediated cellular senescence','Skin regeneration'],
-  papers:['JID Innovations (in press, 공동 제1저자)','Experimental and Molecular Medicine (2026, 제1저자)','Cancer Cell International (2026, 공동 제1저자)','Cell Reports Physical Science (2026, 공동 제1저자)','Pharmaceutics (2025, 공동 교신저자)','Journal of Investigative Dermatology (2025, 공동 제1저자)','Materials Today Bio (2025, 공동 제1저자)','Developmental Cell (2025, 공동 제1저자)','Pharmaceutics (2024, 공동 제1저자)','Journal of Investigative Dermatology (2024, 공동 제1저자)','International Journal of Molecular Sciences (2022, 공동 제1저자)','Scientific Reports (2022, 공동 제1저자)','Journal of Ginseng Research (2022, 공동 제1저자)','Journal of Dermatological Science (2022, 공동 제1저자)','대한화장품학회지 (2022, 공동 제1저자)','International Journal of Molecular Sciences (2021, 공동 제1저자)'],
-  papersEn:['JID Innovations (in press, co-first author)','Experimental and Molecular Medicine (2026, first author)','Cancer Cell International (2026, co-first author)','Cell Reports Physical Science (2026, co-first author)','Pharmaceutics (2025, co-corresponding author)','Journal of Investigative Dermatology (2025, co-first author)','Materials Today Bio (2025, co-first author)','Developmental Cell (2025, co-first author)','Pharmaceutics (2024, co-first author)','Journal of Investigative Dermatology (2024, co-first author)','International Journal of Molecular Sciences (2022, co-first author)','Scientific Reports (2022, co-first author)','Journal of Ginseng Research (2022, co-first author)','Journal of Dermatological Science (2022, co-first author)','Journal of the Society of Cosmetic Scientists of Korea (2022, co-first author)','International Journal of Molecular Sciences (2021, co-first author)'],
-  patents:[],
-  patentsEn:[],books:[],
-  booksEn:[],
-  grants:['과학기술정보통신부 세종과학펠로우십 (복귀-유치트랙) 수주 (2026.09.–, 5년, 총 5억원) — 비대칭적 골지 스트레스 기반 세포 노화 기전 규명 및 노화 조절'],
-  grantsEn:['Sejong Science Fellowship, Ministry of Science and ICT (2026.09–, 5 years, KRW 500 million) — Asymmetric Golgi stress in cellular senescence and its control'],
-  links:[['BRIC 한빛사','https://www.ibric.org/bric/hanbitsa/han-interview.do?mode=view&id=95737&authorId=47561','BRIC HanbitSa']]}
 ];
 const students=[
  {role:'Ph.D. Candidate',ko:'황 민',en:'Min Hwang, M.S.',img:'images/img_147.jpg',
@@ -1224,6 +1212,11 @@ function renderPeople(){
 }
 
 const alumni=[
+ {name:'브리토 소피아 / Sofia Brito, Ph.D.',
+  meta:'연구 강사 (2025.03.–2026.02.) · 박사후연구원 (2026.03.–2026.08.) · 현) Post-Doc, Department of Biological Sciences, Ajou University, Suwon, Republic of Korea',
+  metaEn:'Research Instructor (2025.03–2026.02) · Postdoctoral fellow (2026.03–2026.08) · Now: Post-Doc, Department of Biological Sciences, Ajou University, Suwon, Republic of Korea',
+  papers:['Scientific Reports (2026, 공동 제1저자)','JID Innovations (2026, 공동 제1저자)','Experimental and Molecular Medicine (2026, 공동 제1저자)','Cancer Cell International (2026, 공동 제1저자)','Cell Reports Physical Science (2026, 공동 제1저자)','Journal of Investigative Dermatology (2025, 공동 제1저자)','Developmental Cell (2025, 공동 제1저자)'],
+  papersEn:['Scientific Reports (2026, co-first author)','JID Innovations (2026, co-first author)','Experimental and Molecular Medicine (2026, co-first author)','Cancer Cell International (2026, co-first author)','Cell Reports Physical Science (2026, co-first author)','Journal of Investigative Dermatology (2025, co-first author)','Developmental Cell (2025, co-first author)']},
  {name:'이 광빈 / Gwangbin Lee, M.S.',
   meta:'석사 졸업 (2023.09.–2026.02.)',
   metaEn:'M.S., graduated (2023.09–2026.02)',
@@ -1362,6 +1355,8 @@ document.getElementById('home-highlights').innerHTML=hi.map(x=>
 /* ---------------- news ---------------- */
 const A='award', G='grant', PP='paper', PT='patent', PE='people';
 const news=[
+ {d:'2026.09.01',k:PE,ko:'Sofia Brito, Ph.D., 아주대학교 박사후연구원 이직. Good luck!',
+  en:'Sofia Brito, Ph.D., moved to a postdoctoral position at Ajou University. Good luck!'},
  {d:'2026.07.07',k:A,u:'http://www.moonsook.co.kr/s02/s03.php',
   ko:'Chandani Shrestha, Ph.D., 제2회 문숙 기초의학 차세대리더상 우수상 수상 (문숙과학지원재단). Congratulations!',
   en:'Chandani Shrestha, Ph.D., received the Award of Excellence at the 2nd Moonsook Next-Generation Leader Award in Basic Medicine (Moonsook Science Foundation). Congratulations!'},
