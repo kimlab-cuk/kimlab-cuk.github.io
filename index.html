@@ -1132,8 +1132,8 @@ const fellows=[
   papersEn:['Cancer Cell International (2026, co-first author)','Biomedicine and Pharmacotherapy (2025, co-first author)','Cancer Research (2025, co-first author)','BMB Reports (2025, co-first author)','BMB Reports (2025, co-author)','Developmental Cell (2025, co-author)','Biology-Basel (2022, co-author)'],
   patents:PAT4,patentsEn:PAT4_EN,books:[],
   booksEn:[],
-  grants:['교육부 기본연구B(포용형) 선정 (2026.09.–, 3년, 연 6천만원, 총 1.8억원, 간접비 포함) — 난치성 위암에서 골지체 응축-YAP1 종양 신호전달 축의 분자기전 규명'],
-  grantsEn:['Basic Research Grant, Type B (Inclusive), Ministry of Education (2026.09–, 3 years, KRW 60 million per year, KRW 180 million total, incl. indirect costs) — Molecular mechanism of the Golgi condensation–YAP1 oncogenic signalling axis in refractory gastric cancer'],
+  grants:['교육부 기본연구B(포용형) 선정 (2026.09.–, 3년, 총 1.8억원) — 난치성 위암에서 골지체 응축-YAP1 종양 신호전달 축의 분자기전 규명'],
+  grantsEn:['Basic Research Grant, Type B (Inclusive), Ministry of Education (2026.09–, 3 years, KRW 180 million) — Molecular mechanism of the Golgi condensation–YAP1 oncogenic signalling axis in refractory gastric cancer'],
   links:[['BRIC 한빛사','https://www.ibric.org/bric/hanbitsa/han-interview.do?mode=view&id=98523&authorId=49940','BRIC HanbitSa'],['문숙 기초의학 차세대리더상 우수상 2026','http://www.moonsook.co.kr/s02/s03.php','Moonsook Next-Gen Leader Award 2026'],['대학원학술상 최우수상 2026','#/news','Graduate Academic Award 2026'],['신선호 젊은연구자상 2025','https://www.news1.kr/it-science/general-it/6005565','Shin Sun-Ho Young Researcher Award 2025'],['BK21 우수대학원생 2025','#/news','BK21 Outstanding Student 2025']]},
 ];
 const students=[
@@ -1360,9 +1360,11 @@ document.getElementById('home-highlights').innerHTML=hi.map(x=>
 /* ---------------- news ---------------- */
 const A='award', G='grant', PP='paper', PT='patent', PE='people';
 const news=[
- {d:'2026.09.01',k:G,ko:'Chandani Shrestha, Ph.D., 교육부 기본연구B(포용형) 선정 (3년, 연 6천만원, 총 1.8억원) — 난치성 위암에서 골지체 응축-YAP1 종양 신호전달 축의 분자기전 규명',en:'Chandani Shrestha, Ph.D., awarded a Basic Research Grant, Type B (Inclusive), Ministry of Education (3 years, KRW 60 million per year, KRW 180 million total) — Molecular mechanism of the Golgi condensation–YAP1 oncogenic signalling axis in refractory gastric cancer'},
  {d:'2026.09.01',k:PE,ko:'Sofia Brito, Ph.D., 아주대학교 박사후연구원 이직. Good luck!',
   en:'Sofia Brito, Ph.D., moved to a postdoctoral position at Ajou University. Good luck!'},
+ {d:'2026.09.01',k:G,ko:'Sofia Brito, Ph.D., 과학기술정보통신부 세종과학펠로우십(복귀-유치트랙) 선정 (5년, 총 5억원) — 비대칭적 골지 스트레스 기반 세포 노화 기전 규명 및 노화 조절',
+  en:'Sofia Brito, Ph.D., awarded a Sejong Science Fellowship, Ministry of Science and ICT (5 years, KRW 500 million) — Asymmetric Golgi stress in cellular senescence and its control'},
+ {d:'2026.09.01',k:G,ko:'Chandani Shrestha, Ph.D., 교육부 기본연구B(포용형) 선정 (3년, 총 1.8억원) — 난치성 위암에서 골지체 응축-YAP1 종양 신호전달 축의 분자기전 규명',en:'Chandani Shrestha, Ph.D., awarded a Basic Research Grant, Type B (Inclusive), Ministry of Education (3 years, KRW 180 million) — Molecular mechanism of the Golgi condensation–YAP1 oncogenic signalling axis in refractory gastric cancer'},
  {d:'2026.08.31',k:PT,ko:'골지체 제어 약물에 대한 특허 출원 (1건) — 골지체 파편화 억제용 조성물 및 이의 용도 (10-2026-0164473)',en:'One patent filed on a Golgi-modulating agent — Composition for inhibiting Golgi fragmentation and its use (10-2026-0164473)'},
  {d:'2026.07.07',k:A,u:'http://www.moonsook.co.kr/s02/s03.php',
   ko:'Chandani Shrestha, Ph.D., 제2회 문숙 기초의학 차세대리더상 우수상 수상 (문숙과학지원재단). Congratulations!',
@@ -1382,8 +1384,6 @@ const news=[
   en:'Invited review published in Experimental and Molecular Medicine on how zinc maintains organelle homeostasis'},
  {d:'2026.04.27',k:PT,ko:'위암 치료 약물에 대한 특허 출원 (1건) — 골지체 파편화 유도제를 유효성분으로 포함하는 위암 예방 또는 치료용 약학적 조성물 (10-2026-0076078)',
   en:'One patent filed on a gastric cancer therapeutic — Pharmaceutical composition containing a Golgi fragmentation inducer for the prevention or treatment of gastric cancer (10-2026-0076078)'},
- {d:'2026.04.13',k:G,ko:'Sofia Brito, Ph.D., 과학기술정보통신부 세종과학펠로우십(복귀-유치트랙) 선정 (5년, 연 1억원, 총 5억원) — 비대칭적 골지 스트레스 기반 세포 노화 기전 규명 및 노화 조절',
-  en:'Sofia Brito, Ph.D., awarded a Sejong Science Fellowship, Ministry of Science and ICT (5 years, KRW 100 million per year, KRW 500 million total) — Asymmetric Golgi stress in cellular senescence and its control'},
  {d:'2026.03.25',k:PP,ko:"'Cancer Cell International'에 microRNA의 폐암에서의 역할과 기능에 대한 종설 논문 게재",
   en:'Invited review published in Cancer Cell International on the roles of microRNAs in lung cancer'},
  {d:'2026.03.12',k:PT,ko:'알츠하이머병 치료 효과를 보이는 항암제에 대한 특허 출원 (2건) — 플루다라빈 (10-2026-0044784), 반데타닙 (10-2026-0044809)',
@@ -1545,7 +1545,7 @@ const news=[
   en:'Paper published in Nature Communications on a new function of the GRASP55 gene'},
  {d:'2020.02.03',k:PE,ko:'Chandani Shrestha(목포대 재학), 인턴연구원 합류. Welcome aboard!',
   en:'Chandani Shrestha (Mokpo National University) joined as an intern researcher. Welcome aboard!'},
- {d:'2019.06.01',k:G,ko:'한국연구재단 창의도전 연구과제 (2년, 총 1.5억원) 및 가톨릭대학교 교내연구과제 (1년, 0.3억원) 선정',
+ {d:'2019.06.01',k:G,ko:'한국연구재단 창의도전 연구과제 (2년, 총 1.5억원) 및 가톨릭대학교 교내연구과제 (1년, 총 0.3억원) 선정',
   en:'Awarded a Creative Challenge Research grant from the National Research Foundation of Korea (2 years, KRW 150 million) and an internal university grant (1 year, KRW 30 million)'},
  {d:'2019.03.01',k:PE,ko:'가톨릭의대 약리학교실, 세포소기관 기반 병리기전 및 질병치료 연구실 개설',
   en:'The Cell Organelle-Based Human Biology Laboratory opened in the Department of Pharmacology, The Catholic University of Korea College of Medicine'}
