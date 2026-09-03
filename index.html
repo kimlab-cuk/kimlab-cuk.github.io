@@ -275,11 +275,13 @@ html[lang="en"] .video figcaption span[data-lang="en"]{display:block}
 .news-row.kind-patent .badge{background:#B87413}
 .news-row.kind-grant  .badge{background:#2C7A57}
 .news-row.kind-people .badge{background:#5B5BA6}
+.news-row.kind-press  .badge{background:#4A6572}
 .news-row.kind-award  {--state:#BB2C68}
 .news-row.kind-paper  {--state:#0E8F9C}
 .news-row.kind-patent {--state:#B87413}
 .news-row.kind-grant  {--state:#2C7A57}
 .news-row.kind-people {--state:#5B5BA6}
+.news-row.kind-press  {--state:#4A6572}
 
 /* ---------- 동문 상세 ---------- */
 .alum{padding:18px 0;border-bottom:1px solid var(--line-soft)}
@@ -634,8 +636,8 @@ html[lang="ko"] blockquote[data-lang="ko"],html[lang="en"] blockquote[data-lang=
       <div class="prose" style="margin-bottom:40px">
         <p data-lang="ko">인간 유전자의 3분의 1 이상이 골지체를 경유하는 단백을 암호화합니다. 그럼에도 골지체는 오랫동안 '물질을 옮기는 통로'로만 다뤄져 왔습니다. 우리 연구실은 골지체의 <strong>형태(morphology)</strong> 자체가 세포 내 신호를 결정하는 독립 변수라고 봅니다. 형태가 바뀌면 신호가 바뀌고, 신호가 바뀌면 질병이 시작됩니다.</p>
         <p data-lang="en">More than a third of the human genome encodes proteins that pass through the Golgi, yet the organelle is still treated mostly as a conduit. We treat Golgi <strong>morphology</strong> as an independent variable that sets intracellular signaling: change the shape, change the signal, and disease follows.</p>
-        <div class="callout" data-lang="ko"><a href="interview.pdf" target="_blank" rel="noopener">"세포의 형태에 길을 묻는 과학자"</a></div>
-        <div class="callout" data-lang="en"><a href="interview.pdf" target="_blank" rel="noopener">"A scientist who asks the cell's shape for directions."</a></div>
+        <div class="callout" data-lang="ko">"세포의 형태에 길을 묻는 과학자"</div>
+        <div class="callout" data-lang="en">"A scientist who asks the cell's shape for directions."</div>
       </div>
       <div class="pillars">
         <a class="pillar cancer" href="#/gastric">
@@ -659,6 +661,22 @@ html[lang="ko"] blockquote[data-lang="ko"],html[lang="en"] blockquote[data-lang=
         <div class="tl-row"><div class="when">Systems bio</div><div class="what">Systems biology modelling of cancer and stroke<small data-lang="ko">시스템생물학 모델링 기반 신규 항암 전략 (연세의대 약리학교실 협업)</small><small data-lang="en">Model-driven strategy design, with the Department of Pharmacology, Yonsei University College of Medicine.</small></div></div>
         <div class="tl-row"><div class="when">Skin</div><div class="what">Zinc, Golgi stress and cellular senescence in skin<small data-lang="ko">아연 결핍–골지 스트레스 상호작용과 피부 노화 (Developmental Cell, 2025)</small><small data-lang="en">Age-associated zinc deficiency and Golgi stress in epigenetic regulation (Developmental Cell, 2025).</small></div></div>
       </div>
+
+      <div class="section-head" style="margin-top:56px">
+        <span class="eyebrow">Press &amp; essays</span>
+        <div><h2 data-lang="ko">언론·기고</h2><h2 data-lang="en">Press &amp; essays</h2></div>
+      </div>
+      <div class="linklist">
+        <a class="linkrow" href="alumni-bulletin.pdf" target="_blank" rel="noopener">
+          <span class="d">2026.08</span>
+          <span class="h"><span data-lang="ko">세포소기관 기반 질병 제어 연구 — 가톨릭의대 동문회보 제136호</span><span data-lang="en">Organelle-based control of disease — Catholic Medical Alumni Bulletin, No. 136</span></span>
+          <span class="arw">PDF &darr;</span>
+        </a>
+        <a class="linkrow" href="interview.pdf" target="_blank" rel="noopener">
+          <span class="d">2026.02</span>
+          <span class="h"><span data-lang="ko">세포의 '형태'에 길을 묻는 과학자 — 가톨릭중앙의료원 소식지 제2323호</span><span data-lang="en">A scientist who asks the cell's shape for directions — Catholic Medical Center Newsletter, No. 2323</span></span>
+          <span class="arw">PDF &darr;</span>
+        </a>
     </div>
   </section>
 </div>
@@ -1358,7 +1376,7 @@ document.getElementById('home-highlights').innerHTML=hi.map(x=>
    <span class="d">${x.d}</span><span class="h">${x.h}</span><span class="arw">&rarr;</span></a>`).join('');
 
 /* ---------------- news ---------------- */
-const A='award', G='grant', PP='paper', PT='patent', PE='people';
+const A='award', G='grant', PP='paper', PT='patent', PE='people', PR='press';
 const news=[
  {d:'2026.09.01',k:PE,ko:'Sofia Brito, Ph.D., 아주대학교 박사후연구원 이직. Good luck!',
   en:'Sofia Brito, Ph.D., moved to a postdoctoral position at Ajou University. Good luck!'},
@@ -1366,6 +1384,7 @@ const news=[
   en:'Sofia Brito, Ph.D., awarded a Sejong Science Fellowship, Ministry of Science and ICT (5 years, KRW 500 million) — Asymmetric Golgi stress in cellular senescence and its control'},
  {d:'2026.09.01',k:G,ko:'Chandani Shrestha, Ph.D., 교육부 기본연구B(포용형) 선정 (3년, 총 1.8억원) — 난치성 위암에서 골지체 응축-YAP1 종양 신호전달 축의 분자기전 규명',en:'Chandani Shrestha, Ph.D., awarded a Basic Research Grant, Type B (Inclusive), Ministry of Education (3 years, KRW 180 million) — Molecular mechanism of the Golgi condensation–YAP1 oncogenic signalling axis in refractory gastric cancer'},
  {d:'2026.08.31',k:PT,ko:'골지체 제어 약물에 대한 특허 출원 (1건) — 골지체 파편화 억제용 조성물 및 이의 용도 (10-2026-0164473)',en:'One patent filed on a Golgi-modulating agent — Composition for inhibiting Golgi fragmentation and its use (10-2026-0164473)'},
+ {d:'2026.08.01',k:PR,u:'alumni-bulletin.pdf',ko:'가톨릭의대 동문회보 제136호에 연구실 소개 게재 — 세포소기관 기반 질병 제어 연구',en:'The laboratory featured in the Catholic Medical Alumni Bulletin, No. 136 — Organelle-based control of disease'},
  {d:'2026.07.07',k:A,u:'http://www.moonsook.co.kr/s02/s03.php',
   ko:'Chandani Shrestha, Ph.D., 제2회 문숙 기초의학 차세대리더상 우수상 수상 (문숙과학지원재단). Congratulations!',
   en:'Chandani Shrestha, Ph.D., received the Award of Excellence at the 2nd Moonsook Next-Generation Leader Award in Basic Medicine (Moonsook Science Foundation). Congratulations!'},
@@ -1399,6 +1418,7 @@ const news=[
   en:'Chandani Shrestha and Junyoung Cho named Outstanding Graduate Students by the BK21 Education and Research Group. Congratulations!'},
  {d:'2026.02.03',k:PP,ko:"'Cell Reports Physical Science'에 플라즈마 코팅을 통한 약물 전달 시스템 개발에 대한 논문 게재",
   en:'Paper published in Cell Reports Physical Science on a plasma-coated drug delivery system'},
+ {d:'2026.02.01',k:PR,u:'interview.pdf',ko:"가톨릭중앙의료원 소식지 제2323호에 연구책임자 인터뷰 게재 — 세포의 '형태'에 길을 묻는 과학자",en:'PI interview published in the Catholic Medical Center Newsletter, No. 2323 — A scientist who asks the cell\u2019s shape for directions'},
  {d:'SUMMARY',k:'',
   ko:'2023–2025년 (3년) 결산|주저자 논문 총 11편 (총 IF 84.7)|특허 총 2건 (출원 1, 등록 1)|연구비 수주 총 18.07억원 (정부과제 4건 17.47억 / 산학과제 2건 0.6억)|대학원 졸업 3명 (석사 3)|수상 총 5건',
   en:'Three-year review, 2023–2025|11 papers as lead author (cumulative IF 84.7)|2 patents (1 filed, 1 registered)|KRW 1.81 billion in research funding (4 government grants, KRW 1.75 bn / 2 industry projects, KRW 60 m)|3 graduate degrees awarded (3 M.S.)|5 awards'},
@@ -1550,8 +1570,8 @@ const news=[
  {d:'2019.03.01',k:PE,ko:'가톨릭의대 약리학교실, 세포소기관 기반 병리기전 및 질병치료 연구실 개설',
   en:'The Cell Organelle-Based Human Biology Laboratory opened in the Department of Pharmacology, The Catholic University of Korea College of Medicine'}
 ];
-const KIND={award:'수상',grant:'연구비',paper:'논문',patent:'특허',people:'구성원'};
-const KIND_EN={award:'Award',grant:'Grant',paper:'Paper',patent:'Patent',people:'People'};
+const KIND={award:'수상',grant:'연구비',paper:'논문',patent:'특허',people:'구성원',press:'언론'};
+const KIND_EN={award:'Award',grant:'Grant',paper:'Paper',patent:'Patent',people:'People',press:'Press'};
 const newsYears=[...new Set(news.filter(n=>n.d!=='SUMMARY').map(n=>n.d.slice(0,4)))].sort((a,b)=>b-a);
 const nbox=document.getElementById('newsfilters');
 nbox.innerHTML='<button data-y="all" aria-pressed="true">ALL</button>'+
