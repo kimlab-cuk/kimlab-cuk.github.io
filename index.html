@@ -341,6 +341,7 @@ html[lang="en"] .video figcaption span[data-lang="en"]{display:block}
 .linkrow .h{font-size:15px}
 .linkrow .arw{font-family:var(--mono);font-size:12px;color:var(--muted)}
 .linkrow:hover .h{color:var(--state)}
+.linkrow .hk{display:inline-block;font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:1px 8px;margin-right:10px;vertical-align:2px}
 
 /* ---------- contact ---------- */
 .contact-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:48px}
@@ -1048,7 +1049,7 @@ function setLang(l){
   btnKo.setAttribute('aria-pressed',l==='ko'); btnEn.setAttribute('aria-pressed',l==='en');
   renderGolgiCaption();
   if(window.__ready){
-    renderPeople(); renderAlumni(); renderNews(); renderGallery();
+    renderPeople(); renderAlumni(); renderNews(); renderGallery(); renderHighlights();
     renderPubs((document.querySelector('#pubfilters button[aria-pressed="true"]')||{dataset:{y:'all'}}).dataset.y);
   }
 }
@@ -1142,7 +1143,7 @@ const fellows=[
   patents:PAT4,patentsEn:PAT4_EN,
   books:['교감신경 발달 및 기능 연구에 관한 실험기법 매뉴얼 (2025, ISBN 979-11-994152-1-8)','자가포식 연구에 관한 실험기법 매뉴얼 (2022, ISBN 979-11-980943-4-6)'],
   booksEn:['Laboratory manual for the study of sympathetic nerve development and function (2025, ISBN 979-11-994152-1-8)','Laboratory manual for autophagy research (2022, ISBN 979-11-980943-4-6)'],
-  links:[['BRIC 한빛사','https://www.ibric.org/myboard/read.php?Board=tr_interview&id=233451&qinterview=Y','BRIC HanbitSa'],['암젠한림생명공학상 2022','https://biz.chosun.com/science-chosun/science/2022/11/21/O6WBXWSFZRAQRIYJ64FOKSRSQY/','Amgen-KAST Award 2022']]},
+  links:[['BRIC 한빛사','https://www.ibric.org/myboard/read.php?Board=tr_interview&id=233451&qinterview=Y','BRIC HanbitSa'],['머크 350 미래 연구자상 2026','#/news','Merck 350 Future Researcher Award 2026'],['암젠한림생명공학상 2022','https://biz.chosun.com/science-chosun/science/2022/11/21/O6WBXWSFZRAQRIYJ64FOKSRSQY/','Amgen-KAST Award 2022']]},
  {role:'Postdoctoral Fellow',ko:'스레스터 짠더니',en:'Chandani Shrestha, Ph.D.',img:'images/img_146.jpg',
   edu:'B.S. in Life Science, Mokpo National University · M.S. &amp; Ph.D. in Medical Science, The Catholic University of Korea · 인턴 (2020.02.–) / 석사과정 (2020.09.–) / 석박사 통합과정 (2022.03.–) / 졸업 (2026.02.) / 박사후연구원 (2026.03.–)',
   eduEn:'B.S. in Life Science, Mokpo National University · M.S. &amp; Ph.D. in Medical Science, The Catholic University of Korea · Intern (2020.02.–) / M.S. programme (2020.09.–) / Integrated M.S.–Ph.D. programme (2022.03.–) / Graduated (2026.02.) / Postdoctoral fellow (2026.03.–)',
@@ -1153,7 +1154,7 @@ const fellows=[
   booksEn:[],
   grants:['교육부 기본연구B(포용형) 선정 (2026.09.–, 3년, 총 1.8억원) — 난치성 위암에서 골지체 응축-YAP1 종양 신호전달 축의 분자기전 규명'],
   grantsEn:['Basic Research Grant, Type B (Inclusive), Ministry of Education (2026.09–, 3 years, KRW 180 million) — Molecular mechanism of the Golgi condensation–YAP1 oncogenic signalling axis in refractory gastric cancer'],
-  links:[['BRIC 한빛사','https://www.ibric.org/bric/hanbitsa/han-interview.do?mode=view&id=98523&authorId=49940','BRIC HanbitSa'],['문숙 기초의학 차세대리더상 우수상 2026','http://www.moonsook.co.kr/s02/s03.php','Moonsook Next-Gen Leader Award 2026'],['대학원학술상 최우수상 2026','#/news','Graduate Academic Award 2026'],['신선호 젊은연구자상 2025','https://www.news1.kr/it-science/general-it/6005565','Shin Sun-Ho Young Researcher Award 2025'],['BK21 우수대학원생 2025','#/news','BK21 Outstanding Student 2025']]},
+  links:[['BRIC 한빛사','https://www.ibric.org/bric/hanbitsa/han-interview.do?mode=view&id=98523&authorId=49940','BRIC HanbitSa'],['이세영 우수박사학위논문상 2026','#/news','Lee Se Yong Ph.D. Thesis Award 2026'],['문숙 기초의학 차세대리더상 우수상 2026','http://www.moonsook.co.kr/s02/s03.php','Moonsook Next-Gen Leader Award 2026'],['대학원학술상 최우수상 2026','#/news','Graduate Academic Award 2026'],['신선호 젊은연구자상 2025','https://www.news1.kr/it-science/general-it/6005565','Shin Sun-Ho Young Researcher Award 2025'],['BK21 우수대학원생 2025','#/news','BK21 Outstanding Student 2025']]},
 ];
 const students=[
  {role:'Ph.D. Candidate',ko:'황 민',en:'Min Hwang, M.S.',img:'images/img_147.jpg',
@@ -1287,26 +1288,26 @@ const pubs=[
  {n:33,y:2026,t:"Nitrogen-oxygen plasma induces selective cancer cell death via apoptosis with lipid-peroxidation-associated mechanisms across multiple cancer cell models",u:"https://doi.org/10.1038/s41598-026-59131-4",a:"Bum-Ho Bin*, <b>Sofia Brito*</b>, Sun Ju Park, Ki Bok Yoon, Hyojin Heo, Hantae Jo, Sehyun Chae, Byung Mook Weon, Sung Kweon Cho, <b>Jiyoon Kim#</b>",j:"Scientific Reports",i:"IF 4.9 · JCR 14.6%"},
  {n:32,y:2026,t:"TIA-1 promotes FUNDC1-mediated mitophagy to protect against stress-induced cellular senescence",u:"https://doi.org/10.1038/s12276-026-01752-w",a:"Seongho Cha*, Myeongwoo Jung, Hyosun Tak, Seungyeon Ryu, Sukyoung Han, Dongwoo Chae, <b>Jiyoon Kim</b>, Seung Min Jeong, Wook Kim, Eun Kyung Lee#",j:"Experimental and Molecular Medicine",i:"IF 17.5 · JCR 1.8%"},
  {n:31,y:2026,t:"Zinc flux in skin: Identity and function of Metallothionein 1+ cells in skin homeostasis",u:"https://doi.org/10.1016/j.xjidi.2026.100483",a:"<b>Sofia Brito*</b>, Jeong-Yun Kim*, Sung Kweon Cho*, <b>Gwangbin Lee</b>, Ji-Hwan Park, <b>Jiyoon Kim#</b>, Bum-Ho Bin#",j:"JID Innovations",i:"IF 3"},
- {rep:1,n:30,y:2026,t:"Zinc as a master regulator of intracellular organelle homeostasis",u:"https://doi.org/10.1038/s12276-026-01706-2",a:"<b>Sofia Brito*</b>, <b>Jiyoon Kim#</b>, Bum-Ho Bin#",j:"Experimental and Molecular Medicine · invited review",i:"IF 17.5 · JCR 1.8%",p:"BRIC 한빛사",pe:"Featured on BRIC HanbitSa"},
+ {rep:1,n:30,y:2026,d:'2026.05.01',t:"Zinc as a master regulator of intracellular organelle homeostasis",u:"https://doi.org/10.1038/s12276-026-01706-2",a:"<b>Sofia Brito*</b>, <b>Jiyoon Kim#</b>, Bum-Ho Bin#",j:"Experimental and Molecular Medicine · invited review",i:"IF 17.5 · JCR 1.8%",p:"BRIC 한빛사",pe:"Featured on BRIC HanbitSa"},
  {n:29,y:2026,t:"MicroRNA-regulated signaling and tumor microenvironment modulation in lung cancer",u:"https://doi.org/10.1186/s12935-026-04280-9",a:"<b>Chandani Shrestha*</b>, <b>Sofia Brito*</b>, <b>Barsha Deshar</b>, <b>Junyoung Cho</b>, <b>Gwangbin Lee</b>, <b>Dasom Jung</b>, Junghyun Park, Kyung Seo Min, Yoo Kyung Chae, <b>Jiyoon Kim#</b>",j:"Cancer Cell International",i:"IF 7 · JCR 16.1%"},
  {rep:1,n:28,y:2026,t:"Tunable plasma coating modulates surface charge and protein corona of cell-derived nanovesicles for improved systemic drug delivery",u:"https://doi.org/10.1016/j.xcrp.2025.103084",a:"<b>Sofia Brito*</b>, <b>Gwangbin Lee*</b>, Seong-Bo Kim, Sun Ju Park, Marta Gonçalves, Hyojin Heo, Gang Hyoung Lee, Byung Mook Weon#, Sung Tae Kim#, <b>Jiyoon Kim#</b>, Bum-Ho Bin#",j:"Cell Reports Physical Science",i:"IF 6.9 · JCR 9.4%"},
  {rep:1,n:27,y:2025,t:"Autophagy inhibition enhances sensitivity of alpelisib in PI3K-mutated non-small cell lung cancer",u:"https://www.sciencedirect.com/science/article/pii/S0753332225008145",a:"<b>Jinyoung Kim*</b>, <b>Chandani Shrestha*</b>, <b>Tae Woo Kim</b>, <b>Sang-Bin Lee</b>, <b>Gwangbin Lee</b>, <b>Dasom Jung</b>, <b>Min Hwang</b>, <b>Shinwon Kang</b>, Hyung Soon Park, Hyunho Kim, Ho-Jung An, Dongwoo Chae#, Byoung Yong Shim#, <b>Jiyoon Kim#</b>",j:"Biomedicine and Pharmacotherapy",i:"IF 7.5 · JCR 5.3%",p:"Medical Observer, Doctors News 외 다수 보도",pe:"Covered by Medical Observer, Doctors News and others"},
- {rep:1,n:26,y:2025,t:"GDF15 regulates development and growth of sympathetic neurons to enhance energy expenditure and thermogenesis",u:"https://www.nature.com/articles/s12276-025-01543-9",a:"<b>Jinyoung Kim*</b>, <b>Annie Zhao</b>, Seo Hyun Park, Jaeseok Han, Deok-Hyeon Cheon, Sang-Hyeon Ju, Yoonhyuk Jang, Kon Chu, Hyung Jin Choi, <b>Jiyoon Kim#</b>, Myung-Shik Lee#",j:"Experimental and Molecular Medicine",i:"IF 17.5 · JCR 1.8%",p:"BRIC 한빛사 · ZDNet, Herald Business 외 다수 보도",pe:"Featured on BRIC HanbitSa; covered by ZDNet, Herald Business and others"},
+ {rep:1,n:26,y:2025,d:'2025.10.01',t:"GDF15 regulates development and growth of sympathetic neurons to enhance energy expenditure and thermogenesis",u:"https://www.nature.com/articles/s12276-025-01543-9",a:"<b>Jinyoung Kim*</b>, <b>Annie Zhao</b>, Seo Hyun Park, Jaeseok Han, Deok-Hyeon Cheon, Sang-Hyeon Ju, Yoonhyuk Jang, Kon Chu, Hyung Jin Choi, <b>Jiyoon Kim#</b>, Myung-Shik Lee#",j:"Experimental and Molecular Medicine",i:"IF 17.5 · JCR 1.8%",p:"BRIC 한빛사 · ZDNet, Herald Business 외 다수 보도",pe:"Featured on BRIC HanbitSa; covered by ZDNet, Herald Business and others"},
  {n:25,y:2025,t:"Elucidation of the dual role of Beclin-1 in ischemic stroke through systems biology modeling",u:"https://www.cell.com/iscience/fulltext/S2589-0042(25)01531-7",a:"Jun Seok Cha*, <b>Jinyoung Kim*</b>, <b>Junyoung Cho*</b>, Jungho Lee#, <b>Jiyoon Kim#</b>, Dongwoo Chae#",j:"iScience",i:"IF 4.5 · JCR 16.8%"},
- {rep:1,n:24,y:2025,t:"Condensation of the Golgi apparatus activates YAP1 to promote gastric cancer progression",u:"https://aacrjournals.org/cancerres/article-abstract/85/22/4398/767090/Condensation-of-the-Golgi-Apparatus-Activates-YAP1",a:"<b>Jinyoung Kim*</b>, <b>Chandani Shrestha*</b>, <b>Gwangbin Lee</b>, <b>Dasom Jung</b>, <b>Annie Zhao</b>, <b>Junyoung Cho</b>, Ji Hae Nahm, <b>Shinwon Kang</b>, Jung Hwan Yoon, Bum-Ho Bin, Dongwoo Chae, Seung Min Jeong, Eun Kyung Lee, <b>Jiyoon Kim#</b>",j:"Cancer Research",i:"IF 22.6 · JCR 4.7%",p:"BRIC 한빛사 · 연합뉴스, 헬스조선 외 다수 보도",pe:"Featured on BRIC HanbitSa; covered by Yonhap News, Health Chosun and others"},
+ {rep:1,n:24,y:2025,d:'2025.09.08',t:"Condensation of the Golgi apparatus activates YAP1 to promote gastric cancer progression",u:"https://aacrjournals.org/cancerres/article-abstract/85/22/4398/767090/Condensation-of-the-Golgi-Apparatus-Activates-YAP1",a:"<b>Jinyoung Kim*</b>, <b>Chandani Shrestha*</b>, <b>Gwangbin Lee</b>, <b>Dasom Jung</b>, <b>Annie Zhao</b>, <b>Junyoung Cho</b>, Ji Hae Nahm, <b>Shinwon Kang</b>, Jung Hwan Yoon, Bum-Ho Bin, Dongwoo Chae, Seung Min Jeong, Eun Kyung Lee, <b>Jiyoon Kim#</b>",j:"Cancer Research",i:"IF 22.6 · JCR 4.7%",p:"BRIC 한빛사 · 연합뉴스, 헬스조선 외 다수 보도",pe:"Featured on BRIC HanbitSa; covered by Yonhap News, Health Chosun and others"},
  {n:23,y:2025,t:"Zinc transporter ZIP13 G289R variant from SCD-EDS is associated with abnormal hair quality",u:"https://www.jidonline.org/article/S0022-202X(25)00294-5/fulltext",a:"<b>Sofia Brito*</b>, Gunwoo Park*, Gang Hyoung Lee, Valeria Capra, Gianmaria Viglizzo, Federico Zara, Jeong-Yun Kim, Ji-Hwan Park, Sung Kweon Cho, Beat Steinmann, Byung Mook Weon, <b>Jiyoon Kim</b>, Marcello Scala#, Bum-Ho Bin#",j:"Journal of Investigative Dermatology",i:"IF 7 · JCR 6.6%"},
  {n:22,y:2025,t:"Cannabidiol as a therapeutic agent for rosacea through simultaneous inhibition of multiple inflammatory pathways",u:"https://www.bmbreports.org/journal/view.html?doi=10.5483/BMBRep.2024-0115",a:"<b>Chandani Shrestha*</b>, <b>Eun Hee Yoo*</b>, <b>Barsha Deshar</b>, <b>Min Hwang</b>, <b>Shinwon Kang</b>, Bum-Ho Bin, Ji Hyun Lee#, <b>Jiyoon Kim#</b>",j:"BMB Reports",i:"IF 4.1"},
  {n:21,y:2025,t:"Quantum molecular resonance ameliorates atopic dermatitis through suppression of IL36G and SPRR2B",u:"https://www.bmbreports.org/journal/view.html?doi=10.5483/BMBRep.2024-0105",a:"<b>Jinyoung Kim*</b>, <b>Barsha Deshar*</b>, <b>Min Hwang</b>, <b>Chandani Shrestha</b>, Eunhye Ju, Bum-Ho Bin, <b>Jiyoon Kim#</b>",j:"BMB Reports",i:"IF 4.1"},
- {rep:1,n:20,y:2025,t:"Age-associated interplay between zinc deficiency and Golgi stress hinders microtubule-dependent cellular signaling and epigenetic regulation",u:"https://www.cell.com/developmental-cell/fulltext/S1534-5807(24)00763-9",a:"<b>Sofia Brito*</b>, Hyojin Heo*, <b>Jinyoung Kim*</b>, Byungsun Cha, Youngdo Jeong, <b>Wooseon Choi</b>, <b>Chandani Shrestha</b>, Gang Hyoung Lee, Sun Ju Park, Ki Bok Yoon, Kentaro Oh-hashi, Sung Tae Kim, Sehyun Chae, Sung Kweon Cho, Byung Mook Weon#, <b>Jiyoon Kim#</b>, Bum-Ho Bin#",j:"Developmental Cell",i:"IF 9.2 · JCR 3.8%",p:"BRIC 한빛사",pe:"Featured on BRIC HanbitSa"},
+ {rep:1,n:20,y:2025,d:'2025.01.06',t:"Age-associated interplay between zinc deficiency and Golgi stress hinders microtubule-dependent cellular signaling and epigenetic regulation",u:"https://www.cell.com/developmental-cell/fulltext/S1534-5807(24)00763-9",a:"<b>Sofia Brito*</b>, Hyojin Heo*, <b>Jinyoung Kim*</b>, Byungsun Cha, Youngdo Jeong, <b>Wooseon Choi</b>, <b>Chandani Shrestha</b>, Gang Hyoung Lee, Sun Ju Park, Ki Bok Yoon, Kentaro Oh-hashi, Sung Tae Kim, Sehyun Chae, Sung Kweon Cho, Byung Mook Weon#, <b>Jiyoon Kim#</b>, Bum-Ho Bin#",j:"Developmental Cell",i:"IF 9.2 · JCR 3.8%",p:"BRIC 한빛사",pe:"Featured on BRIC HanbitSa"},
  {n:19,y:2024,t:"Endoplasmic reticulum stress activates hepatic macrophages through PERK-hnRNPA1 signaling",u:"https://www.biomolther.org/journal/view.html?doi=10.4062/biomolther.2023.174",a:"Ari Kwon*, Yun Seok Kim, <b>Jiyoon Kim#</b>, Ja Hyun Koo#",j:"Biomolecules and Therapeutics",i:"IF 4.9"},
  {n:18,y:2024,t:"Forsythia velutina extract: a potential therapeutic alternative for atopic dermatitis through multiple cell type modulation",u:"https://onlinelibrary.wiley.com/doi/full/10.1111/all.15967",a:"Yujin Kwon*, Yoon Jin Kang*, Jaeyoung Kwon*, Su-Yeon Cho, <b>Jiyoon Kim</b>, Tam Thi Le, Hoseong Hwang, <b>Barsha Deshar</b>, Myungjun Kim, Ju Yeong Kim, Jae Hung Jung, Hyung-Sik Kim, Sang Hoon Jung#, Hak Cheol Kwon#, Won Kyu Kim#",j:"Allergy",i:"IF 11.3 · JCR 6.2%"},
- {rep:1,n:17,y:2023,t:"Identification of novel pathogenic roles of BLZF1/ATF6 in tumorigenesis of gastrointestinal stromal tumor showing Golgi-localized mutant KIT",u:"https://www.nature.com/articles/s41418-023-01220-2",a:"Yujin Kwon*, <b>Jiyoon Kim*</b>, Su-Yeon Cho, Yoon Jin Kang, Jongsoo Lee, Jaeyoung Kwon, Hyungjin Rhee, Sebastian Bauer, Hyung-Sik Kim, Esak Lee, Han Sang Kim, Jae Hung Jung, Hoguen Kim, Won Kyu Kim#",j:"Cell Death and Differentiation",i:"IF 13.6 · JCR 5.6%",p:"BRIC 한빛사",pe:"Featured on BRIC HanbitSa"},
+ {rep:1,n:17,y:2023,d:'2023.09.13',t:"Identification of novel pathogenic roles of BLZF1/ATF6 in tumorigenesis of gastrointestinal stromal tumor showing Golgi-localized mutant KIT",u:"https://www.nature.com/articles/s41418-023-01220-2",a:"Yujin Kwon*, <b>Jiyoon Kim*</b>, Su-Yeon Cho, Yoon Jin Kang, Jongsoo Lee, Jaeyoung Kwon, Hyungjin Rhee, Sebastian Bauer, Hyung-Sik Kim, Esak Lee, Han Sang Kim, Jae Hung Jung, Hoguen Kim, Won Kyu Kim#",j:"Cell Death and Differentiation",i:"IF 13.6 · JCR 5.6%",p:"BRIC 한빛사",pe:"Featured on BRIC HanbitSa"},
  {n:16,y:2023,t:"Golgi stress response — new insights into the pathogenesis and therapeutic targets of human diseases",u:"https://www.sciencedirect.com/science/article/pii/S1016847823000250",a:"Won Kyu Kim*, <b>Wooseon Choi</b>, <b>Barsha Deshar</b>, <b>Jiyoon Kim#</b>",j:"Molecules and Cells · invited review",i:"IF 8.2 · JCR 11.7%"},
  {n:15,y:2023,t:"Identification of small GTPases that phosphorylate IRF3 through TBK1 activation using an active mutant library screen",u:"https://www.biomolther.org/journal/view.html?volume=31&number=1&spage=48&year=2023",a:"Jae-Hyun Yu*, Eun-Yi Moon, <b>Jiyoon Kim#</b>, Ja Hyun Koo#",j:"Biomolecules and Therapeutics",i:"IF 4.9"},
  {n:14,y:2022,t:"MEKK-3 acts cooperatively with NSY-1 in SKN-1 dependent manner against oxidative stress in Caenorhabditis elegans",u:"https://www.mdpi.com/2079-7737/11/10/1526",a:"<b>Min Hwang*</b>, <b>Chandani Shrestha</b>, <b>Shinwon Kang</b>, <b>Jiyoon Kim#</b>",j:"Biology-Basel",i:"IF 4.3 · JCR 17.5%"},
  {rep:1,n:13,y:2022,t:"New insights into the role of the Golgi apparatus in the pathogenesis and therapeutics of human diseases",u:"https://link.springer.com/article/10.1007/s12272-022-01408-z",a:"<b>Wooseon Choi*</b>, <b>Shinwon Kang</b>, <b>Jiyoon Kim#</b>",j:"Archives of Pharmacal Research · invited review",i:"IF 8.2 · JCR 5.5%"},
  {n:12,y:2022,t:"Anti-atopic dermatitis effects of Parasenecio auriculatus via simultaneous inhibition of multiple inflammatory pathways",u:"https://www.bmbreports.org/journal/view.html?volume=55&number=6&spage=275",a:"Yujin Kwon*, Su-Yeon Cho*, Jaeyoung Kwon*, <b>Min Hwang</b>, Hoseong Hwang, Yoon Jin Kang, Hyeon-Seong Lee, <b>Jiyoon Kim#</b>, Won Kyu Kim#",j:"BMB Reports",i:"IF 4.1"},
- {rep:1,n:11,y:2020,t:"Grasp55−/− mice display impaired fat absorption and resistance to high-fat diet-induced obesity",u:"https://www.nature.com/articles/s41467-020-14912-x",a:"<b>Jiyoon Kim*</b>, Hyeyon Kim, Shin Hye Noh, Shi-Young Park, Dong-Kook Min, Hyunki Kim, Hee-Seok Kweon, Hoguen Kim, Sowon Aum, Sookyung Seo, Cheol Soo Choi, Hail Kim, Jae Woo Kim, Seok Jun Moon, Heon Yung Gee, Min Goo Lee#",j:"Nature Communications",i:"IF 18.1 · JCR 5.4%",p:"BRIC 한빛사 인터뷰 · 매일경제, 헬스조선 외 다수 보도",pe:"BRIC HanbitSa interview; covered by Maeil Business Newspaper, Health Chosun and others"},
+ {rep:1,n:11,y:2020,d:'2020.03.17',t:"Grasp55−/− mice display impaired fat absorption and resistance to high-fat diet-induced obesity",u:"https://www.nature.com/articles/s41467-020-14912-x",a:"<b>Jiyoon Kim*</b>, Hyeyon Kim, Shin Hye Noh, Shi-Young Park, Dong-Kook Min, Hyunki Kim, Hee-Seok Kweon, Hoguen Kim, Sowon Aum, Sookyung Seo, Cheol Soo Choi, Hail Kim, Jae Woo Kim, Seok Jun Moon, Heon Yung Gee, Min Goo Lee#",j:"Nature Communications",i:"IF 18.1 · JCR 5.4%",p:"BRIC 한빛사 인터뷰 · 매일경제, 헬스조선 외 다수 보도",pe:"BRIC HanbitSa interview; covered by Maeil Business Newspaper, Health Chosun and others"},
  {n:10,y:2019,t:"β-catenin activation down-regulates cell–cell junction-related genes and induces EMT in colorectal cancers",u:"https://www.nature.com/articles/s41598-019-54890-9",a:"Won Kyu Kim*, Yujin Kwon*, Mi Jang, Minhee Park, <b>Jiyoon Kim</b>, Suyeon Cho, Dong Geon Jang, Wook-Bin Lee, Sang Hoon Jung, Hye Jin Choi, Byung Soh Min, Tae Il Kim, Sung Pil Hong, Young-Ki Paik, Hoguen Kim#",j:"Scientific Reports",i:"IF 4.9 · JCR 14.6%"},
  {n:9,y:2019,t:"Anoctamin 1/TMEM16A controls intestinal Cl− secretion induced by carbachol and cholera toxin",u:"https://www.nature.com/articles/s12276-019-0287-2",a:"Byeongjun Lee*, Gyu-Sang Hong, Hyungsup Kim, <b>Jiyoon Kim</b>, Min Goo Lee, Jin-Young Yang, Mi-Na Kweon, Chung–Ming Tse, Donowitz Mark, Eun Mi Hwang, Uhtaek Oh#",j:"Experimental and Molecular Medicine",i:"IF 17.5 · JCR 1.8%"},
  {n:8,y:2018,t:"Specific autophagy and ESCRT components participate in the unconventional secretion of CFTR",u:"https://www.tandfonline.com/doi/full/10.1080/15548627.2018.1489479",a:"Shin Hye Noh*, Heon Yung Gee, Yeon Jeong Kim, He Piao, <b>Jiyoon Kim</b>, Jung Min Kang, Inhee Mook-Jung, Yang Sin Lee, Jin Won Cho, Min Goo Lee#",j:"Autophagy",i:"IF 18.6 · JCR 6%"},
@@ -1316,7 +1317,7 @@ const pubs=[
  {n:4,y:2017,t:"Sustained mutant KIT activation in the Golgi complex is mediated by PKC-θ in gastrointestinal stromal tumors",u:"https://clincancerres.aacrjournals.org/content/23/3/845.long",a:"Won Kyu Kim*, SeongJu Yun, Cheol Keun Park, Sebastian Bauer, <b>Jiyoon Kim</b>, Min Goo Lee, Hoguen Kim#",j:"Clinical Cancer Research",i:"IF 10.9 · JCR 9.8%"},
  {n:3,y:2017,t:"Sec16A is critical for both conventional and unconventional secretion of CFTR",u:"https://www.nature.com/articles/srep39887",a:"He Piao*, <b>Jiyoon Kim</b>, Shin Hye Noh, Hee-Seok Kweon, Joo Young Kim, Min Goo Lee#",j:"Scientific Reports",i:"IF 4.9 · JCR 14.6%"},
  {n:2,y:2016,t:"Monomerization and ER relocalization of GRASP is a requisite for unconventional secretion of CFTR",u:"https://onlinelibrary.wiley.com/doi/full/10.1111/tra.12403",a:"<b>Jiyoon Kim*</b>, Shin Hye Noh*, He Piao, Dong Hee Kim, Kuglae Kim, Jeong Seok Cha, Woo Young Chung, Hyun-Soo Cho, Joo Young Kim, Min Goo Lee#",j:"Traffic",i:"IF 2.8"},
- {rep:1,n:1,y:2016,t:"The HSP70 co-chaperone DNAJC14 targets misfolded pendrin for unconventional protein secretion",u:"https://www.nature.com/articles/ncomms11386",a:"Jinsei Jung*, <b>Jiyoon Kim*</b>, Shin Hye Roh, Ikhyun Jun, Robert D. Sampson, Heon Yung Gee, Jae Young Choi, Min Goo Lee#",j:"Nature Communications",i:"IF 18.1 · JCR 5.4%",p:"기초의학신진학술상 · 젊은 약리학자상 수상 논문 · BRIC 한빛사 인터뷰",pe:"Recognised by the Academic Award for Young Basic Medical Scientist and the Young Pharmacologist Award; BRIC HanbitSa interview"}
+ {rep:1,n:1,y:2016,d:'2016.04.25',t:"The HSP70 co-chaperone DNAJC14 targets misfolded pendrin for unconventional protein secretion",u:"https://www.nature.com/articles/ncomms11386",a:"Jinsei Jung*, <b>Jiyoon Kim*</b>, Shin Hye Roh, Ikhyun Jun, Robert D. Sampson, Heon Yung Gee, Jae Young Choi, Min Goo Lee#",j:"Nature Communications",i:"IF 18.1 · JCR 5.4%",p:"기초의학신진학술상 · 젊은 약리학자상 수상 논문 · BRIC 한빛사 인터뷰",pe:"Recognised by the Academic Award for Young Basic Medical Scientist and the Young Pharmacologist Award; BRIC HanbitSa interview"}
 ];
 const patents=[
  {y:2026,ko:'골지체 파편화 유도용 조성물 및 이의 용도',en:'Composition for inducing Golgi fragmentation and its use · KR 10-2026-0172171'},
@@ -1366,21 +1367,36 @@ fbox.querySelectorAll('button').forEach(b=>{
 });
 renderPubs('all');
 
-/* home highlights */
-const hi=[
- {d:'2025.11',h:'Condensation of the Golgi apparatus activates YAP1 to promote gastric cancer progression — Cancer Research',u:'https://aacrjournals.org/cancerres/article-abstract/85/22/4398/767090/Condensation-of-the-Golgi-Apparatus-Activates-YAP1'},
- {d:'2025.10',h:'약리학 학술상 수상 (대한약리학회)',u:'#/pi'},
- {d:'2025.10',h:'GDF15 regulates sympathetic neuron development to enhance thermogenesis — Experimental and Molecular Medicine',u:'https://www.nature.com/articles/s12276-025-01543-9'},
- {d:'2025.05',h:'Zinc deficiency and Golgi stress in epigenetic regulation — Developmental Cell',u:'https://www.cell.com/developmental-cell/fulltext/S1534-5807(24)00763-9'},
- {d:'2026.05',h:'Zinc as a master regulator of intracellular organelle homeostasis — invited review, Experimental and Molecular Medicine',u:'https://doi.org/10.1038/s12276-026-01706-2'}
-];
-document.getElementById('home-highlights').innerHTML=hi.map(x=>
- `<a class="linkrow" href="${x.u}" ${x.u.startsWith('#')?'':'target="_blank" rel="noopener"'}>
-   <span class="d">${x.d}</span><span class="h">${x.h}</span><span class="arw">&rarr;</span></a>`).join('');
+/* home highlights — 자동 생성
+   규칙: (1) IF 10 이상 또는 JCR 상위 5% 이내이면서 김지윤 교수가 제1저자·교신저자인 논문 최신 4편
+         (2) 소식의 수상(award) 최신 4건
+   두 목록을 합쳐 날짜순으로 표시. 논문·소식에 항목을 추가하면 자동 반영됨. */
+function ifOf(p){ const m=/IF\s*([\d.]+)/.exec(p.i||''); return m?parseFloat(m[1]):0; }
+function jcrOf(p){ const m=/JCR\s*([\d.]+)%/.exec(p.i||''); return m?parseFloat(m[1]):null; }
+function isTopTier(p){ const j=jcrOf(p); return ifOf(p)>=10 || (j!==null && j<=5); }
+function isLabLed(p){ return /<b>Jiyoon Kim[*#]<\/b>/.test(p.a); }
+// 첫 페이지 정렬: 월(최신 먼저) → hp가 큰 항목 먼저 → 같으면 원래 순서 유지
+// 소식 날짜와 다르게 첫 페이지 순서를 정하고 싶을 때 해당 소식에 hp:1 을 붙임
+function byMonthThenPriority(a,b){ return b.d.slice(0,7).localeCompare(a.d.slice(0,7)) || (b.hp||0)-(a.hp||0); }
+function renderHighlights(){
+  const papers=pubs.filter(p=>isTopTier(p)&&isLabLed(p))
+    .map(p=>({d:p.d||(p.y+'.00.00'),k:pick('논문','Paper'),h:p.t+' — '+p.j.split(' · ')[0],u:p.u}))
+    .sort((a,b)=>b.d.localeCompare(a.d)).slice(0,4);
+  const awards=news.filter(n=>n.k==='award')
+    .map(n=>({d:n.d,hp:n.hp||0,k:pick('수상','Award'),h:pick(n.ko,n.en).replace(/\s*Congratulations!?\s*$/,''),u:n.u||'#/news'}))
+    .sort(byMonthThenPriority).slice(0,4);
+  // 표시가 월 단위이므로 월로만 정렬. 같은 달 안에서는 소식에 적힌 순서를 유지(안정 정렬)
+  const items=[...papers,...awards].sort(byMonthThenPriority);
+  document.getElementById('home-highlights').innerHTML=items.map(x=>
+   `<a class="linkrow" href="${x.u}" ${x.u.startsWith('#')?'':'target="_blank" rel="noopener"'}>
+     <span class="d">${x.d.slice(0,7).replace('.00','')}</span><span class="h"><span class="hk">${x.k}</span>${x.h}</span><span class="arw">&rarr;</span></a>`).join('');
+}
 
 /* ---------------- news ---------------- */
 const A='award', G='grant', PP='paper', PT='patent', PE='people', PR='press';
 const news=[
+ {d:'2026.10.08',k:A,ko:'Chandani Shrestha, Ph.D., 제7회 이세영 우수박사학위논문상 수상 (한국분자·세포생물학회). Congratulations!',en:'Chandani Shrestha, Ph.D., received the 7th Lee Se Yong Outstanding Ph.D. Thesis Award (Korean Society for Molecular and Cellular Biology). Congratulations!'},
+ {d:'2026.10.07',k:A,hp:1,ko:'김진영, Ph.D., 제9회 머크 350 미래 연구자상 수상 (한국분자·세포생물학회). Congratulations!',en:'Jinyoung Kim, Ph.D., received the 9th Merck 350 Future Researcher Award (Korean Society for Molecular and Cellular Biology). Congratulations!'},
  {d:'2026.09.09',k:PT,ko:'골지체 제어 약물에 대한 특허 출원 (1건) — 골지체 파편화 유도용 조성물 및 이의 용도 (10-2026-0172171)',en:'One patent filed on a Golgi-modulating agent — Composition for inducing Golgi fragmentation and its use (10-2026-0172171)'},
  {d:'2026.09.08',k:PT,ko:'골지체 제어 약물에 대한 미국 특허 출원 (3건) — 위암 치료용 골지체 파편화 유도제 (19/800,102), 퇴행성 뇌질환 치료용 플루다라빈 (19/799,979) 및 반데타닙 (19/799,901)',en:'Three US patent applications filed on Golgi-modulating agents — a Golgi fragmentation inducer for gastric cancer (19/800,102), and fludarabine (19/799,979) and vandetanib (19/799,901) for neurodegenerative disease'},
  {d:'2026.09.01',k:PE,ko:'Sofia Brito, Ph.D., 아주대학교 박사후연구원 이직. Good luck!',
@@ -1610,6 +1626,14 @@ renderNews('all');
 /* ---------------- gallery ---------------- */
 const gallery={
  '2026':[
+  ['images/img_155.jpg','2026.10. 제9회 머크 350 미래 연구자상 수상 (김진영 Ph.D.)','2026.10. 9th Merck 350 Future Researcher Award (Jinyoung Kim, Ph.D.)'],
+  ['images/img_156.jpg','2026.10. 제9회 머크 350 미래 연구자상 수상자 단체사진','2026.10. 9th Merck 350 Future Researcher Award — awardees'],
+  ['images/img_157.jpg','2026.10. 머크 350 미래 연구자상 수상 기념강연 (김진영 Ph.D.)','2026.10. Merck 350 Future Researcher Award lecture (Jinyoung Kim, Ph.D.)'],
+  ['images/img_158.jpg','2026.10. 제9회 머크 350 미래 연구자상 상패','2026.10. 9th Merck 350 Future Researcher Award plaque'],
+  ['images/img_151.jpg','2026.10. 제7회 이세영 우수박사학위논문상 수상 (Chandani Shrestha, Ph.D.)','2026.10. 7th Lee Se Yong Outstanding Ph.D. Thesis Award (Chandani Shrestha, Ph.D.)'],
+  ['images/img_152.jpg','2026.10. 제7회 이세영 우수박사학위논문상 수상자 단체사진','2026.10. 7th Lee Se Yong Outstanding Ph.D. Thesis Award — awardees'],
+  ['images/img_153.jpg','2026.10. 제7회 이세영 우수박사학위논문상 상패','2026.10. 7th Lee Se Yong Outstanding Ph.D. Thesis Award plaque'],
+  ['images/img_154.jpg','2026.10. KSMCB 2026 국제학술대회 (Chandani Shrestha, Ph.D.)','2026.10. KSMCB 2026 International Conference (Chandani Shrestha, Ph.D.)'],
   ['images/img_150.jpg','2026.09. 개강 회식','2026.09. Start-of-semester dinner'],
   ['images/img_149.jpg','2026.08. 교수님 생신','2026.08. The PI\'s birthday'],
   ['images/img_030.jpg','2026.07. 제2회 문숙 기초의학 차세대리더상 수상 (Chandani Shrestha, Ph.D.)','2026.07. 2nd Moonsook Next-Generation Leader Award in Basic Medicine (Chandani Shrestha, Ph.D.)'],
