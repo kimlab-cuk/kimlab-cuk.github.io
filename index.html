@@ -828,6 +828,7 @@ html[lang="ko"] blockquote[data-lang="ko"],html[lang="en"] blockquote[data-lang=
 
           <h3 class="eyebrow" style="display:block;margin-bottom:12px">Honors and awards</h3>
           <div class="tl" style="margin-bottom:38px">
+            <div class="tl-row"><div class="when">2026.10</div><div class="what">36th Wunsch Medical Award, Young Investigator Award (Basic Medicine)<small>The Korean Academy of Medical Sciences · Boehringer Ingelheim Korea<span data-lang="ko"> · 제36회 분쉬의학상 젊은의학자상 (기초부문)</span></small><small><span data-lang="ko">「골지체 응축에 의한 YAP1 활성화 및 위암 진행 촉진 기전 규명」</span><span data-lang="en">For elucidating how Golgi condensation activates YAP1 to promote gastric cancer progression</span></small></div></div>
             <div class="tl-row"><div class="when">2026.06</div><div class="what">Sun-Hee Teresa Yoo Cancer Research Award<small>The Catholic University of Korea, Catholic Medical Center<span data-lang="ko"> · 유선희 데레사 암 연구학술상</span></small></div></div>
             <div class="tl-row"><div class="when">2025.10</div><div class="what">Pharmacology Academic Award<small>The Korean Society of Pharmacology<span data-lang="ko"> · 약리학 학술상</span></small></div></div>
             <div class="tl-row"><div class="when">2025.02</div><div class="what">Top 75 Outstanding Researchers<small>The Catholic University of Korea<span data-lang="ko"> · 우수연구자 75인</span></small></div></div>
@@ -1395,6 +1396,7 @@ function renderHighlights(){
 /* ---------------- news ---------------- */
 const A='award', G='grant', PP='paper', PT='patent', PE='people', PR='press';
 const news=[
+ {d:'2026.10.27',k:A,hp:2,u:'https://www.etoday.co.kr/news/view/2637933',cko:'수상 업적: 「골지체 응축에 의한 YAP1 활성화 및 위암 진행 촉진 기전 규명」 · 대표논문: <a href="https://aacrjournals.org/cancerres/article-abstract/85/22/4398/767090/Condensation-of-the-Golgi-Apparatus-Activates-YAP1" target="_blank" rel="noopener">Cancer Research (2025)</a>',cen:'Cited for elucidating how Golgi condensation activates YAP1 to promote gastric cancer progression · Representative paper: <a href="https://aacrjournals.org/cancerres/article-abstract/85/22/4398/767090/Condensation-of-the-Golgi-Apparatus-Activates-YAP1" target="_blank" rel="noopener">Cancer Research (2025)</a>',ko:'김지윤, 제36회 분쉬의학상 젊은의학자상(기초부문) 수상 (대한의학회·한국베링거인겔하임). Congratulations!',en:'Jiyoon Kim received the 36th Wunsch Medical Award, Young Investigator Award in Basic Medicine (Korean Academy of Medical Sciences and Boehringer Ingelheim Korea). Congratulations!'},
  {d:'2026.10.08',k:A,ko:'Chandani Shrestha, Ph.D., 제7회 이세영 우수박사학위논문상 수상 (한국분자·세포생물학회). Congratulations!',en:'Chandani Shrestha, Ph.D., received the 7th Lee Se Yong Outstanding Ph.D. Thesis Award (Korean Society for Molecular and Cellular Biology). Congratulations!'},
  {d:'2026.10.07',k:A,hp:1,ko:'김진영, Ph.D., 제9회 머크 350 미래 연구자상 수상 (한국분자·세포생물학회). Congratulations!',en:'Jinyoung Kim, Ph.D., received the 9th Merck 350 Future Researcher Award (Korean Society for Molecular and Cellular Biology). Congratulations!'},
  {d:'2026.09.09',k:PT,ko:'골지체 제어 약물에 대한 특허 출원 (1건) — 골지체 파편화 유도용 조성물 및 이의 용도 (10-2026-0172171)',en:'One patent filed on a Golgi-modulating agent — Composition for inducing Golgi fragmentation and its use (10-2026-0172171)'},
@@ -1611,7 +1613,8 @@ function renderNews(sel){
     if(sel!=='all'&&y!==sel) return;
     if(y!==lastYear){ html+='<h3 class="newsyear">'+y+'</h3>'; lastYear=y; }
     const txt=pick(n.ko,n.en);
-    const body=n.u?'<a href="'+n.u+'" target="_blank" rel="noopener">'+txt+'</a>':txt;
+    const sub=n.cko?'<small>'+pick(n.cko,n.cen)+'</small>':'';
+    const body=(n.u?'<a href="'+n.u+'" target="_blank" rel="noopener">'+txt+'</a>':txt)+sub;
     const label=pick(KIND[n.k]||'',KIND_EN[n.k]||'');
     html+='<div class="news-row kind-'+n.k+'"><div class="nd">'+n.d.split('.').join('. ')+'</div>'
       +'<div class="nt"><span class="badge">'+label+'</span>'+body+'</div></div>';
@@ -1626,6 +1629,8 @@ renderNews('all');
 /* ---------------- gallery ---------------- */
 const gallery={
  '2026':[
+  ['images/img_159.jpg','2026.10. 제36회 분쉬의학상 젊은의학자상 수상','2026.10. 36th Wunsch Medical Award, Young Investigator Award'],
+  ['images/img_160.jpg','2026.10. 제36회 분쉬의학상 젊은의학자상 상패','2026.10. 36th Wunsch Medical Award, Young Investigator Award plaque'],
   ['images/img_155.jpg','2026.10. 제9회 머크 350 미래 연구자상 수상 (김진영 Ph.D.)','2026.10. 9th Merck 350 Future Researcher Award (Jinyoung Kim, Ph.D.)'],
   ['images/img_156.jpg','2026.10. 제9회 머크 350 미래 연구자상 수상자 단체사진','2026.10. 9th Merck 350 Future Researcher Award — awardees'],
   ['images/img_157.jpg','2026.10. 머크 350 미래 연구자상 수상 기념강연 (김진영 Ph.D.)','2026.10. Merck 350 Future Researcher Award lecture (Jinyoung Kim, Ph.D.)'],
