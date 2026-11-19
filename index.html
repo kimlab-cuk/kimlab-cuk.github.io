@@ -1155,7 +1155,7 @@ const fellows=[
   booksEn:[],
   grants:['교육부 기본연구B(포용형) 선정 (2026.09.–, 3년, 총 1.8억원) — 난치성 위암에서 골지체 응축-YAP1 종양 신호전달 축의 분자기전 규명'],
   grantsEn:['Basic Research Grant, Type B (Inclusive), Ministry of Education (2026.09–, 3 years, KRW 180 million) — Molecular mechanism of the Golgi condensation–YAP1 oncogenic signalling axis in refractory gastric cancer'],
-  links:[['BRIC 한빛사','https://www.ibric.org/bric/hanbitsa/han-interview.do?mode=view&id=98523&authorId=49940','BRIC HanbitSa'],['이세영 우수박사학위논문상 2026','#/news','Lee Se Yong Ph.D. Thesis Award 2026'],['문숙 기초의학 차세대리더상 우수상 2026','http://www.moonsook.co.kr/s02/s03.php','Moonsook Next-Gen Leader Award 2026'],['대학원학술상 최우수상 2026','#/news','Graduate Academic Award 2026'],['신선호 젊은연구자상 2025','https://www.news1.kr/it-science/general-it/6005565','Shin Sun-Ho Young Researcher Award 2025'],['BK21 우수대학원생 2025','#/news','BK21 Outstanding Student 2025']]},
+  links:[['BRIC 한빛사','https://www.ibric.org/bric/hanbitsa/han-interview.do?mode=view&id=98523&authorId=49940','BRIC HanbitSa'],['Outstanding FCS Abstract Travel Award 2026','#/news','Outstanding FCS Abstract Travel Award 2026'],['이세영 우수박사학위논문상 2026','#/news','Lee Se Yong Ph.D. Thesis Award 2026'],['문숙 기초의학 차세대리더상 우수상 2026','http://www.moonsook.co.kr/s02/s03.php','Moonsook Next-Gen Leader Award 2026'],['대학원학술상 최우수상 2026','#/news','Graduate Academic Award 2026'],['신선호 젊은연구자상 2025','https://www.news1.kr/it-science/general-it/6005565','Shin Sun-Ho Young Researcher Award 2025'],['BK21 우수대학원생 2025','#/news','BK21 Outstanding Student 2025']]},
 ];
 const students=[
  {role:'Ph.D. Candidate',ko:'황 민',en:'Min Hwang, M.S.',img:'images/img_147.jpg',
@@ -1383,7 +1383,7 @@ function renderHighlights(){
   const papers=pubs.filter(p=>isTopTier(p)&&isLabLed(p))
     .map(p=>({d:p.d||(p.y+'.00.00'),k:pick('논문','Paper'),h:p.t+' — '+p.j.split(' · ')[0],u:p.u}))
     .sort((a,b)=>b.d.localeCompare(a.d)).slice(0,4);
-  const awards=news.filter(n=>n.k==='award')
+  const awards=news.filter(n=>n.k==='award' && !/travel award/i.test(n.en))   // 학회 여비 지원 성격의 상(Travel Award)은 첫 페이지에서 제외
     .map(n=>({d:n.d,hp:n.hp||0,k:pick('수상','Award'),h:pick(n.ko,n.en).replace(/\s*Congratulations!?\s*$/,''),u:n.u||'#/news'}))
     .sort(byMonthThenPriority).slice(0,4);
   // 표시가 월 단위이므로 월로만 정렬. 같은 달 안에서는 소식에 적힌 순서를 유지(안정 정렬)
@@ -1396,6 +1396,7 @@ function renderHighlights(){
 /* ---------------- news ---------------- */
 const A='award', G='grant', PP='paper', PT='patent', PE='people', PR='press';
 const news=[
+ {d:'2026.11.11',k:A,ko:'Chandani Shrestha, Ph.D., Outstanding FCS Abstract Travel Award 수상 및 포스터 발표 (Frontiers in Cancer Science 2026, 싱가포르). Congratulations!',en:'Chandani Shrestha, Ph.D., received the Outstanding FCS Abstract Travel Award and presented a poster at Frontiers in Cancer Science (FCS) 2026 in Singapore. Congratulations!'},
  {d:'2026.10.27',k:A,hp:2,u:'https://www.bosa.co.kr/news/articleView.html?idxno=3014386',ko:'김지윤, 제36회 분쉬의학상 젊은의학자상(기초부문) 수상 (대한의학회·한국베링거인겔하임). Congratulations!',en:'Jiyoon Kim received the 36th Wunsch Medical Award, Young Investigator Award in Basic Medicine (Korean Academy of Medical Sciences and Boehringer Ingelheim Korea). Congratulations!'},
  {d:'2026.10.08',k:A,ko:'Chandani Shrestha, Ph.D., 제7회 이세영 우수박사학위논문상 수상 (한국분자·세포생물학회). Congratulations!',en:'Chandani Shrestha, Ph.D., received the 7th Lee Se Yong Outstanding Ph.D. Thesis Award (Korean Society for Molecular and Cellular Biology). Congratulations!'},
  {d:'2026.10.07',k:A,hp:1,ko:'김진영, Ph.D., 제9회 머크 350 미래 연구자상 수상 (한국분자·세포생물학회). Congratulations!',en:'Jinyoung Kim, Ph.D., received the 9th Merck 350 Future Researcher Award (Korean Society for Molecular and Cellular Biology). Congratulations!'},
@@ -1628,6 +1629,8 @@ renderNews('all');
 /* ---------------- gallery ---------------- */
 const gallery={
  '2026':[
+  ['images/img_161.jpg','2026.11. Frontiers in Cancer Science 2026 포스터 발표, 싱가포르 (Chandani Shrestha, Ph.D.)','2026.11. Poster presentation at Frontiers in Cancer Science 2026, Singapore (Chandani Shrestha, Ph.D.)'],
+  ['images/img_162.jpg','2026.11. Frontiers in Cancer Science 2026, Outstanding FCS Abstract Travel Award (Chandani Shrestha, Ph.D.)','2026.11. Frontiers in Cancer Science 2026, Outstanding FCS Abstract Travel Award (Chandani Shrestha, Ph.D.)'],
   ['images/img_159.jpg','2026.10. 제36회 분쉬의학상 젊은의학자상 수상 (김지윤)','2026.10. 36th Wunsch Medical Award, Young Investigator Award (Jiyoon Kim)'],
   ['images/img_160.jpg','2026.10. 제36회 분쉬의학상 젊은의학자상 상패','2026.10. 36th Wunsch Medical Award, Young Investigator Award plaque'],
   ['images/img_155.jpg','2026.10. 제9회 머크 350 미래 연구자상 수상 (김진영 Ph.D.)','2026.10. 9th Merck 350 Future Researcher Award (Jinyoung Kim, Ph.D.)'],
